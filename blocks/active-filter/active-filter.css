@@ -1,22 +1,33 @@
-/* bar with a label: heading + action links (e.g. seller profile "Back to top" bar) */
+/*
+ * bar with a label: heading + action links
+ * (source seller profile #partner.products.info .box-head: h3 with a 2px rule below,
+ * "Back to top" a.box-back-top absolutely placed 35px from the top, right aligned;
+ * the products grid starts 35px below the rule)
+ */
 .active-filter .active-filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 8px 16px;
-  border-bottom: 1px solid currentcolor;
+  position: relative;
+  margin: 2px 2px 35px;
+  padding: 20px 0 10px;
+  border-bottom: 2px solid #aeafb1;
+  color: var(--heading-color);
 }
 
-.active-filter .active-filter-label > :first-child {
-  margin-top: 0;
+.active-filter .active-filter-label > * {
+  margin: 0;
 }
 
-.active-filter .active-filter-label > :last-child {
-  margin-bottom: 0;
+.active-filter .active-filter-label > :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--heading-color);
+  font-family: var(--font-family-medium);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.1;
 }
 
 .active-filter .active-filter-actions {
+  position: absolute;
+  top: 35px;
+  right: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -26,12 +37,38 @@
   margin: 0;
 }
 
+.active-filter .active-filter-bar a.active-filter-action:any-link {
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: var(--link-color);
+  font-family: var(--font-family-bold);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 17.1429px;
+  text-decoration: none;
+}
+
+.active-filter .active-filter-bar a.active-filter-action:hover {
+  text-decoration: underline;
+}
+
+@media (width >= 992px) {
+  .active-filter .active-filter-label > :is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--body-font-family);
+    font-size: var(--heading-font-size-xxl);
+    font-weight: 400;
+  }
+}
+
 /*
  * bar without a label: selected filter chips
  * (source #selected-filters-container .selected-filters-list / .selected-filter-item)
  */
 .active-filter .active-filter-bar:not(:has(> .active-filter-label)) {
+  position: static;
   display: block;
+  margin: 0;
   padding: 0 0 0 5px;
   border-bottom: 0;
   color: #505050;
@@ -42,6 +79,7 @@
 }
 
 .active-filter .active-filter-bar:not(:has(> .active-filter-label)) .active-filter-actions {
+  position: static;
   flex-flow: column nowrap;
   align-items: flex-start;
   gap: 8px;

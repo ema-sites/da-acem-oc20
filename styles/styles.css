@@ -786,3 +786,251 @@ main .section.become-partner a.button:focus-visible {
     font-size: 15px;
   }
 }
+
+/*
+ * seller profile (source /partner/<name>/; pages carrying a product-title.partner-profile).
+ * section 1 = breadcrumb, h1, warning notice, partner header, partner badge, "Contact Seller"
+ * notice, Location notice; section 2 = About Seller; section 3 = All Products.
+ * < 992px everything stacks (source .product.media, then .product-info-main 30px below).
+ * >= 992px: 66% main column + 2% gap + 32% sidebar inside the 1140px container; the
+ * badge, contact box and Location card sit beside the header and the About/All Products
+ * sections (source .product.media / .product-info-main / .product.info.detailed floats).
+ */
+main:has(.product-title.partner-profile) > .section:first-of-type > .default-content-wrapper > h1:first-child {
+  margin: 0 0 15px;
+  color: #000;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+/* padding, not margin: the block's own 15px bottom margin must not collapse into it */
+main:has(.product-title.partner-profile) .product-title-wrapper {
+  padding-bottom: 30px;
+}
+
+/* partner level badge (source .product-info-main > .text-center img, width 190) */
+main:has(.product-title.partner-profile) .product-title-wrapper + .default-content-wrapper > p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+/* source: inline img on the text baseline = 59px image + 5px descender gap */
+main:has(.product-title.partner-profile) .product-title-wrapper + .default-content-wrapper img {
+  display: block;
+  width: 190px;
+  margin: 0 auto 5px;
+}
+
+/* "Contact Seller" box (source .box-profile) with an outlined pill button */
+main:has(.product-title.partner-profile) .product-title-wrapper ~ .notice-wrapper > .notice:not(.warning, .location) {
+  margin: 0 0 30px;
+  padding: 25px 75px;
+  border: 1px solid #aeafb1;
+  color: #8e8e8e;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+main:has(.product-title.partner-profile) .product-title-wrapper ~ .notice-wrapper > .notice:not(.warning, .location) a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 18px 0 16px;
+  border: 2px solid var(--button-secondary-border);
+  border-radius: 20px;
+  background-color: transparent;
+  color: #222;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: border-color 0.13s ease-in-out, background-color 0.13s ease-in-out;
+}
+
+main:has(.product-title.partner-profile) .product-title-wrapper ~ .notice-wrapper > .notice:not(.warning, .location) a:hover,
+main:has(.product-title.partner-profile) .product-title-wrapper ~ .notice-wrapper > .notice:not(.warning, .location) a:focus-visible {
+  border-color: var(--button-secondary-border-hover);
+  background-color: var(--button-secondary-background-hover);
+  color: #000;
+}
+
+/* About Seller (source .product-data__item: .box-head h3 + .box text; its back-to-top link is hidden) */
+main:has(.product-title.partner-profile) > .section:first-of-type + .section > .default-content-wrapper > h3:first-child {
+  margin: 2px 2px 0;
+  padding: 20px 0 10px;
+  color: #000;
+  font-family: var(--heading-font-family);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+main:has(.product-title.partner-profile) > .section:first-of-type + .section > .default-content-wrapper > p:has(> a[href="#top"]) {
+  display: none;
+}
+
+main:has(.product-title.partner-profile) > .section:first-of-type + .section > .default-content-wrapper > p {
+  margin: 0;
+  padding: 20px 20px 0 0;
+  color: #202021;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+@media (width >= 992px) {
+  main:has(.product-title.partner-profile) {
+    display: grid;
+    grid-template-columns:
+      [full-start] 1fr
+      [content-start main-start] min(752.4px, (100% - 2 * var(--content-padding)) * 0.66)
+      [main-end] min(22.8px, (100% - 2 * var(--content-padding)) * 0.02)
+      [side-start] min(364.8px, (100% - 2 * var(--content-padding)) * 0.32)
+      [side-end content-end] 1fr
+      [full-end];
+    align-items: start;
+    padding-top: 20px;
+  }
+
+  /* section 1's wrappers become grid items (unloaded sections keep their inline display:none) */
+  main:has(.product-title.partner-profile) > .section:first-of-type {
+    display: contents;
+  }
+
+  /* auto margins would centre the wrappers inside their grid areas */
+  main:has(.product-title.partner-profile) > .section > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  main:has(.product-title.partner-profile) > .section:first-of-type > div {
+    grid-column: content;
+  }
+
+  main:has(.product-title.partner-profile) > .section:first-of-type > .product-title-wrapper {
+    grid-area: 4 / main / span 2;
+    padding-bottom: 0;
+  }
+
+  main:has(.product-title.partner-profile) > .section:first-of-type > .product-title-wrapper + .default-content-wrapper {
+    grid-area: 4 / side;
+  }
+
+  main:has(.product-title.partner-profile) > .section:first-of-type > .product-title-wrapper ~ .notice-wrapper:not(:has(> .notice.location, > .notice.warning)) {
+    grid-area: 5 / side;
+  }
+
+  main:has(.product-title.partner-profile) > .section:first-of-type > .notice-wrapper:has(> .notice.location) {
+    grid-area: 6 / side / span 2;
+  }
+
+  /* About Seller, All Products: main column from row 6 on; the become-partner band stays full-bleed */
+  main:has(.product-title.partner-profile) > .section:not(:first-of-type) {
+    grid-column: main;
+    min-width: 0;
+  }
+
+  /* grid items do not collapse margins: About Seller keeps no outer margin */
+  main:has(.product-title.partner-profile) > .section:first-of-type + .section {
+    margin: 0;
+  }
+
+  main:has(.product-title.partner-profile) > .section:has(.section.become-partner) {
+    grid-column: full;
+  }
+
+  main:has(.product-title.partner-profile) > .section:first-of-type + .section > .default-content-wrapper > h3:first-child {
+    font-size: 28px;
+  }
+}
+
+/*
+ * text pages (privacy policy, terms and conditions, 503): a single section holding only
+ * default content, the breadcrumb tag-list and optionally a table-plain block.
+ * source: commercemarketplace.adobe.com/privacy-policy-cookie-restriction-mode (.cms-content)
+ * < 992px: 20px gutters, 13px below the header, no breadcrumb;
+ * >= 992px: 30px gutters, 30px below the header, breadcrumb box 24px + 25px.
+ * The page title is followed by 50px; 115px (40px + 75px) separate the content from the footer.
+ */
+main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) {
+  --content-padding: 20px;
+}
+
+main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) > .section {
+  margin: 0 0 115px;
+  padding-top: 13px;
+}
+
+main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) > .section > .tag-list-wrapper {
+  display: none;
+  min-height: 24px;
+  margin-bottom: 25px;
+}
+
+/* page title (source .page-title-wrapper: 28px/30.8px #000, margin-bottom 50px) */
+main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) > .section > .default-content-wrapper:first-child > h1:first-child {
+  margin: 0 0 50px;
+}
+
+main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) .default-content-wrapper h2 {
+  margin: 25px 0 20px;
+  color: var(--text-color);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 33px;
+}
+
+main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) .default-content-wrapper ul {
+  margin-bottom: 25px;
+}
+
+main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) .default-content-wrapper li {
+  margin-bottom: 10px;
+}
+
+/* heading after the breadcrumb (503 page: source h1 36px/39.6px, 40px/44px from 768px) */
+main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) > .section > .tag-list-wrapper + .default-content-wrapper > h1 {
+  margin: 0 0 20px;
+  color: var(--text-color);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 39.6px;
+}
+
+/* 503 message lines (source .content: 20px/28.5714px #949496) */
+main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) > .section > .tag-list-wrapper + .default-content-wrapper > h1 ~ p {
+  margin: 0;
+  color: #949496;
+  font-size: 20px;
+  line-height: 28.5714px;
+}
+
+@media (width >= 768px) {
+  main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) > .section > .tag-list-wrapper + .default-content-wrapper > h1 {
+    margin-bottom: 40px;
+    font-size: 40px;
+    line-height: 44px;
+  }
+}
+
+@media (width >= 992px) {
+  main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) {
+    --content-padding: 30px;
+  }
+
+  main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) > .section {
+    padding-top: 30px;
+  }
+
+  main:has(.tag-list.breadcrumb):not(:has(.block:not(.tag-list.breadcrumb, .table-plain))) > .section > .tag-list-wrapper {
+    display: block;
+  }
+}

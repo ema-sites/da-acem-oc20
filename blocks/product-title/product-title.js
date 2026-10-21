@@ -47,6 +47,50 @@ function buildRating({ value, count }) {
   return wrap;
 }
 
+const SOCIAL_HOSTS = [
+  ['facebook', /(^|\.)facebook\.com$/],
+  ['twitter', /(^|\.)(twitter|x)\.com$/],
+  ['linkedin', /(^|\.)linkedin\.com$/],
+  ['youtube', /(^|\.)(youtube\.com|youtu\.be)$/],
+  ['instagram', /(^|\.)instagram\.com$/],
+];
+
+/* returns the social network of a paragraph that holds a single profile link, else null */
+function socialNetwork(el) {
+  if (el.tagName !== 'P') return null;
+  const links = el.querySelectorAll('a[href]');
+  if (links.length !== 1 || el.textContent.trim() !== links[0].textContent.trim()) return null;
+  let host;
+  try {
+    host = new URL(links[0].href).hostname.toLowerCase();
+  } catch (e) {
+    return null;
+  }
+  const match = SOCIAL_HOSTS.find(([, re]) => re.test(host));
+  return match ? match[0] : null;
+}
+
+/* partner profile: social profile links become an icon list (source .social-list) */
+function buildSocialList(items) {
+  const ul = document.createElement('ul');
+  ul.className = 'product-title-links product-title-social';
+  items.forEach(({ el, network }) => {
+    const a = el.querySelector('a');
+    a.className = '';
+    a.setAttribute('aria-label', network.charAt(0).toUpperCase() + network.slice(1));
+    a.target = '_blank';
+    a.rel = 'noopener';
+    const icon = document.createElement('span');
+    icon.className = `product-title-social-icon product-title-social-${network}`;
+    icon.setAttribute('aria-hidden', 'true');
+    a.replaceChildren(icon);
+    const li = document.createElement('li');
+    li.append(a);
+    ul.append(li);
+  });
+  return ul;
+}
+
 export default function decorate(block) {
   const logo = document.createElement('div');
   logo.className = 'product-title-logo';
@@ -66,9 +110,29 @@ export default function decorate(block) {
     }
   });
 
+  const profile = block.classList.contains('partner-profile');
+  const social = [];
   let titled = false;
+  let website = false;
   elements.forEach((el) => {
     const text = el.textContent.trim();
+    const network = profile ? socialNetwork(el) : null;
+    if (network) {
+      if (!social.length) {
+        // placeholder keeps the list where the first profile link was authored
+        const slot = document.createElement('ul');
+        info.append(slot);
+        social.push({ slot });
+      }
+      social.push({ el, network });
+      return;
+    }
+    if (profile && !website && el.tagName === 'P' && el.querySelector('a[href]') && !el.querySelector('picture, img')) {
+      el.classList.add('product-title-website');
+      el.querySelectorAll('a.button').forEach((a) => a.classList.remove('button'));
+      el.classList.remove('button-container');
+      website = true;
+    }
     if (el.querySelector('picture, img') && !text && !logo.childNodes.length) {
       logo.append(el);
       return;
@@ -93,6 +157,11 @@ export default function decorate(block) {
     if (el.matches('ul, ol') && el.querySelector('a')) el.classList.add('product-title-links');
     if (text || el.querySelector('picture, img')) info.append(el);
   });
+
+  if (social.length) {
+    const [{ slot }, ...items] = social;
+    slot.replaceWith(buildSocialList(items));
+  }
 
   logo.querySelectorAll('picture > img').forEach((img) => {
     const url = new URL(img.src, window.location.href);

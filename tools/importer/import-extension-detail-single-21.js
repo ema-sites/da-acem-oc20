@@ -18,24 +18,13 @@ const PAGE_TEMPLATE = {
       "name": "tag-list",
       "instances": [
         "#maincontent .column.main > div.breadcrumbs:has(li)"
-      ],
-      "pageInstances": {
-        "https://commercemarketplace.adobe.com/miniorange-inc-gdpr.html": [
-          "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-          "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-        ]
-      }
+      ]
     },
     {
       "name": "product-buy-box",
       "instances": [
         "#maincontent .product-info-details-container > div:nth-child(1)"
-      ],
-      "pageInstances": {
-        "https://commercemarketplace.adobe.com/miniorange-inc-gdpr.html": [
-          "#maincontent .product-info-details-container > div:nth-child(1)"
-        ]
-      }
+      ]
     },
     {
       "name": "product-details",

@@ -25,24 +25,13 @@ const PAGE_TEMPLATE = {
       "name": "notice",
       "instances": [
         "#maincontent .product-info-details-container > div:nth-child(1)"
-      ],
-      "pageInstances": {
-        "https://commercemarketplace.adobe.com/fingent-global-solutions-module-mastercard.html": [
-          "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(1)",
-          "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div.product.media > div.case-box-ov > div.page-title-wrapper.product > div.ico-product"
-        ]
-      }
+      ]
     },
     {
       "name": "product-buy-box",
       "instances": [
         "#maincontent .product-info-details-container > div:nth-child(2)"
-      ],
-      "pageInstances": {
-        "https://commercemarketplace.adobe.com/fingent-global-solutions-module-mastercard.html": [
-          "#maincontent .product-info-details-container > div:nth-child(1)"
-        ]
-      }
+      ]
     },
     {
       "name": "product-details",

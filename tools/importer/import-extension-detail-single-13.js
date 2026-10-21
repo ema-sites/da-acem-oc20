@@ -19,35 +19,19 @@ const PAGE_TEMPLATE = {
       "name": "tag-list",
       "instances": [
         "#maincontent .column.main > div.breadcrumbs:has(li)"
-      ],
-      "pageInstances": {
-        "https://commercemarketplace.adobe.com/hk2-search-sanitizer.html": [
-          "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(3) > div > div > div:nth-child(3) > div.box",
-          "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(3) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-        ]
-      }
+      ]
     },
     {
       "name": "notice",
       "instances": [
         "#maincontent .product-info-details-container > div:nth-child(1)"
-      ],
-      "pageInstances": {
-        "https://commercemarketplace.adobe.com/hk2-search-sanitizer.html": [
-          "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(1)"
-        ]
-      }
+      ]
     },
     {
       "name": "product-buy-box",
       "instances": [
         "#maincontent .product-info-details-container > div:nth-child(2)"
-      ],
-      "pageInstances": {
-        "https://commercemarketplace.adobe.com/hk2-search-sanitizer.html": [
-          "#maincontent .product-info-details-container > div:nth-child(1)"
-        ]
-      }
+      ]
     },
     {
       "name": "product-details",

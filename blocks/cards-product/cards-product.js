@@ -169,5 +169,10 @@ export default function decorate(block) {
     img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '200' }]));
   });
 
+  // seller-profile grids list one vendor's products: cards carry no vendor line
+  if (ul.children.length && !ul.querySelector('.cards-product-vendor')) {
+    block.classList.add('no-vendor');
+  }
+
   block.replaceChildren(ul);
 }

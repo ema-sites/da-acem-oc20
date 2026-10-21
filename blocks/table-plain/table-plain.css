@@ -1,3 +1,10 @@
+/*
+ * table-plain
+ * source: commercemarketplace.adobe.com/privacy-policy-cookie-restriction-mode
+ * (.cms-content > table.data-table.data-table-definition-list): unadorned table, no borders,
+ * 14px/20px #505050, cells 11px 10px, bold header row and bold first column.
+ * Below 768px the header row is hidden and every row stacks: name (bold), then description.
+ */
 .table-plain .table-plain-scroll {
   width: 100%;
   overflow-x: auto;
@@ -5,18 +12,42 @@
 
 .table-plain table {
   width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
+  color: var(--text-color);
+  font-size: var(--body-font-size-s);
+  line-height: var(--body-line-height);
+}
+
+.table-plain thead {
+  display: none;
+}
+
+.table-plain tbody,
+.table-plain tr,
+.table-plain th,
+.table-plain td {
+  display: block;
 }
 
 .table-plain th,
 .table-plain td {
-  padding: 0.75em 0.5em;
+  padding: 11px 0;
+  border: 0;
+  font-size: inherit;
+  line-height: inherit;
   text-align: left;
   vertical-align: top;
 }
 
-.table-plain th {
+.table-plain th,
+.table-plain tbody td:first-child {
   font-weight: 700;
+}
+
+/* stacked row: the name cell sits on the description cell (source th: 11px 0 0) */
+.table-plain tbody td:first-child:not(:only-child) {
+  padding-bottom: 0;
 }
 
 .table-plain th p,
@@ -25,12 +56,30 @@
 }
 
 .table-plain td p + p {
-  margin-top: 0.25em;
+  margin-top: 10px;
 }
 
-@media (width >= 900px) {
-  .table-plain th:first-child,
-  .table-plain td:first-child {
-    width: 30%;
+@media (width >= 768px) {
+  .table-plain thead {
+    display: table-header-group;
+  }
+
+  .table-plain tbody {
+    display: table-row-group;
+  }
+
+  .table-plain tr {
+    display: table-row;
+  }
+
+  .table-plain th,
+  .table-plain td,
+  .table-plain tbody td:first-child:not(:only-child) {
+    display: table-cell;
+    padding: 11px 10px;
+  }
+
+  .table-plain thead th {
+    vertical-align: bottom;
   }
 }

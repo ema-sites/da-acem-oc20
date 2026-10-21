@@ -52458,24 +52458,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/amasty-landing-page.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/amasty-landing-page.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -52702,24 +52691,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/ests-subcategorylist.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/ests-subcategorylist.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -52774,24 +52752,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/extendware-module-repricing.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/extendware-module-repricing.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -55463,24 +55430,13 @@
           "name": "notice",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/fingent-global-solutions-module-mastercard.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(1)",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div.product.media > div.case-box-ov > div.page-title-wrapper.product > div.ico-product"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(2)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/fingent-global-solutions-module-mastercard.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -55554,24 +55510,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/fme-guest-to-customer.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/fme-guest-to-customer.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -55626,24 +55571,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/fs20studio-module-recurring-salesrule.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/fs20studio-module-recurring-salesrule.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -55698,35 +55632,19 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/hk2-search-sanitizer.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(3) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(3) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "notice",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/hk2-search-sanitizer.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(2)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/hk2-search-sanitizer.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -56045,24 +55963,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/icodebees-customfee.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/icodebees-customfee.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -56120,24 +56027,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/icodebees-orderrating.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/icodebees-orderrating.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -56192,24 +56088,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/magearray-gallery.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/magearray-gallery.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -56264,24 +56149,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/mdsoft-module-eu-guarantee-notice.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/mdsoft-module-eu-guarantee-notice.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -56336,24 +56210,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/meetanshi-magento-2-notification-bar.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/meetanshi-magento-2-notification-bar.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -56408,24 +56271,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/miniorange-inc-gdpr.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/miniorange-inc-gdpr.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -56480,24 +56332,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/nulogic-module-chatbot.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/nulogic-module-chatbot.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -56609,24 +56450,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/sparsh-whatsapp-chat-extension.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/sparsh-whatsapp-chat-extension.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",
@@ -56726,24 +56556,13 @@
           "name": "tag-list",
           "instances": [
             "#maincontent .column.main > div.breadcrumbs:has(li)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/vdcstore-module-mobilelogin.html": [
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
-              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
-            ]
-          }
+          ]
         },
         {
           "name": "product-buy-box",
           "instances": [
             "#maincontent .product-info-details-container > div:nth-child(1)"
-          ],
-          "pageInstances": {
-            "https://commercemarketplace.adobe.com/vdcstore-module-mobilelogin.html": [
-              "#maincontent .product-info-details-container > div:nth-child(1)"
-            ]
-          }
+          ]
         },
         {
           "name": "product-details",

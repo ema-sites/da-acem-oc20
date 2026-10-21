@@ -209,6 +209,37 @@
   text-align: right;
 }
 
+/*
+ * seller-profile grid (no vendor line; source #partner_instant_selector .products-grid):
+ * flush grid (no padding), 240px cards, footer starts 183px into the content box and
+ * runs into the bottom padding; badge 15px and price 16px below the footer top
+ */
+.cards-product.no-vendor > ul {
+  margin: 0;
+  padding: 0;
+}
+
+.cards-product.no-vendor .cards-product-card {
+  height: 240px;
+}
+
+.cards-product.no-vendor .cards-product-card-body > .cards-product-footer {
+  flex: 0 0 auto;
+  align-items: flex-start;
+  height: 45px;
+  min-height: 0;
+  margin-bottom: -10px;
+}
+
+.cards-product.no-vendor .cards-product-footer .cards-product-tier {
+  margin-top: 15px;
+}
+
+.cards-product.no-vendor .cards-product-footer .cards-product-price {
+  margin-top: 16px;
+  line-height: 24.5px;
+}
+
 /* full-width card image variant */
 .cards-product.image .cards-product-card {
   height: auto;
