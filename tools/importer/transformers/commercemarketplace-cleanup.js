@@ -32,6 +32,7 @@ const CATALOG_CLEANUP_RULES = [
 const CHROME_SELECTORS = [
   'header.page-header',
   'div.after-header-container',
+  'body > svg', // inline icon sprite (~1MB) — huge html2md cost, no content
   'footer.page-footer',
   '#ot-cookie-button',
   '#ot-cookie-settings',
