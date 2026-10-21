@@ -566,6 +566,109 @@ main > .section.sidebar > .price-filter-wrapper {
 }
 
 /*
+ * empty results state (source .products-empty): "No products found.", the label above the
+ * popular-queries tag-list, an "or" divider with a line either side and an outlined
+ * "See all products" link. Source box: 7px top, 37px bottom (20px padding + 10px flex gap
+ * + 7px), 20px sides (25px above 768px) on top of the section gutter.
+ */
+main > .section.results .default-content-wrapper {
+  --empty-state-inset: 20px;
+
+  color: #666;
+  font-size: 16px;
+  line-height: 1.4286;
+  text-align: center;
+}
+
+main > .section.results .results-toolbar-wrapper + .default-content-wrapper {
+  padding-top: 7px;
+}
+
+main > .section.results .results-toolbar-wrapper + .default-content-wrapper > p:first-child {
+  margin: 0 0 30px;
+  padding: 0 var(--empty-state-inset);
+  color: #333;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+main > .section.results .default-content-wrapper:has(+ .tag-list-wrapper) > p:last-child {
+  margin: 0 0 20px;
+  padding: 0 var(--empty-state-inset);
+}
+
+main > .section.results .tag-list-wrapper + .default-content-wrapper {
+  padding-bottom: 37px;
+}
+
+main > .section.results .tag-list-wrapper + .default-content-wrapper > p:last-child:has(> a) {
+  display: block;
+  margin: 0;
+  padding: 0 var(--empty-state-inset);
+}
+
+main > .section.results .tag-list-wrapper + .default-content-wrapper > p:last-child:has(> a) > a:any-link {
+  display: inline-block;
+  margin: 0;
+  padding: 10px 24px;
+  border: 2px solid #1979c3;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #1979c3;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4286;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+main > .section.results .tag-list-wrapper + .default-content-wrapper > p:last-child:has(> a) > a:any-link:hover {
+  background-color: #1979c3;
+  color: #fff;
+  text-decoration: none;
+}
+
+main > .section.results .tag-list-wrapper + .default-content-wrapper > p:first-child:not(:has(a)) {
+  position: relative;
+  margin: 20px 0;
+  padding: 0 var(--empty-state-inset);
+  color: #999;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+main > .section.results .tag-list-wrapper + .default-content-wrapper > p:first-child:not(:has(a))::before,
+main > .section.results .tag-list-wrapper + .default-content-wrapper > p:first-child:not(:has(a))::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 100px;
+  height: 1px;
+  background-color: #ddd;
+}
+
+main > .section.results .tag-list-wrapper + .default-content-wrapper > p:first-child:not(:has(a))::before {
+  right: calc(50% + 20px);
+}
+
+main > .section.results .tag-list-wrapper + .default-content-wrapper > p:first-child:not(:has(a))::after {
+  left: calc(50% + 20px);
+}
+
+@media (width <= 768px) {
+  main > .section.results .tag-list-wrapper + .default-content-wrapper > p:first-child:not(:has(a))::before,
+  main > .section.results .tag-list-wrapper + .default-content-wrapper > p:first-child:not(:has(a))::after {
+    width: 60px;
+  }
+}
+
+@media (width >= 769px) {
+  main > .section.results .default-content-wrapper {
+    --empty-state-inset: 25px;
+  }
+}
+
+/*
  * two columns. Sections that are not loaded yet carry an inline display:none and drop
  * out of the grid; every section has an explicit column, so late ones land in place.
  */

@@ -219,3 +219,57 @@ main > .section:has(> .tag-list-wrapper > .tag-list.has-icons)::after {
     font-size: 36px;
   }
 }
+
+/*
+ * popular search queries in the empty results state
+ * (source .products-empty .popular-queries: 15px gap, outlined #1979c3 chips;
+ * stacked and centred up to 768px)
+ */
+main > .section.results .tag-list {
+  padding: 0 20px;
+}
+
+main > .section.results .tag-list .tag-list-items {
+  gap: 15px;
+  margin: 0 0 20px;
+  font-size: 16px;
+  line-height: 1.4286;
+  text-align: center;
+}
+
+main > .section.results .tag-list .tag-list-item {
+  display: inline-block;
+  margin: 0 0 10px;
+}
+
+main > .section.results .tag-list .tag-list-link:any-link {
+  display: inline;
+  padding: 8px 16px;
+  border: 1px solid #1979c3;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #1979c3;
+  font-size: 15px;
+  line-height: 1.4286;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+main > .section.results .tag-list .tag-list-link:any-link:hover {
+  background-color: #1979c3;
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (width <= 768px) {
+  main > .section.results .tag-list .tag-list-items {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (width >= 769px) {
+  main > .section.results .tag-list {
+    padding: 0 25px;
+  }
+}

@@ -52,7 +52,7 @@ const MAIN_WIDGET_SELECTORS = [
   'input[name="form_key"]',
   // Listing (PLP) UI: mobile Refine toggle, client-side empty/error states.
   '#refine-toggle',
-  '.products-empty',
+  '#livesearch-category-view > .products-empty', // hidden sibling; inside #products-grid it is real content
   '.products-error',
 ];
 
@@ -166,6 +166,9 @@ export default function transform(hookName, element, payload) {
 
     WebImporter.DOMUtils.remove(element, MAIN_WIDGET_SELECTORS);
     WebImporter.DOMUtils.remove(element, NON_CONTENT_SELECTORS);
+    // Template-specific removals (e.g. facet groups hidden on curated listings).
+    const extra = (template && Array.isArray(template.removeAfterParse)) ? template.removeAfterParse : [];
+    if (extra.length) WebImporter.DOMUtils.remove(element, extra);
     removeLooseFormControls(element);
     normalizeFacetDefaultContent(document, element);
 
@@ -251,6 +254,8 @@ function rewriteInternalLinks(element) {
     try { u = new URL(href, 'https://commercemarketplace.adobe.com/'); } catch (e) { return; }
     if (!SITE_HOSTS.includes(u.hostname)) return;
     if (/^\/(media|static|pub)\//.test(u.pathname)) return; // assets stay absolute
+    // Magento app routes (search, cart, account) are not migrated pages: keep them on the source.
+    if (/^\/(catalogsearch|checkout|customer|wishlist|sales|contact)\b/.test(u.pathname)) return;
     let p = u.pathname.replace(/\.html?$/, '').replace(/\/$/, '');
     if (p === '') p = '/';
     a.setAttribute('href', `${p}${u.search}${u.hash}`);
