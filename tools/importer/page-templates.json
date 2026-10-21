@@ -52283,7 +52283,169 @@
         "https://commercemarketplace.adobe.com/i95devconnect-sapbase.html"
       ],
       "description": "Seller profile page reached by redirect: warning notice banner, seller header with logo and partner badge, about/all-products tabs, about text, location card sidebar and large product card grid",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "div.page-wrapper > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/aheadworks-module-bambora-apac.html": [
+              "#html-body > div.page-wrapper > div.breadcrumbs"
+            ],
+            "https://commercemarketplace.adobe.com/aheadworks-module-reviewreminder.html": [
+              "#html-body > div.page-wrapper > div.breadcrumbs"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-sapbase.html": [
+              "#html-body > div.page-wrapper > div.breadcrumbs"
+            ]
+          }
+        },
+        {
+          "name": "notice",
+          "instances": [
+            "#maincontent > div.page.messages:has(.message)",
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div.box-profile",
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div.case-specifications"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/aheadworks-module-bambora-apac.html": [
+              "#maincontent > div.page.messages",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.box-profile.box.box--lightgray.text-center",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.case-specifications"
+            ],
+            "https://commercemarketplace.adobe.com/aheadworks-module-reviewreminder.html": [
+              "#maincontent > div.page.messages",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.box-profile.box.box--lightgray.text-center",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.case-specifications"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-sapbase.html": [
+              "#maincontent > div.page.messages",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.box-profile.box.box--lightgray.text-center",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.case-specifications"
+            ]
+          }
+        },
+        {
+          "name": "product-title",
+          "instances": [
+            "#maincontent .partner.product-info-details-container > div.product.media"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/aheadworks-module-bambora-apac.html": [
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product.media"
+            ],
+            "https://commercemarketplace.adobe.com/aheadworks-module-reviewreminder.html": [
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product.media"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-sapbase.html": [
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product.media"
+            ]
+          }
+        },
+        {
+          "name": "active-filter",
+          "instances": [
+            "#partner\\.products\\.info"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/aheadworks-module-bambora-apac.html": [
+              "#partner\\.products\\.info"
+            ],
+            "https://commercemarketplace.adobe.com/aheadworks-module-reviewreminder.html": [
+              "#partner\\.products\\.info"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-sapbase.html": [
+              "#partner\\.products\\.info"
+            ]
+          }
+        },
+        {
+          "name": "cards-product",
+          "instances": [
+            "#instant-search-results-container .products-grid"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/aheadworks-module-bambora-apac.html": [
+              "#instant-search-results-container .products-grid"
+            ],
+            "https://commercemarketplace.adobe.com/aheadworks-module-reviewreminder.html": [
+              "#instant-search-results-container .products-grid"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-sapbase.html": [
+              "#instant-search-results-container .products-grid"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "seller-header",
+          "name": "Seller header",
+          "selector": [
+            "#maincontent > div.page.messages",
+            "#maincontent .partner.product-info-details-container > div.product.media"
+          ],
+          "style": null,
+          "blocks": [
+            "tag-list",
+            "notice",
+            "product-title"
+          ],
+          "defaultContent": [
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div:nth-child(1)"
+          ]
+        },
+        {
+          "id": "seller-about",
+          "name": "About seller",
+          "selector": [
+            "#maincontent .partner.product-info-details-container .product-data-items > .product-data__item:first-child"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "#partner\\.biography\\.info",
+            "#maincontent .partner.product-info-details-container .product-data-items > .product-data__item:first-child > div.box"
+          ]
+        },
+        {
+          "id": "seller-products",
+          "name": "All products",
+          "selector": [
+            "#partner_instant_selector"
+          ],
+          "style": null,
+          "blocks": [
+            "active-filter",
+            "cards-product"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "removeAfterParse": [
+        ".product-info-nav",
+        "#instant-search-results-container .products-loading",
+        "#instant-search-results-container .products-error"
+      ],
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/aheadworks-module-bambora-apac.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ],
+        "https://commercemarketplace.adobe.com/aheadworks-module-reviewreminder.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ],
+        "https://commercemarketplace.adobe.com/i95devconnect-sapbase.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      },
+      "becomePartner": true
     },
     {
       "name": "extension-detail-single-7",
@@ -52291,7 +52453,71 @@
         "https://commercemarketplace.adobe.com/amasty-landing-page.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/amasty-landing-page.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/amasty-landing-page.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/amasty-landing-page.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "seller-profile-alt",
@@ -52301,7 +52527,169 @@
         "https://commercemarketplace.adobe.com/i95devconnect-navbases.html"
       ],
       "description": "Seller profile page variant with warning notice, seller header and partner badge, tabs, about text, location sidebar and long product card grid, keyed separately by its sidebar layout",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "div.page-wrapper > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/amasty-module-special-promotions.html": [
+              "#html-body > div.page-wrapper > div.breadcrumbs"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-ax365base.html": [
+              "#html-body > div.page-wrapper > div.breadcrumbs"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-navbases.html": [
+              "#html-body > div.page-wrapper > div.breadcrumbs"
+            ]
+          }
+        },
+        {
+          "name": "notice",
+          "instances": [
+            "#maincontent > div.page.messages:has(.message)",
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div.box-profile",
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div.case-specifications"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/amasty-module-special-promotions.html": [
+              "#maincontent > div.page.messages",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.box-profile.box.box--lightgray.text-center",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.case-specifications"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-ax365base.html": [
+              "#maincontent > div.page.messages",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.box-profile.box.box--lightgray.text-center",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.case-specifications"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-navbases.html": [
+              "#maincontent > div.page.messages",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.box-profile.box.box--lightgray.text-center",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.case-specifications"
+            ]
+          }
+        },
+        {
+          "name": "product-title",
+          "instances": [
+            "#maincontent .partner.product-info-details-container > div.product.media"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/amasty-module-special-promotions.html": [
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product.media"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-ax365base.html": [
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product.media"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-navbases.html": [
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product.media"
+            ]
+          }
+        },
+        {
+          "name": "active-filter",
+          "instances": [
+            "#partner\\.products\\.info"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/amasty-module-special-promotions.html": [
+              "#partner\\.products\\.info"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-ax365base.html": [
+              "#partner\\.products\\.info"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-navbases.html": [
+              "#partner\\.products\\.info"
+            ]
+          }
+        },
+        {
+          "name": "cards-product",
+          "instances": [
+            "#instant-search-results-container .products-grid"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/amasty-module-special-promotions.html": [
+              "#instant-search-results-container .products-grid"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-ax365base.html": [
+              "#instant-search-results-container .products-grid"
+            ],
+            "https://commercemarketplace.adobe.com/i95devconnect-navbases.html": [
+              "#instant-search-results-container .products-grid"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "seller-header",
+          "name": "Seller header",
+          "selector": [
+            "#maincontent > div.page.messages",
+            "#maincontent .partner.product-info-details-container > div.product.media"
+          ],
+          "style": null,
+          "blocks": [
+            "tag-list",
+            "notice",
+            "product-title"
+          ],
+          "defaultContent": [
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div:nth-child(1)"
+          ]
+        },
+        {
+          "id": "seller-about",
+          "name": "About seller",
+          "selector": [
+            "#maincontent .partner.product-info-details-container .product-data-items > .product-data__item:first-child"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "#partner\\.biography\\.info",
+            "#maincontent .partner.product-info-details-container .product-data-items > .product-data__item:first-child > div.box"
+          ]
+        },
+        {
+          "id": "seller-products",
+          "name": "All products",
+          "selector": [
+            "#partner_instant_selector"
+          ],
+          "style": null,
+          "blocks": [
+            "active-filter",
+            "cards-product"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "removeAfterParse": [
+        ".product-info-nav",
+        "#instant-search-results-container .products-loading",
+        "#instant-search-results-container .products-error"
+      ],
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/amasty-module-special-promotions.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ],
+        "https://commercemarketplace.adobe.com/i95devconnect-ax365base.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ],
+        "https://commercemarketplace.adobe.com/i95devconnect-navbases.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      },
+      "becomePartner": true
     },
     {
       "name": "extension-detail-single-8",
@@ -52309,7 +52697,71 @@
         "https://commercemarketplace.adobe.com/ests-subcategorylist.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/ests-subcategorylist.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/ests-subcategorylist.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/ests-subcategorylist.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-9",
@@ -52317,7 +52769,70 @@
         "https://commercemarketplace.adobe.com/extendware-module-repricing.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/extendware-module-repricing.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/extendware-module-repricing.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/extendware-module-repricing.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk"
+        ]
+      }
     },
     {
       "name": "listing-category",
@@ -54937,7 +55452,96 @@
         "https://commercemarketplace.adobe.com/fingent-global-solutions-module-mastercard.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ]
+        },
+        {
+          "name": "notice",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/fingent-global-solutions-module-mastercard.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(1)",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div.product.media > div.case-box-ov > div.page-title-wrapper.product > div.ico-product"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/fingent-global-solutions-module-mastercard.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(3)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-notice",
+          "name": "Notice banner",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "notice"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(3)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail-notice",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/fingent-global-solutions-module-mastercard.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "button.bv-relevancy-popup-target.bv-focusable",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(2)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(3)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(4)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(2)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(3)",
+          "li.bv-popup-histogram-ratings-bar",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-11",
@@ -54945,7 +55549,71 @@
         "https://commercemarketplace.adobe.com/fme-guest-to-customer.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/fme-guest-to-customer.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/fme-guest-to-customer.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/fme-guest-to-customer.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-12",
@@ -54953,7 +55621,71 @@
         "https://commercemarketplace.adobe.com/fs20studio-module-recurring-salesrule.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/fs20studio-module-recurring-salesrule.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/fs20studio-module-recurring-salesrule.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/fs20studio-module-recurring-salesrule.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-13",
@@ -54961,7 +55693,94 @@
         "https://commercemarketplace.adobe.com/hk2-search-sanitizer.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/hk2-search-sanitizer.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(3) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(3) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "notice",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/hk2-search-sanitizer.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/hk2-search-sanitizer.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(3)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-notice",
+          "name": "Notice banner",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "notice"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(3)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail-notice",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/hk2-search-sanitizer.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "seller-profile-single-a",
@@ -54969,7 +55788,125 @@
         "https://commercemarketplace.adobe.com/i95devconnect-axbase.html"
       ],
       "description": "Single seller profile page with notice, seller header, tabs, about text and product card grid whose layout differs slightly from seller-profile",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "div.page-wrapper > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/i95devconnect-axbase.html": [
+              "#html-body > div.page-wrapper > div.breadcrumbs"
+            ]
+          }
+        },
+        {
+          "name": "notice",
+          "instances": [
+            "#maincontent > div.page.messages:has(.message)",
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div.box-profile",
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div.case-specifications"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/i95devconnect-axbase.html": [
+              "#maincontent > div.page.messages",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.box-profile.box.box--lightgray.text-center",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.case-specifications"
+            ]
+          }
+        },
+        {
+          "name": "product-title",
+          "instances": [
+            "#maincontent .partner.product-info-details-container > div.product.media"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/i95devconnect-axbase.html": [
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product.media"
+            ]
+          }
+        },
+        {
+          "name": "active-filter",
+          "instances": [
+            "#partner\\.products\\.info"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/i95devconnect-axbase.html": [
+              "#partner\\.products\\.info"
+            ]
+          }
+        },
+        {
+          "name": "cards-product",
+          "instances": [
+            "#instant-search-results-container .products-grid"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/i95devconnect-axbase.html": [
+              "#instant-search-results-container .products-grid"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "seller-header",
+          "name": "Seller header",
+          "selector": [
+            "#maincontent > div.page.messages",
+            "#maincontent .partner.product-info-details-container > div.product.media"
+          ],
+          "style": null,
+          "blocks": [
+            "tag-list",
+            "notice",
+            "product-title"
+          ],
+          "defaultContent": [
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div:nth-child(1)"
+          ]
+        },
+        {
+          "id": "seller-about",
+          "name": "About seller",
+          "selector": [
+            "#maincontent .partner.product-info-details-container .product-data-items > .product-data__item:first-child"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "#partner\\.biography\\.info",
+            "#maincontent .partner.product-info-details-container .product-data-items > .product-data__item:first-child > div.box"
+          ]
+        },
+        {
+          "id": "seller-products",
+          "name": "All products",
+          "selector": [
+            "#partner_instant_selector"
+          ],
+          "style": null,
+          "blocks": [
+            "active-filter",
+            "cards-product"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "removeAfterParse": [
+        ".product-info-nav",
+        "#instant-search-results-container .products-loading",
+        "#instant-search-results-container .products-error"
+      ],
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/i95devconnect-axbase.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      },
+      "becomePartner": true
     },
     {
       "name": "seller-profile-single-b",
@@ -54977,7 +55914,125 @@
         "https://commercemarketplace.adobe.com/i95devconnect-gp2015connect.html"
       ],
       "description": "Single seller profile page with notice, seller header, tabs, about text and product card grid whose layout differs slightly from seller-profile",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "div.page-wrapper > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/i95devconnect-gp2015connect.html": [
+              "#html-body > div.page-wrapper > div.breadcrumbs"
+            ]
+          }
+        },
+        {
+          "name": "notice",
+          "instances": [
+            "#maincontent > div.page.messages:has(.message)",
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div.box-profile",
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div.case-specifications"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/i95devconnect-gp2015connect.html": [
+              "#maincontent > div.page.messages",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.box-profile.box.box--lightgray.text-center",
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product-info-main > div.case-specifications"
+            ]
+          }
+        },
+        {
+          "name": "product-title",
+          "instances": [
+            "#maincontent .partner.product-info-details-container > div.product.media"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/i95devconnect-gp2015connect.html": [
+              "#maincontent > div.columns > div > div.partner.product-info-details-container.abs-add-clearfix > div.product.media"
+            ]
+          }
+        },
+        {
+          "name": "active-filter",
+          "instances": [
+            "#partner\\.products\\.info"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/i95devconnect-gp2015connect.html": [
+              "#partner\\.products\\.info"
+            ]
+          }
+        },
+        {
+          "name": "cards-product",
+          "instances": [
+            "#instant-search-results-container .products-grid"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/i95devconnect-gp2015connect.html": [
+              "#instant-search-results-container .products-grid"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "id": "seller-header",
+          "name": "Seller header",
+          "selector": [
+            "#maincontent > div.page.messages",
+            "#maincontent .partner.product-info-details-container > div.product.media"
+          ],
+          "style": null,
+          "blocks": [
+            "tag-list",
+            "notice",
+            "product-title"
+          ],
+          "defaultContent": [
+            "#maincontent .partner.product-info-details-container > div.product-info-main > div:nth-child(1)"
+          ]
+        },
+        {
+          "id": "seller-about",
+          "name": "About seller",
+          "selector": [
+            "#maincontent .partner.product-info-details-container .product-data-items > .product-data__item:first-child"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "#partner\\.biography\\.info",
+            "#maincontent .partner.product-info-details-container .product-data-items > .product-data__item:first-child > div.box"
+          ]
+        },
+        {
+          "id": "seller-products",
+          "name": "All products",
+          "selector": [
+            "#partner_instant_selector"
+          ],
+          "style": null,
+          "blocks": [
+            "active-filter",
+            "cards-product"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "removeAfterParse": [
+        ".product-info-nav",
+        "#instant-search-results-container .products-loading",
+        "#instant-search-results-container .products-error"
+      ],
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/i95devconnect-gp2015connect.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      },
+      "becomePartner": true
     },
     {
       "name": "extension-detail-single-16",
@@ -54985,7 +56040,74 @@
         "https://commercemarketplace.adobe.com/icodebees-customfee.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/icodebees-customfee.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/icodebees-customfee.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/icodebees-customfee.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "ul.bv-content-secondary-ratings > li:nth-child(2)",
+          "ul.bv-content-secondary-ratings > li:nth-child(3)",
+          "li.bv-popup-histogram-ratings-bar",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-17",
@@ -54993,7 +56115,71 @@
         "https://commercemarketplace.adobe.com/icodebees-orderrating.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/icodebees-orderrating.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/icodebees-orderrating.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/icodebees-orderrating.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-18",
@@ -55001,7 +56187,71 @@
         "https://commercemarketplace.adobe.com/magearray-gallery.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/magearray-gallery.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/magearray-gallery.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/magearray-gallery.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-19",
@@ -55009,7 +56259,71 @@
         "https://commercemarketplace.adobe.com/mdsoft-module-eu-guarantee-notice.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/mdsoft-module-eu-guarantee-notice.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/mdsoft-module-eu-guarantee-notice.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/mdsoft-module-eu-guarantee-notice.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-20",
@@ -55017,7 +56331,71 @@
         "https://commercemarketplace.adobe.com/meetanshi-magento-2-notification-bar.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/meetanshi-magento-2-notification-bar.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/meetanshi-magento-2-notification-bar.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/meetanshi-magento-2-notification-bar.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-21",
@@ -55025,7 +56403,71 @@
         "https://commercemarketplace.adobe.com/miniorange-inc-gdpr.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/miniorange-inc-gdpr.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/miniorange-inc-gdpr.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/miniorange-inc-gdpr.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-22",
@@ -55033,7 +56475,71 @@
         "https://commercemarketplace.adobe.com/nulogic-module-chatbot.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/nulogic-module-chatbot.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/nulogic-module-chatbot.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/nulogic-module-chatbot.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "legal-policy",
@@ -55041,7 +56547,33 @@
         "https://commercemarketplace.adobe.com/privacy-policy-cookie-restriction-mode"
       ],
       "description": "Long text-only policy page with headings and paragraphs between global header and footer",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ]
+        },
+        {
+          "name": "table-plain",
+          "instances": [
+            "#maincontent .privacy-policy.cms-content > table"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/privacy-policy-cookie-restriction-mode": [
+              "#maincontent > div.columns > div > div.privacy-policy.cms-content > table"
+            ]
+          }
+        }
+      ],
+      "sections": [],
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/privacy-policy-cookie-restriction-mode": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "error-page",
@@ -55049,7 +56581,22 @@
         "https://commercemarketplace.adobe.com/service-unavailable"
       ],
       "description": "Error page with status message, short explanatory text and action links",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ]
+        }
+      ],
+      "sections": [],
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/service-unavailable": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-25",
@@ -55057,7 +56604,93 @@
         "https://commercemarketplace.adobe.com/sparsh-whatsapp-chat-extension.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/sparsh-whatsapp-chat-extension.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/sparsh-whatsapp-chat-extension.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/sparsh-whatsapp-chat-extension.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "button.bv-relevancy-popup-target.bv-focusable",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(2)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(3)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(4)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(2)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(3)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(4)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(2)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(3)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(4)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(4) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(2)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(4) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(3)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(4) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(4)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(2)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(3)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(5) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(4)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(6) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(2)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(6) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(3)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(6) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(4)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(7) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(2)",
+          "ol.bv-content-list.bv-content-list-reviews > li:nth-child(7) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(3)",
+          "li.bv-popup-histogram-ratings-bar",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "legal-terms",
@@ -55065,7 +56698,22 @@
         "https://commercemarketplace.adobe.com/terms-and-conditions"
       ],
       "description": "Short text-only terms page with heading and paragraphs between global header and footer",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ]
+        }
+      ],
+      "sections": [],
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/terms-and-conditions": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     },
     {
       "name": "extension-detail-single-27",
@@ -55073,7 +56721,74 @@
         "https://commercemarketplace.adobe.com/vdcstore-module-mobilelogin.html"
       ],
       "description": "Single product detail page with product title, buy box and details body; page layout could not be captured so it was not grouped with extension-detail",
-      "blocks": []
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#maincontent .column.main > div.breadcrumbs:has(li)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/vdcstore-module-mobilelogin.html": [
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(3) > div.box",
+              "#maincontent > div.columns > div > div.product-info-details-container > div:nth-child(2) > div > div > div:nth-child(4) > div.box > div.technical-specs"
+            ]
+          }
+        },
+        {
+          "name": "product-buy-box",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "pageInstances": {
+            "https://commercemarketplace.adobe.com/vdcstore-module-mobilelogin.html": [
+              "#maincontent .product-info-details-container > div:nth-child(1)"
+            ]
+          }
+        },
+        {
+          "name": "product-details",
+          "instances": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-summary",
+          "name": "Product summary / buy box",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-buy-box"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-details",
+          "name": "Product details",
+          "selector": [
+            "#maincontent .product-info-details-container > div:nth-child(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "product-details"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "basedOn": "extension-detail",
+      "pageCleanup": {
+        "https://commercemarketplace.adobe.com/vdcstore-module-mobilelogin.html": [
+          "#onetrust-style",
+          "#onetrust-consent-sdk",
+          "ul.bv-content-secondary-ratings > li:nth-child(2)",
+          "ul.bv-content-secondary-ratings > li:nth-child(3)",
+          "li.bv-popup-histogram-ratings-bar",
+          "div.ui-dialog.ui-corner-all"
+        ]
+      }
     }
   ],
   "metadata": {

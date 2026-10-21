@@ -4,61 +4,93 @@
 /**
  * Parser for notice (bordered callout of notice text).
  *
- * Source (product pages): .product-info-details-container > div.product-details-row
- *   > div.pci-notice | div.box-in.vbe | any notice box — rich text with links.
+ * Instances (block-context/notice):
+ *   - product pages: div.product-details-row > div.pci-notice | div.box-in.vbe  → plain
+ *   - seller profile: #maincontent > div.page.messages (Magento page message,
+ *     wrapper with 1–2 children: placeholder + knockout scope) → `warning`
+ *   - seller profile: div.case-specifications (div.box-head h4 "Location" +
+ *     div.box.box-produce address lines) → `location`
+ *   - seller profile: div.box-profile ("Contact Seller" button) → plain
+ * The repeating unit differs per instance (text vs nested divs) and child counts vary,
+ * so content is located with fallback selectors and every row is optional.
  *
  * Target (blocks/notice/README.md): single cell of rich text with links;
- * an optional heading becomes the title. Empty notices are dropped (element removed).
+ * an optional heading becomes the title. Empty notices are dropped.
  */
 
-const NOTICE_SELECTORS = ['.pci-notice', '.box-in.vbe', '[class*="notice"]', '.message'];
+function clean(text) {
+  return (text || '').replace(/\s+/g, ' ').trim();
+}
 
-function findNotice(element) {
-  for (const sel of NOTICE_SELECTORS) {
-    const el = element.matches(sel) ? element : element.querySelector(sel);
-    if (el) return el;
+function variantOf(element) {
+  if (element.matches('.page.messages, .messages')
+    || element.querySelector('.messages .message, .message-notice, .message-warning, .message-error, .message-success')) {
+    return 'warning';
   }
-  return element;
+  if (element.matches('.case-specifications') || element.querySelector(':scope > .case-specifications, .box-head + .box-produce')) {
+    return 'location';
+  }
+  return null;
+}
+
+// The node whose children hold the notice content, per instance shape (fallbacks in order).
+function contentRoot(element, variant) {
+  const pick = (selectors) => selectors.map((s) => (element.matches(s) ? element : element.querySelector(s))).find(Boolean);
+  if (variant === 'warning') {
+    return pick(['.message-notice > div', '.message-warning > div', '.message > div', '.message', '[data-ui-id*="message"]']) || element;
+  }
+  if (variant === 'location') {
+    return pick(['.case-specifications']) || element;
+  }
+  return pick(['.pci-notice', '.box-in.vbe', '.box-profile', '[class*="notice"]']) || element;
+}
+
+// Inline runs become paragraphs; block-level children are kept (or flattened if they only wrap inline content).
+function appendContent(document, cell, root) {
+  let p = null;
+  const flush = () => {
+    if (p && (clean(p.textContent) || p.querySelector('img'))) cell.push(p);
+    p = null;
+  };
+  [...root.childNodes].forEach((node) => {
+    if (node.nodeType === 8) return; // comments (knockout bindings)
+    if (node.nodeType === 1 && /^(SCRIPT|STYLE|TEMPLATE|INPUT)$/.test(node.tagName)) return;
+    const isBlock = node.nodeType === 1 && /^(P|UL|OL|DIV|TABLE|BLOCKQUOTE|H[1-6])$/.test(node.tagName);
+    if (isBlock) {
+      flush();
+      if (/^H[1-6]$/.test(node.tagName)) {
+        const h = document.createElement('h3');
+        h.textContent = clean(node.textContent);
+        if (h.textContent) cell.push(h);
+      } else if (node.tagName === 'DIV') {
+        appendContent(document, cell, node);
+      } else if (clean(node.textContent)) {
+        cell.push(node);
+      }
+      return;
+    }
+    if (node.nodeType === 3 && !clean(node.textContent) && !p) return;
+    if (!p) p = document.createElement('p');
+    p.append(node);
+  });
+  flush();
 }
 
 export default function parse(element, { document }) {
-  const source = findNotice(element);
-  const cell = document.createElement('div');
+  const variant = variantOf(element);
+  const root = contentRoot(element, variant);
+  const cell = [];
+  appendContent(document, cell, root);
 
-  const heading = source.querySelector('h1, h2, h3, h4, h5, h6, strong.title');
-  if (heading && heading.textContent.trim()) {
-    const h = document.createElement('h3');
-    h.textContent = heading.textContent.trim();
-    cell.append(h);
-    heading.remove();
-  }
-
-  // Keep block-level children as-is; wrap loose text + inline nodes into paragraphs.
-  let p = null;
-  [...source.childNodes].forEach((node) => {
-    const isBlock = node.nodeType === 1 && /^(P|UL|OL|DIV|TABLE|BLOCKQUOTE)$/.test(node.tagName);
-    if (isBlock) {
-      p = null;
-      if (node.textContent.trim()) cell.append(node);
-      return;
-    }
-    if (node.nodeType === 3 && !node.textContent.trim() && !p) return;
-    if (!p) {
-      p = document.createElement('p');
-      cell.append(p);
-    }
-    p.append(node);
+  cell.forEach((node) => {
+    if (node.querySelectorAll) node.querySelectorAll('a[target]').forEach((a) => a.removeAttribute('target'));
   });
-  cell.querySelectorAll('p').forEach((para) => {
-    para.innerHTML = para.innerHTML.replace(/^\s+|\s+$/g, '');
-    if (!para.textContent.trim() && !para.querySelector('img')) para.remove();
-  });
-  cell.querySelectorAll('a[target]').forEach((a) => a.removeAttribute('target'));
-
-  if (!cell.textContent.trim()) {
+  const text = cell.map((n) => clean(n.textContent)).join(' ');
+  if (!text) {
     element.remove();
     return;
   }
-  const block = WebImporter.Blocks.createBlock(document, { name: 'notice', cells: [[cell]] });
+  const name = variant ? `notice (${variant})` : 'notice';
+  const block = WebImporter.Blocks.createBlock(document, { name, cells: [[cell]] });
   element.replaceWith(block);
 }
