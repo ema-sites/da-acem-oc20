@@ -254,8 +254,11 @@ function buildPriceLine(cells) {
   row.dataset.amount = money.amount;
   row.dataset.symbol = money.symbol;
   if (/^total/i.test(label)) row.classList.add('is-total');
+  // recurring renewal price ("Then $x / year") is informational, not part of today's total
+  if (/^then\b/i.test(label)) row.classList.add('is-recurring');
   const dt = document.createElement('dt');
-  dt.textContent = label;
+  // the trailing colon is presentational (added in CSS), so keep labels bare
+  dt.textContent = label.replace(/\s*:\s*$/, '');
   const dd = document.createElement('dd');
   dd.textContent = text(valueCell);
   row.append(dt, dd);
@@ -283,7 +286,7 @@ function bindPricing(panel) {
       line.querySelector('dd').textContent = format(symbol, amount);
     });
     if (total) {
-      const sum = lines.filter((l) => l !== total)
+      const sum = lines.filter((l) => l !== total && !l.classList.contains('is-recurring'))
         .reduce((acc, l) => acc + Number(l.dataset.amount || 0), 0);
       total.dataset.amount = sum;
       total.querySelector('dd').textContent = format(symbol, sum);
@@ -355,8 +358,8 @@ export default function decorate(block) {
       }
       case 'actions':
         cells.forEach((c) => c.querySelectorAll('a').forEach((a) => {
-          a.classList.add('button');
-          a.classList.add(actions.children.length ? 'secondary' : 'primary');
+          // purchase links are the blue accent button, contact links the outlined one
+          a.classList.add('button', /contact/i.test(text(a)) ? 'secondary' : 'accent');
           a.addEventListener('click', (e) => {
             const evt = new CustomEvent('product-buy-box:action', {
               bubbles: true,

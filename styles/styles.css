@@ -704,3 +704,85 @@ main > .section.results .tag-list-wrapper + .default-content-wrapper > p:first-c
     grid-column: 2;
   }
 }
+
+/* stylelint-disable no-descending-specificity -- band selectors are unrelated to the listing rules above */
+
+/*
+ * become-partner: "Are you a developer? ..." band from /fragments/become-partner
+ * (source footer .become-partner: #f1f1ef, 30px 45px, centred, outlined orange button).
+ * The fragment is auto-loaded into a page section, so the band section is nested in
+ * that section's default-content-wrapper, which is opened up to full width here.
+ */
+main > .section:has(> .default-content-wrapper > .section.become-partner) {
+  margin: 35px 0 0;
+}
+
+main > .section > .default-content-wrapper:has(> .section.become-partner) {
+  max-width: none;
+  padding: 0;
+}
+
+main .section.become-partner {
+  margin: 0;
+  padding: 30px 45px;
+  background-color: #f1f1ef;
+  color: #31302b;
+  text-align: center;
+}
+
+main .section.become-partner > div {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+main .section.become-partner > .default-content-wrapper > p:first-child {
+  margin: 0 0 15px;
+  font-family: var(--font-family-medium);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+main .section.become-partner > .default-content-wrapper > p.button-wrapper {
+  margin: 0 0 10px;
+}
+
+main .section.become-partner a.button:any-link {
+  display: inline-block;
+  box-sizing: border-box;
+  min-width: 175px;
+  min-height: 0;
+  height: 40px;
+  padding: 11px 30px;
+  border: 1px solid #f16321;
+  border-radius: 3px;
+  background: #fff;
+  color: #f16321;
+  font-family: var(--font-family-medium);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration: none;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+main .section.become-partner a.button:hover,
+main .section.become-partner a.button:focus-visible {
+  border-color: #d24c0d;
+  background: #fff;
+  color: #f16321;
+}
+
+@media (width <= 479px) {
+  main .section.become-partner a.button:any-link {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media (width >= 992px) {
+  main .section.become-partner a.button:any-link {
+    font-size: 15px;
+  }
+}

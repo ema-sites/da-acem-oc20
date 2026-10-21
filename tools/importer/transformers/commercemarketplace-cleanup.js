@@ -152,6 +152,9 @@ export default function transform(hookName, element, payload) {
   const template = payload && payload.template;
 
   if (hookName === 'beforeTransform') {
+    // Must run before the footer (chrome) is removed below.
+    detachBecomePartner(document, template, payload);
+
     const pageCleanup = getPageCleanup(template, getPageUrl(payload));
     if (pageCleanup && pageCleanup.length) replayPageCleanup(element, pageCleanup);
 
@@ -169,6 +172,7 @@ export default function transform(hookName, element, payload) {
     // Template-specific removals (e.g. facet groups hidden on curated listings).
     const extra = (template && Array.isArray(template.removeAfterParse)) ? template.removeAfterParse : [];
     if (extra.length) WebImporter.DOMUtils.remove(element, extra);
+    removeBazaarvoiceLeftovers(element);
     removeLooseFormControls(element);
     normalizeFacetDefaultContent(document, element);
 
@@ -177,7 +181,117 @@ export default function transform(hookName, element, payload) {
     });
 
     rewriteInternalLinks(element);
+
+    // Last: shared "Become a Partner" band as a fragment reference section.
+    appendBecomePartner(document, element, payload);
   }
+}
+
+// --- "Become a Partner" band (product pages) -----------------------------------
+// The band lives in the source footer (removed as chrome). On product templates
+// it is kept as page content through a shared fragment at /fragments/become-partner.
+// Opt-in per template: extension-detail* templates, or template.becomePartner === true.
+// Homepage / listing templates are untouched.
+
+const BECOME_PARTNER_PATH = '/fragments/become-partner';
+const BECOME_PARTNER_STYLE = 'become-partner';
+// Hook payloads are shallow copies per call, so keep the detached band per document.
+const detachedBands = new WeakMap();
+
+function wantsBecomePartner(template) {
+  if (!template) return false;
+  if (template.becomePartner === false) return false;
+  return template.becomePartner === true || /^extension-detail/.test(template.name || '');
+}
+
+function detachBecomePartner(document, template, payload) {
+  if (!wantsBecomePartner(template) || !document) return;
+  const band = document.querySelector('footer.page-footer .become-partner');
+  if (!band) return;
+  band.remove();
+  detachedBands.set(document, band);
+}
+
+function buildBecomePartnerContent(document, band) {
+  const wrapper = document.createElement('div');
+
+  const heading = band.querySelector('h1, h2, h3, h4, h5, h6');
+  const text = squash((heading || band.querySelector('p') || {}).textContent);
+  if (text) {
+    const p = document.createElement('p');
+    p.textContent = text;
+    wrapper.appendChild(p);
+  }
+
+  const link = band.querySelector('a[href]');
+  if (link) {
+    const p = document.createElement('p');
+    const em = document.createElement('em'); // outlined (secondary) button
+    const a = document.createElement('a');
+    a.setAttribute('href', link.getAttribute('href'));
+    a.textContent = squash(link.textContent) || 'Become a Partner';
+    em.appendChild(a);
+    p.appendChild(em);
+    wrapper.appendChild(p);
+  }
+
+  rewriteInternalLinks(wrapper);
+  wrapper.appendChild(WebImporter.Blocks.createBlock(document, {
+    name: 'Section Metadata',
+    cells: { style: BECOME_PARTNER_STYLE },
+  }));
+  return wrapper;
+}
+
+function appendBecomePartner(document, element, payload) {
+  const band = detachedBands.get(document);
+  if (!band) return;
+  detachedBands.delete(document);
+
+  const params = (payload && payload.params) || {};
+  if (payload && !payload.params) payload.params = params;
+  if (!Array.isArray(params.fragments)) params.fragments = [];
+  if (!params.fragments.some((f) => f && f.path === BECOME_PARTNER_PATH)) {
+    params.fragments.push({
+      element: buildBecomePartnerContent(document, band),
+      path: BECOME_PARTNER_PATH,
+      report: { title: 'Become a Partner', template: 'fragment' },
+    });
+  }
+
+  // Page section referencing the fragment (auto-blocked by scripts.js buildAutoBlocks).
+  if (element.querySelector(`a[href="${BECOME_PARTNER_PATH}"]`)) return;
+  element.appendChild(document.createElement('hr'));
+  const p = document.createElement('p');
+  const a = document.createElement('a');
+  a.setAttribute('href', BECOME_PARTNER_PATH);
+  a.textContent = BECOME_PARTNER_PATH;
+  p.appendChild(a);
+  element.appendChild(p);
+}
+
+// Bazaarvoice Q&A / reviews widget markup that no parser consumed (outside blocks).
+const BV_SELECTORS = [
+  '[data-bv-show]',
+  '#BVRRContainer',
+  '#BVQAContainer',
+  '.bv-cleanslate',
+  '.bv-content-placeholder',
+  '.bv-inline-form-container',
+  '[id^="BVRR"]',
+  '[id^="BVQA"]',
+  '#BVSEO_meta', // SEO debug <ul> injected after </main>
+  '[id^="BVSEO"]',
+  '.bv-verify-css-loaded',
+];
+
+function removeBazaarvoiceLeftovers(element) {
+  BV_SELECTORS.forEach((selector) => {
+    safeQueryAll(element, selector).forEach((el) => {
+      if (!el.parentNode || el.closest('table')) return;
+      el.remove();
+    });
+  });
 }
 
 // <select>/<option> leftovers (sort / page-size dropdowns) that no parser consumed.
@@ -255,7 +369,7 @@ function rewriteInternalLinks(element) {
     if (!SITE_HOSTS.includes(u.hostname)) return;
     if (/^\/(media|static|pub)\//.test(u.pathname)) return; // assets stay absolute
     // Magento app routes (search, cart, account) are not migrated pages: keep them on the source.
-    if (/^\/(catalogsearch|checkout|customer|wishlist|sales|contact)\b/.test(u.pathname)) return;
+    if (/^\/(catalogsearch|checkout|customer|wishlist|sales|contact|partner|review|reviews)\b/.test(u.pathname)) return;
     let p = u.pathname.replace(/\.html?$/, '').replace(/\/$/, '');
     if (p === '') p = '/';
     a.setAttribute('href', `${p}${u.search}${u.hash}`);

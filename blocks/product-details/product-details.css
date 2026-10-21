@@ -1,59 +1,170 @@
+/*
+ * product-details: long PDP body (source #maincontent .product-info-details-container > div:nth-child(2)).
+ * Source: CONTENTS side nav (sticky >= 992px, stacked above the body below) + a body column that is
+ * 82% of the row (.product.info.detailed) holding .product-data__item sections
+ * (.box-head title + "Back to top", then .box content).
+ */
 .product-details {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
+  color: #505050;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ---------- CONTENTS nav (source .product-page-left-navigation / spectrum-SideNav) ---------- */
+.product-details .product-details-nav {
+  padding: 0 20px;
+  color: #8e8e8e;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.product-details .product-details-nav-title {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 32px;
+  margin: 4px 0;
+  padding: 5px 12px;
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .product-details .product-details-nav ul {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
   margin: 0;
   padding: 0;
 }
 
-@media (width >= 900px) {
-  .product-details:has(.product-details-nav) {
-    grid-template-columns: 200px 1fr;
-  }
-
-  .product-details .product-details-nav ul {
-    position: sticky;
-    top: calc(var(--nav-height, 64px) + 16px);
-    flex-direction: column;
-  }
+.product-details .product-details-nav li {
+  margin: 4px 0;
 }
 
+.product-details .product-details-nav a:any-link {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 32px;
+  padding: 5px 12px;
+  border-radius: 4px;
+  color: #8e8e8e;
+  transition: background-color 0.13s ease-out, color 0.13s ease-out;
+}
+
+.product-details .product-details-nav li.is-selected a:any-link {
+  background-color: rgb(0 0 0 / 6%);
+  color: #000;
+}
+
+/* ---------- body column (source .product.info.detailed + .product-data-items) ---------- */
 .product-details .product-details-body {
+  box-sizing: border-box;
+  width: 82%;
   min-width: 0;
+  margin: 30px 0;
+
+  /* source keeps an empty 20px trader-information box above the first section */
+  padding-top: 20px;
+}
+
+.product-details .product-details-nav + .product-details-body {
+  margin-top: 30px;
 }
 
 .product-details .product-details-section {
-  scroll-margin-top: calc(var(--nav-height, 64px) + 16px);
-  margin-bottom: 40px;
+  scroll-margin-top: 140px;
 }
 
+/* section title row (source .box-head) */
 .product-details .product-details-section-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-  border-bottom: 1px solid currentcolor;
-  margin-bottom: 16px;
+  position: relative;
+  margin: 2px 2px 0;
+  padding: 20px 24px 0 17px;
+  color: #000;
 }
 
 .product-details .product-details-section-header h2 {
   margin: 0;
+  padding: 0 0 10px;
+  border-bottom: 2px solid #aeafb1;
+  color: #000;
+  font-family: var(--font-family-medium);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.1;
 }
 
-.product-details .product-details-top {
-  flex: 0 0 auto;
-  font-size: 0.75em;
+.product-details .product-details-section-header a.product-details-top:any-link {
+  position: absolute;
+  top: 35px;
+  right: 24px;
+  color: #0469e3;
+  font-family: var(--font-family-bold);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4286;
 }
 
-.product-details .product-details-content > :first-child {
-  margin-top: 0;
+/* section content (source .box) */
+.product-details .product-details-content {
+  display: flow-root;
+  padding: 20px 20px 0;
+  color: #202021;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.product-details .product-details-content p {
+  margin: 0 0 10px;
+}
+
+.product-details .product-details-content h2 {
+  margin: 0 0 25px;
+  color: #202021;
+  font-family: var(--body-font-family);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* source separates headings with an empty paragraph (28px line + 10px margins) */
+.product-details .product-details-content h2:not(:first-child) {
+  margin-top: 48px;
+}
+
+.product-details .product-details-content ul + h2:not(:first-child),
+.product-details .product-details-content ol + h2:not(:first-child) {
+  margin-top: 63px;
+}
+
+.product-details .product-details-content h3 {
+  margin: 0 0 25px;
+  color: #202021;
+  font-family: var(--body-font-family);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.product-details .product-details-content ul,
+.product-details .product-details-content ol {
+  margin: 0 0 25px;
+  padding: 0 0 0 40px;
+}
+
+.product-details .product-details-content li {
+  margin: 0 0 10px;
+}
+
+.product-details .product-details-content li > p {
+  margin: 0;
+}
+
+.product-details .product-details-content strong,
+.product-details .product-details-content b {
+  font-weight: 600;
 }
 
 .product-details .product-details-content img {
@@ -61,17 +172,190 @@
   height: auto;
 }
 
+/* release notes: version lists without bullets */
+.product-details [data-section="release-notes"] .product-details-content ul {
+  list-style: none;
+}
+
+/* ---------- label / value grid (source .technical-specs > .technical-specs-section) ---------- */
 .product-details .product-details-specs {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-details .product-details-specs dl {
+  flex: 1 1 0%;
+  min-width: 0;
   margin: 0;
 }
 
 .product-details .product-details-specs dt {
-  font-weight: 700;
+  margin: 25px 0;
+  color: #202021;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.product-details .product-details-specs dl > div:first-child dt {
+  margin: 0;
+}
+
+.product-details .product-details-specs dt strong {
+  font-weight: inherit;
 }
 
 .product-details .product-details-specs dd {
-  margin: 4px 0 0;
+  margin: 0 0 10px;
+}
+
+/* ---------- Q & A / reviews (source Bazaarvoice widgets) ---------- */
+
+/* "author · date" (and "N out of 5 stars") line above each entry */
+.product-details .product-details-content > p.product-details-meta {
+  margin: 0;
+  color: #31302b;
+  font-family: OpenSans, Raleway, 'Helvetica Neue', Verdana, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.product-details .product-details-meta em {
+  font-style: normal;
+}
+
+.product-details .product-details-meta .product-details-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.product-details .product-details-stars {
+  margin-right: 4.8px;
+  color: #0469e3;
+  font-size: 20px;
+  vertical-align: -1px;
+}
+
+.product-details [data-section="q-a"] .product-details-content > p.product-details-meta {
+  margin-left: 5px;
+}
+
+.product-details [data-section="reviews"] .product-details-content > p.product-details-meta {
+  margin-right: 10px;
+  padding-top: 15px;
+  border-top: 2px solid #aeafb1;
+}
+
+/* separator under the previous answer (source: indented to the answer column) */
+.product-details [data-section="q-a"] .product-details-content > p.product-details-meta:not(:first-child) {
+  position: relative;
+  margin-top: 62px;
+}
+
+.product-details [data-section="q-a"] .product-details-meta:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: -32px;
+  right: 10px;
+  left: 7px;
+  border-top: 2px solid #aeafb1;
+}
+
+.product-details [data-section="reviews"] .product-details-content > p.product-details-meta:not(:first-child) {
+  margin-top: 40px;
+}
+
+/* question / review title */
+.product-details [data-section="q-a"] .product-details-content h3,
+.product-details [data-section="reviews"] .product-details-content h3 {
+  margin: 0 0 3.5px 2px;
+  color: #6d6d69;
+  font-family: OpenSans, 'Helvetica Neue', Verdana, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+/* "Answer (vendor · date)" line */
+.product-details .product-details-content > p.product-details-answer {
+  margin: 30px 0 5px 12px;
+  color: #31302b;
+  font-family: OpenSans, Raleway, 'Helvetica Neue', Verdana, Arial, sans-serif;
+  line-height: 25px;
+}
+
+/* answer / review text */
+.product-details .product-details-content > p.product-details-text {
+  margin: 0 0 16px 12px;
+  color: #31302b;
+  line-height: 25.12px;
+}
+
+.product-details [data-section="reviews"] .product-details-content > p.product-details-text {
+  max-width: 467px;
+  margin: 12px 10px 16px 122px;
+  overflow-wrap: anywhere;
+}
+
+/* empty Q & A: "Be the first to ask a question" (source .bv-first-to-ask-question) */
+.product-details .product-details-content > p.product-details-empty {
+  display: inline-block;
+  margin: 30px 0 15px;
+  padding: 7px 14px;
+  border-radius: 2px;
+  background-color: #0469e3;
+  color: #fff;
+  font-family: OpenSans, 'Helvetica Neue', Verdana, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 25px;
+}
+
+@media (width >= 768px) {
+  .product-details .product-details-specs {
+    flex-flow: row wrap;
+  }
+}
+
+@media (width >= 992px) {
+  .product-details:has(> .product-details-nav) {
+    display: grid;
+    grid-template-columns: max-content 82%;
+    justify-content: start;
+    align-items: start;
+  }
+
+  .product-details .product-details-nav {
+    position: sticky;
+    top: 155px;
+    margin-top: 60px;
+    padding: 0;
+  }
+
+  .product-details .product-details-body,
+  .product-details .product-details-nav + .product-details-body {
+    width: auto;
+    margin: 0 0 30px;
+    padding-left: 27px;
+  }
+
+  .product-details > .product-details-body:only-child {
+    width: 82%;
+  }
+
+  .product-details [data-section="overview"] .product-details-content {
+    padding-right: 67px;
+  }
+
+  .product-details [data-section="q-a"] .product-details-meta:not(:first-child)::before {
+    left: 62px;
+  }
+
+  .product-details .product-details-content > p.product-details-answer,
+  .product-details [data-section="q-a"] .product-details-content > p.product-details-text {
+    margin-left: 67px;
+  }
 }
