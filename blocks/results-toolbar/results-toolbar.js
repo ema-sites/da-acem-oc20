@@ -76,8 +76,12 @@ export default function decorate(block) {
       pendingLabel = text;
       return;
     }
-    if (!count.childNodes.length) count.textContent = text;
-    else controls.prepend(Object.assign(document.createElement('span'), { textContent: text }));
+    if (!count.childNodes.length) {
+      // "3948 Results": the source sets the number in its own <strong>
+      const m = text.match(/^(\d[\d,.]*)(\s.*)$/);
+      if (m) count.append(Object.assign(document.createElement('strong'), { textContent: m[1] }), m[2]);
+      else count.textContent = text;
+    } else controls.prepend(Object.assign(document.createElement('span'), { textContent: text }));
   });
 
   const parts = [];

@@ -1,3 +1,23 @@
+/*
+ * Price Filter block - source .facet-price .price-range-input
+ * Values from source computed styles (commercemarketplace.adobe.com/extensions.html).
+ */
+
+/*
+ * source box: 10px padding above the row. styles.css sets it on the wrapper, but the
+ * sidebar reset (main:has(> .section.sidebar) > .section > div { padding: 0 }) wins on
+ * specificity, so restate it here at higher specificity (same value, no doubling).
+ */
+main:has(> .section.sidebar) > .section > .price-filter-wrapper {
+  padding-top: 10px;
+}
+
+.price-filter {
+  color: var(--text-color);
+  font-size: var(--body-font-size-s);
+  line-height: var(--body-line-height);
+}
+
 .price-filter .price-filter-form {
   margin: 0;
 }
@@ -7,26 +27,75 @@
   font-weight: 700;
 }
 
+/* source .price-input-group */
 .price-filter .price-filter-fields {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
 }
 
+/* source .price-input */
 .price-filter .price-filter-input {
-  width: 72px;
+  display: block;
+  box-sizing: border-box;
+  width: 75px;
   min-width: 0;
-  padding: 8px;
+  height: 40px;
+  margin: 3px 0 0;
+  padding: 5px 8px;
   border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #8e8e8e;
+  font-family: var(--button-font-family);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18.5714px;
   text-align: center;
 }
 
+.price-filter .price-filter-input::placeholder {
+  color: #aaa;
+  opacity: 1;
+}
+
+.price-filter .price-filter-input:focus {
+  outline: none;
+  border-color: #39c;
+}
+
+/* source .price-separator */
+.price-filter .price-filter-separator {
+  display: block;
+  color: #636363;
+  font-size: 13px;
+  line-height: 18.5714px;
+}
+
+/* source .price-go-btn */
 .price-filter .price-filter-submit {
-  margin: 0;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 0;
+  display: block;
+  box-sizing: border-box;
+  height: 40px;
+  margin: 3px 0 0;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 3px;
+  background-color: #ddd;
+  color: #444;
+  font-family: var(--button-font-family);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: center;
+  vertical-align: middle;
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.price-filter .price-filter-submit:hover,
+.price-filter .price-filter-submit:active {
+  background-color: #ddd;
 }
 
 .price-filter .price-filter-sr-only {

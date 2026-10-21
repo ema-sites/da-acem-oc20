@@ -10,6 +10,13 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
  *   Cell 2: name (heading or link), vendor, rating ("4.5" or "★★★★☆"),
  *           partner tier, price ("$99.00", "$49.00 / year", "Free")
  * Cells may be merged or omitted; content is classified by its shape.
+ *
+ * Output per card:
+ *   li.cards-product-card
+ *     div.cards-product-card-image      (always present: grey logo tile)
+ *     div.cards-product-card-body
+ *       .cards-product-name, .cards-product-vendor, .cards-product-rating,
+ *       div.cards-product-footer > .cards-product-tier + .cards-product-price
  */
 
 const PRICE_RE = /^(free|[$€£¥]\s?\d|\d[\d.,]*\s?(usd|eur|gbp))/i;
@@ -17,19 +24,15 @@ const STARS_RE = /^[★☆]{1,5}$/;
 const RATING_RE = /^(rating[:\s]*)?([0-5](\.\d+)?)\s*(\/\s*5)?(\s*stars?)?$/i;
 
 function buildStars(value) {
+  const rating = Math.max(0, Math.min(5, value));
   const wrap = document.createElement('div');
   wrap.className = 'cards-product-rating';
-  wrap.setAttribute('role', 'img');
-  wrap.setAttribute('aria-label', `Rated ${value} out of 5`);
-  wrap.style.setProperty('--rating', value);
-  for (let i = 1; i <= 5; i += 1) {
-    const star = document.createElement('span');
-    star.className = 'cards-product-star';
-    if (value >= i) star.classList.add('full');
-    else if (value > i - 1) star.classList.add('half');
-    star.setAttribute('aria-hidden', 'true');
-    wrap.append(star);
-  }
+  const stars = document.createElement('span');
+  stars.className = 'cards-product-stars';
+  stars.setAttribute('role', 'img');
+  stars.setAttribute('aria-label', `Rated ${rating} out of 5`);
+  stars.style.setProperty('--rating', `${(rating / 5) * 100}%`);
+  wrap.append(stars);
   return wrap;
 }
 
@@ -40,8 +43,23 @@ function ratingValue(text) {
   return m ? parseFloat(m[2]) : null;
 }
 
+/* "Gold Solution Partner" -> <strong>Gold</strong><span>Solution Partner</span> */
+function decorateTier(el) {
+  if (el.querySelector('img, picture')) return;
+  const words = el.textContent.trim().split(/\s+/);
+  const level = document.createElement('strong');
+  [level.textContent] = words;
+  el.replaceChildren(level);
+  if (words.length > 1) {
+    const type = document.createElement('span');
+    type.textContent = words.slice(1).join(' ');
+    el.append(type);
+  }
+}
+
 function classifyBody(body) {
   let titled = false;
+  let rated = false;
   [...body.children].forEach((el) => {
     const text = el.textContent.trim();
     const looksLikeName = /^H[1-6]$/.test(el.tagName)
@@ -56,8 +74,9 @@ function classifyBody(body) {
       return;
     }
     const rating = ratingValue(text);
-    if (rating !== null && text.length <= 16) {
+    if (!rated && rating !== null && text.length <= 16) {
       el.replaceWith(buildStars(rating));
+      rated = true;
       return;
     }
     if (PRICE_RE.test(text)) {
@@ -66,6 +85,7 @@ function classifyBody(body) {
     }
     if (/partner/i.test(text)) {
       el.classList.add('cards-product-tier');
+      decorateTier(el);
       return;
     }
     if (titled && !body.querySelector('.cards-product-vendor')) {
@@ -77,6 +97,23 @@ function classifyBody(body) {
       titled = true;
     }
   });
+
+  // source always shows the star row (grey when unrated)
+  if (!rated) {
+    const stars = buildStars(0);
+    const anchor = body.querySelector('.cards-product-vendor') || body.querySelector('.cards-product-name');
+    if (anchor) anchor.after(stars);
+    else body.prepend(stars);
+  }
+
+  // tier (left) and price (right) share the bottom row
+  const tier = body.querySelector('.cards-product-tier');
+  const price = body.querySelector('.cards-product-price');
+  const footer = document.createElement('div');
+  footer.className = 'cards-product-footer';
+  if (tier) footer.append(tier);
+  if (price) footer.append(price);
+  body.append(footer);
 }
 
 export default function decorate(block) {
@@ -121,8 +158,8 @@ export default function decorate(block) {
       li.classList.add('has-link');
     }
 
-    if (image.childNodes.length) li.append(image);
-    li.append(body);
+    // keep the logo tile even without an image (source shows a grey placeholder)
+    li.append(image, body);
     ul.append(li);
   });
 

@@ -1,3 +1,4 @@
+/* bar with a label: heading + action links (e.g. seller profile "Back to top" bar) */
 .active-filter .active-filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -23,4 +24,87 @@
 
 .active-filter .active-filter-actions p {
   margin: 0;
+}
+
+/*
+ * bar without a label: selected filter chips
+ * (source #selected-filters-container .selected-filters-list / .selected-filter-item)
+ */
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) {
+  display: block;
+  padding: 0 0 0 5px;
+  border-bottom: 0;
+  color: #505050;
+}
+
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) + .active-filter-bar {
+  margin-top: 8px;
+}
+
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) .active-filter-actions {
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) .active-filter-actions p {
+  display: block;
+  margin: 0;
+}
+
+/* chip: grey "X" box (::before) + label; selector also beats main a.button:any-link */
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) a.active-filter-action:any-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 30px;
+  margin: 0;
+  padding: 4px 8px 4px 38px;
+  overflow: hidden;
+  border: 1px solid #d0d0d0;
+  border-radius: 3px;
+  background: #f9f9f9;
+  color: #636363;
+  font-family: var(--body-font-family);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18.5714px;
+  text-decoration: none;
+  white-space: normal;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) a.active-filter-action::before {
+  content: 'X';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 30px;
+  padding: 4px;
+  background: #ddd;
+  color: #333;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) a.active-filter-action strong {
+  display: block;
+  margin: 0 2px 0 0;
+  color: #636363;
+  font-weight: 600;
+}
+
+/* hover: chip fades, label (not the X) is struck through */
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) a.active-filter-action:hover {
+  opacity: 0.8;
+  color: #636363;
+  text-decoration: line-through;
 }

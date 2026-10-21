@@ -6,7 +6,8 @@
  * Authoring: links in any arrangement — one per cell, one per row, or a list.
  * An icon (`:name:` token / span.icon) or image placed inside a link, next to
  * it in the same cell, or alone in the cell before it becomes that link's icon.
- * In breadcrumb mode trailing plain text is the current page.
+ * In breadcrumb mode trailing plain text is the current page; otherwise leading
+ * plain text becomes a title (`has-title`: title left, links right, grey band).
  */
 import { decorateIcons } from '../../scripts/aem.js';
 
@@ -124,5 +125,10 @@ export default function decorate(block) {
 
   const links = items.filter((item) => item.link);
   if (links.length && links.every((item) => item.icon)) block.classList.add('has-icons');
+  // leading plain text = a title bar ("Selected Filters | Clear All")
+  if (links.length && !items[0].link) {
+    block.classList.add('has-title');
+    list.firstElementChild.classList.add('tag-list-title');
+  }
   block.replaceChildren(list);
 }

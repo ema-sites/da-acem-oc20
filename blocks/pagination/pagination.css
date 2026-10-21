@@ -1,37 +1,132 @@
+/*
+ * Pagination block
+ * source: commercemarketplace.adobe.com/extensions.html #livesearch-controls
+ * (.limiter-wrapper = .pagination-size, ul.pages-items = .pagination-pages ol)
+ * source stacks the two parts up to 768px and puts them in a row above it.
+ */
 .pagination {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  margin: 15px 0 0;
+  padding: 0 5px;
+  color: var(--text-color);
+  font-size: var(--body-font-size-s);
+  line-height: var(--body-line-height);
 }
 
+/* "Results per page:" + select (source .limiter-wrapper) */
 .pagination .pagination-size {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  width: 100%;
 }
 
+.pagination .pagination-size label {
+  color: #727272;
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  line-height: var(--body-line-height);
+  white-space: nowrap;
+}
+
+/* source #livesearch-limiter */
 .pagination .pagination-size select {
-  min-width: 72px;
-  padding: 8px;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 75px;
+  height: 40px;
+  margin: 0;
+  padding: 6px 32px 6px 12px;
+  border: 1px solid #aeafb1;
+  border-radius: 4px;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='8' viewBox='0 0 15 8'%3E%3Cpath fill='%232B2B2C' fill-rule='evenodd' d='M0 0h15L7.5 7.5z'/%3E%3C/svg%3E") no-repeat right 8px center / 16px;
+  color: #202021;
+  font-family: var(--button-font-family);
+  font-size: var(--body-font-size-s);
+  line-height: var(--body-line-height);
+  cursor: pointer;
+  appearance: none;
 }
 
+.pagination .pagination-size select:hover {
+  border-color: #9ca3af;
+}
+
+.pagination .pagination-size select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgb(59 130 246 / 10%);
+}
+
+/* page links (source ul.pages-items) */
 .pagination .pagination-pages ol {
-  list-style: none;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px 16px;
-  margin: 0;
+  gap: 5px;
+  margin: 10px 0 0;
   padding: 0;
+  list-style: none;
 }
 
-.pagination .pagination-current {
+.pagination .pagination-pages li {
+  display: block;
+  margin: 0 0 10px;
+}
+
+.pagination .pagination-pages a:any-link,
+.pagination .pagination-pages .pagination-current {
+  display: inline-block;
+  min-width: 20px;
+  margin: 0 2px;
+  padding: 2px 6px;
+  background-color: #fff;
+  color: #727272;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 25px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.pagination .pagination-pages a:hover {
+  color: #606060;
+  text-decoration: underline;
+}
+
+/* source .item.current .page */
+.pagination .pagination-pages .pagination-current {
+  color: #606060;
   font-weight: 700;
   text-decoration: underline;
 }
 
-.pagination.page-numbers .pagination-pages {
-  margin-left: auto;
+/* source .action.next / .action.previous */
+.pagination .pagination-pages .pagination-next a:any-link,
+.pagination .pagination-pages .pagination-prev a:any-link {
+  font-weight: 600;
+}
+
+@media (width >= 769px) {
+  .pagination {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pagination .pagination-size {
+    width: auto;
+  }
+
+  .pagination .pagination-pages ol {
+    flex-wrap: nowrap;
+  }
+
+  .pagination.page-numbers .pagination-pages {
+    margin-left: auto;
+  }
 }

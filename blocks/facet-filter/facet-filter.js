@@ -74,24 +74,28 @@ export default function decorate(block) {
     li.className = 'facet-filter-item';
     const id = `facet-filter-${facetId}-${i}`;
 
+    // source markup: li > label > input + span.facet-label + span.facet-count
+    const label = document.createElement('label');
+    label.htmlFor = id;
+
     const input = document.createElement('input');
     input.type = 'checkbox';
     input.id = id;
     input.value = item.label;
     input.checked = selected.has(item.label);
 
-    const label = document.createElement('label');
-    label.htmlFor = id;
-    label.className = 'facet-filter-label';
-    label.textContent = item.label;
+    const text = document.createElement('span');
+    text.className = 'facet-filter-label';
+    text.textContent = item.label;
 
-    li.append(input, label);
+    label.append(input, text);
     if (item.count) {
       const count = document.createElement('span');
       count.className = 'facet-filter-count';
       count.textContent = item.count;
-      li.append(count);
+      label.append(count);
     }
+    li.append(label);
 
     input.addEventListener('change', () => {
       if (item.href && input.checked) {

@@ -38,7 +38,6 @@ const CHROME_SELECTORS = [
   '.ot-sdk-show-settings',
   'div.cookie-status-message',
   '.page-wrapper > .nav-sections',
-  '.page-wrapper > .breadcrumbs',
 ];
 
 // Non-authorable widgets that may live inside <main>: removed after parsing.
@@ -51,6 +50,10 @@ const MAIN_WIDGET_SELECTORS = [
   '.loading-mask',
   'input[type="hidden"]',
   'input[name="form_key"]',
+  // Listing (PLP) UI: mobile Refine toggle, client-side empty/error states.
+  '#refine-toggle',
+  '.products-empty',
+  '.products-error',
 ];
 
 const NON_CONTENT_SELECTORS = [
@@ -163,6 +166,8 @@ export default function transform(hookName, element, payload) {
 
     WebImporter.DOMUtils.remove(element, MAIN_WIDGET_SELECTORS);
     WebImporter.DOMUtils.remove(element, NON_CONTENT_SELECTORS);
+    removeLooseFormControls(element);
+    normalizeFacetDefaultContent(document, element);
 
     element.querySelectorAll('*').forEach((el) => {
       STRIP_ATTRIBUTES.forEach((attr) => el.removeAttribute(attr));
@@ -172,6 +177,68 @@ export default function transform(hookName, element, payload) {
   }
 }
 
+// <select>/<option> leftovers (sort / page-size dropdowns) that no parser consumed.
+// Block tables are left alone in case a parser intentionally kept one.
+function removeLooseFormControls(element) {
+  element.querySelectorAll('select, option, optgroup').forEach((el) => {
+    if (!el.parentNode || el.closest('table')) return;
+    el.remove();
+  });
+}
+
+const squash = (s) => (s || '').replace(/\s+/g, ' ').trim();
+
+function setLinkText(document, a, text) {
+  a.textContent = '';
+  a.appendChild(document.createTextNode(text));
+}
+
+// Listing sidebar default content (outside blocks): facet titles -> <h3>, and the
+// category tree / price ranges / ratings lists -> plain-text links.
+function normalizeFacetDefaultContent(document, element) {
+  // Facet group titles become headings.
+  element.querySelectorAll('div.facet-title').forEach((div) => {
+    if (div.closest('table')) return;
+    const text = squash(div.textContent);
+    if (!text) { div.remove(); return; }
+    const h3 = document.createElement('h3');
+    h3.textContent = text;
+    div.replaceWith(h3);
+  });
+
+  // Category tree: "Name (count)", href from data-category-path.
+  element.querySelectorAll('ul.category-tree a.category-link').forEach((a) => {
+    if (a.closest('table')) return;
+    const name = squash((a.querySelector('.category-name') || a).textContent);
+    const count = squash((a.querySelector('.facet-count') || {}).textContent);
+    const path = a.getAttribute('data-category-path');
+    if (path) a.setAttribute('href', `/${path.replace(/^\/+|\/+$/g, '')}`);
+    setLinkText(document, a, count ? `${name} (${count})` : name);
+  });
+
+  // Price ranges: label only.
+  element.querySelectorAll('ul.price-ranges a.price-link').forEach((a) => {
+    if (a.closest('table')) return;
+    const label = squash((a.querySelector('.price-label') || a).textContent);
+    setLinkText(document, a, label);
+  });
+
+  // Ratings: star glyphs -> "5 stars (389)" / "4 stars & Up (428)".
+  element.querySelectorAll('ul.ratings-list a.rating-link').forEach((a) => {
+    if (a.closest('table')) return;
+    const li = a.closest('li');
+    const filled = a.querySelectorAll('.star.filled').length;
+    const n = parseInt(a.getAttribute('data-rating') || (li && li.getAttribute('data-rating')), 10)
+      || filled;
+    const label = squash((a.querySelector('.rating-label') || {}).textContent);
+    const count = squash((a.querySelector('.facet-count') || {}).textContent);
+    let text = `${n} ${n === 1 ? 'star' : 'stars'}`;
+    if (label) text += ` ${label}`;
+    if (count) text += ` (${count})`;
+    setLinkText(document, a, text);
+  });
+}
+
 // Same-site links become site-relative EDS paths: drop the host and the .html
 // extension (pages import to extension-less paths), keep query and hash.
 const SITE_HOSTS = ['commercemarketplace.adobe.com', 'marketplace.magento.com'];
@@ -179,7 +246,7 @@ const SITE_HOSTS = ['commercemarketplace.adobe.com', 'marketplace.magento.com'];
 function rewriteInternalLinks(element) {
   element.querySelectorAll('a[href]').forEach((a) => {
     const href = a.getAttribute('href');
-    if (!href) return;
+    if (!href || href.startsWith('#')) return; // in-page / placeholder anchors stay as-is
     let u;
     try { u = new URL(href, 'https://commercemarketplace.adobe.com/'); } catch (e) { return; }
     if (!SITE_HOSTS.includes(u.hostname)) return;

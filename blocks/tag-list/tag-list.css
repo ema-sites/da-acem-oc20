@@ -26,23 +26,97 @@
   object-fit: contain;
 }
 
-/* breadcrumb option */
+/* breadcrumb option (source .breadcrumbs .items: 14px/20px, #8e8e8e, ">" #333 with 10px gaps) */
 .tag-list.breadcrumb .tag-list-items {
+  align-items: center;
   justify-content: flex-start;
-  gap: 8px;
+  gap: 0;
+  color: #8e8e8e;
+  font-size: 14px;
+  line-height: 20px;
 }
 
-.tag-list.breadcrumb .tag-list-link {
-  display: inline;
+.tag-list.breadcrumb .tag-list-item {
+  display: flex;
+  align-items: center;
+  margin: 0;
 }
 
-.tag-list.breadcrumb .tag-list-item + .tag-list-item::before {
+.tag-list.breadcrumb .tag-list-item:not(:last-child)::after {
   content: '>';
-  margin-right: 8px;
-  opacity: 0.6;
+  display: block;
+  position: relative;
+  top: -1px;
+  margin: 0 10px;
+  color: #333;
+  font-family: luma-icons, serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
 }
 
-.tag-list:not(.breadcrumb) .tag-list-link:not(:has(.tag-list-icon)) {
+.tag-list.breadcrumb .tag-list-item > a:any-link,
+.tag-list.breadcrumb .tag-list-item > span {
+  display: block;
+  font-weight: 400;
+}
+
+.tag-list.breadcrumb .tag-list-item > a:any-link {
+  color: #1979c3;
+  text-decoration: none;
+}
+
+.tag-list.breadcrumb .tag-list-item > a:hover {
+  color: #1979c3;
+  text-decoration: underline;
+}
+
+.tag-list.breadcrumb .tag-list-item > span {
+  color: #8e8e8e;
+}
+
+/* title bar option: leading text (source .selected-filters-header) */
+.tag-list.has-title {
+  margin: 0 0 10px;
+}
+
+.tag-list.has-title .tag-list-items {
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  padding: 15px 10px;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.tag-list.has-title .tag-list-item {
+  margin: 0;
+}
+
+.tag-list.has-title .tag-list-title {
+  color: #333;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4286;
+}
+
+.tag-list.has-title .tag-list-item > a:any-link {
+  display: block;
+  color: #636363;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.tag-list.has-title .tag-list-item > a:hover {
+  color: #636363;
+  text-decoration: underline;
+}
+
+.tag-list:not(.breadcrumb, .has-title) .tag-list-link:not(:has(.tag-list-icon)) {
   padding: 4px 12px;
   border: 1px solid currentcolor;
   border-radius: 16px;
