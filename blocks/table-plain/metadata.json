@@ -1,0 +1,22 @@
+{
+  "variantName": "table-plain",
+  "baseBlock": "table",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "table",
+    "purpose": "unadorned two-column reference data table"
+  },
+  "contentPattern": {
+    "structure": "first row header, one row per table row"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_60abb6212652"
+  ],
+  "usage": "Legal / privacy cookie reference tables.",
+  "reuseGuidance": "Use no-header when the first row is data."
+}

@@ -1,0 +1,297 @@
+.product-buy-box {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (width >= 900px) {
+  .product-buy-box:has(.product-buy-box-media):has(.product-buy-box-panel) {
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  }
+
+  .product-buy-box.panel-first .product-buy-box-panel,
+  .product-buy-box.partner-badge-panel-first .product-buy-box-panel {
+    order: -1;
+  }
+
+  .product-buy-box.wide-banner-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* media column: header + gallery */
+.product-buy-box .product-buy-box-media {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.product-buy-box .product-buy-box-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px 20px;
+}
+
+.product-buy-box .product-buy-box-logo {
+  flex: 0 0 auto;
+  line-height: 0;
+}
+
+.product-buy-box .product-buy-box-logo p {
+  margin: 0;
+}
+
+.product-buy-box .product-buy-box-logo img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border: 1px solid #dadada;
+}
+
+.product-buy-box .product-buy-box-title {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.product-buy-box .product-buy-box-title > * {
+  margin: 0 0 8px;
+}
+
+.product-buy-box .product-buy-box-badges {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.product-buy-box .product-buy-box-badges > p {
+  margin: 0;
+}
+
+.product-buy-box .product-buy-box-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-buy-box .product-buy-box-star::before {
+  content: '\2605';
+  opacity: 0.25;
+}
+
+.product-buy-box .product-buy-box-star.full::before {
+  opacity: 1;
+}
+
+.product-buy-box .product-buy-box-star.half::before {
+  opacity: 0.6;
+}
+
+/* gallery */
+.product-buy-box .product-buy-box-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-buy-box .product-buy-box-main-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 3 / 1;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.product-buy-box .product-buy-box-main-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-buy-box .product-buy-box-thumbnails {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-buy-box .product-buy-box-thumbnails ul {
+  list-style: none;
+  display: flex;
+  flex: 1;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.product-buy-box .product-buy-box-thumbnails li {
+  flex: 0 0 calc((100% - 72px) / 4);
+  scroll-snap-align: start;
+}
+
+.product-buy-box.three-thumbnail-strip .product-buy-box-thumbnails li {
+  flex-basis: calc((100% - 48px) / 3);
+}
+
+.product-buy-box .product-buy-box-thumb {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  background: none;
+  line-height: 0;
+  cursor: pointer;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.product-buy-box .product-buy-box-thumb[aria-current='true'] {
+  border-color: currentcolor;
+}
+
+.product-buy-box .product-buy-box-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-buy-box .product-buy-box-thumbs-prev,
+.product-buy-box .product-buy-box-thumbs-next {
+  position: relative;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.product-buy-box .product-buy-box-thumbs-prev::after,
+.product-buy-box .product-buy-box-thumbs-next::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border: 3px solid currentcolor;
+  border-bottom: 0;
+  border-left: 0;
+  transform: translate(-25%, -50%) rotate(-135deg);
+}
+
+.product-buy-box .product-buy-box-thumbs-next::after {
+  transform: translate(-75%, -50%) rotate(45deg);
+}
+
+.product-buy-box.single-image .product-buy-box-thumbnails,
+.product-buy-box.main-image-only .product-buy-box-thumbnails,
+.product-buy-box[class*='single-image'] .product-buy-box-thumbnails {
+  display: none;
+}
+
+.product-buy-box.thumbnail-strip-only .product-buy-box-main-image {
+  display: none;
+}
+
+.product-buy-box.gallery-after-panel .product-buy-box-gallery {
+  order: 1;
+}
+
+/* panel column: fields, prices, actions, info */
+.product-buy-box .product-buy-box-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.product-buy-box .product-buy-box-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #ccc;
+}
+
+.product-buy-box .product-buy-box-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-buy-box .product-buy-box-field select {
+  width: 100%;
+  padding: 8px;
+}
+
+.product-buy-box .product-buy-box-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-buy-box .product-buy-box-checkbox input {
+  margin: 0;
+}
+
+.product-buy-box .product-buy-box-prices {
+  margin: 0;
+}
+
+.product-buy-box .product-buy-box-price-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 4px 0;
+}
+
+.product-buy-box .product-buy-box-price-line dd {
+  margin: 0;
+}
+
+.product-buy-box .product-buy-box-price-line.is-total {
+  font-weight: 700;
+}
+
+.product-buy-box .product-buy-box-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.product-buy-box .product-buy-box-actions .button {
+  display: block;
+  margin: 0;
+  text-align: center;
+}
+
+.product-buy-box .product-buy-box-info > :first-child {
+  margin-top: 0;
+}
+
+.product-buy-box .product-buy-box-info > :last-child {
+  margin-bottom: 0;
+}
+
+/* contact-only products: the single action is the full-width contact button */
+.product-buy-box[class*='contact-only'] .product-buy-box-actions .button {
+  width: 100%;
+}
+
+.product-buy-box.version-select-only .product-buy-box-fields,
+.product-buy-box.installation-checkbox-only .product-buy-box-fields,
+.product-buy-box.installation-checkbox-only-dark .product-buy-box-fields {
+  border-bottom: 0;
+  padding-bottom: 0;
+}

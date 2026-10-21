@@ -1,0 +1,43 @@
+{
+  "variantName": "product-title",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "heading + link",
+    "purpose": "compact logo + title + vendor header, optional partner badge and rating"
+  },
+  "contentPattern": {
+    "structure": "one row: | logo | title heading + \"by Vendor\" link + extra lines | rating \"5.0 (7)\" |"
+  },
+  "options": [
+    {
+      "class": "partner-profile",
+      "label": "Partner Profile"
+    },
+    {
+      "class": "partner-badge",
+      "label": "Partner Badge"
+    },
+    {
+      "class": "rating-only",
+      "label": "Rating Only"
+    },
+    {
+      "class": "rating",
+      "label": "Rating"
+    }
+  ],
+  "memberVariantIds": [
+    "v_534435a601b5",
+    "v_40ac25a0e5e5",
+    "v_534435a601b5-1",
+    "v_156adcc86621",
+    "v_534435a601b5-2"
+  ],
+  "usage": "Seller profile headers and split-off PDP title rows.",
+  "reuseGuidance": "Inside the PDP buy box use its own header row instead."
+}

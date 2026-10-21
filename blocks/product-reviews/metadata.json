@@ -1,0 +1,29 @@
+{
+  "variantName": "product-reviews",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "dense",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "list + heading + text + button",
+    "purpose": "customer review entries with ratings, criteria, verified badge and helpful voting"
+  },
+  "contentPattern": {
+    "structure": "one row per review: | rating + author · date (+ Verified Purchaser) | title + text | criteria list | Yes n, No n | action links |"
+  },
+  "options": [
+    {
+      "class": "verified-badge",
+      "label": "Verified Badge"
+    }
+  ],
+  "memberVariantIds": [
+    "v_b5664641cc90-1",
+    "v_b5664641cc90",
+    "v_b5664641cc90-2"
+  ],
+  "usage": "PDP reviews sections.",
+  "reuseGuidance": "Add verified-badge when reviews carry verified purchaser badges."
+}

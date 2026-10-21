@@ -1,0 +1,23 @@
+{
+  "variantName": "price-filter",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "field + button",
+    "purpose": "min/max price range inputs with a Go button"
+  },
+  "contentPattern": {
+    "structure": "optional key/value rows: | Min | Min |, | Max | Max |, | Button | Go |, | Param | price |; optional heading row"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_1008024cdac4",
+    "v_1008024cdac4-1"
+  ],
+  "usage": "Listing page sidebars.",
+  "reuseGuidance": "Pair with facet-filter in the filter column."
+}

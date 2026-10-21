@@ -1,0 +1,22 @@
+{
+  "variantName": "cards-promo",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "moderate",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "heading + text + link",
+    "purpose": "bordered promo cards with heading, icon, short text and a Learn more button"
+  },
+  "contentPattern": {
+    "structure": "one row per card: | heading | icon image | text | CTA link | (any order, any omitted)"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_5f380bcbcd68"
+  ],
+  "usage": "Homepage program cards (Assurance, Partner, Training, Certification).",
+  "reuseGuidance": "Use for marketing tiles with one CTA each; product listings use cards-product."
+}

@@ -1,0 +1,26 @@
+.active-filter .active-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 16px;
+  border-bottom: 1px solid currentcolor;
+}
+
+.active-filter .active-filter-label > :first-child {
+  margin-top: 0;
+}
+
+.active-filter .active-filter-label > :last-child {
+  margin-bottom: 0;
+}
+
+.active-filter .active-filter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.active-filter .active-filter-actions p {
+  margin: 0;
+}

@@ -1,0 +1,28 @@
+{
+  "variantName": "pagination",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "field",
+    "purpose": "results-per-page selector and page number links of a listing"
+  },
+  "contentPattern": {
+    "structure": "rows: | Results per page: | 12, 24, 36 | and/or a row of page links; optional | Param | limit |"
+  },
+  "options": [
+    {
+      "class": "page-numbers",
+      "label": "Page Numbers"
+    }
+  ],
+  "memberVariantIds": [
+    "v_4decf1728623",
+    "v_4decf1728623-1"
+  ],
+  "usage": "Bottom (and top) of listing pages.",
+  "reuseGuidance": "Add page-numbers when page links are authored."
+}

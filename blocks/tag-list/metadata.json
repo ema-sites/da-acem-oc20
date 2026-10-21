@@ -1,0 +1,28 @@
+{
+  "variantName": "tag-list",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "link",
+    "purpose": "row of tag / category links with optional icons, or a breadcrumb trail"
+  },
+  "contentPattern": {
+    "structure": "links in cells, rows or a list; an image next to a link becomes its icon"
+  },
+  "options": [
+    {
+      "class": "breadcrumb",
+      "label": "Breadcrumb"
+    }
+  ],
+  "memberVariantIds": [
+    "v_843b1f170ea6",
+    "v_fc5ff5ebd80d"
+  ],
+  "usage": "Homepage category icon row; breadcrumb trails with the breadcrumb option.",
+  "reuseGuidance": "Use breadcrumb option for navigation trails."
+}

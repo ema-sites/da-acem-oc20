@@ -1,0 +1,97 @@
+{
+  "variantName": "product-details",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "dense",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "list + link + heading + text + button",
+    "purpose": "long PDP body with in-page section nav and Back to top links"
+  },
+  "contentPattern": {
+    "structure": "one row per section: | Section title | content | (a fragment link as content loads the fragment)"
+  },
+  "options": [
+    {
+      "class": "alt",
+      "label": "Alt"
+    },
+    {
+      "class": "grey",
+      "label": "Grey"
+    },
+    {
+      "class": "dark-grey",
+      "label": "Dark Grey"
+    },
+    {
+      "class": "dark",
+      "label": "Dark"
+    },
+    {
+      "class": "grey-2",
+      "label": "Grey 2"
+    },
+    {
+      "class": "image-dark-grey",
+      "label": "Image Dark Grey"
+    },
+    {
+      "class": "grey-3",
+      "label": "Grey 3"
+    }
+  ],
+  "memberVariantIds": [
+    "v_cf9e5941b5f0",
+    "v_cf9e5941b5f0-2",
+    "v_cf9e5941b5f0-3",
+    "v_cf9e5941b5f0-5",
+    "v_cf9e5941b5f0-6",
+    "v_b0ba0c7fe0c1",
+    "v_b0ba0c7fe0c1-1",
+    "v_cf9e5941b5f0-7",
+    "v_cf9e5941b5f0-8",
+    "v_cf9e5941b5f0-10",
+    "v_cf9e5941b5f0-11",
+    "v_cf9e5941b5f0-13",
+    "v_cf9e5941b5f0-17",
+    "v_cf9e5941b5f0-15",
+    "v_b0ba0c7fe0c1-4",
+    "v_b0ba0c7fe0c1-5",
+    "v_b0ba0c7fe0c1-6",
+    "v_cf9e5941b5f0-19",
+    "v_b0ba0c7fe0c1-7",
+    "v_cf9e5941b5f0-24",
+    "v_cf9e5941b5f0-16",
+    "v_cf9e5941b5f0-21",
+    "v_cf9e5941b5f0-22",
+    "v_cf9e5941b5f0-26",
+    "v_cf9e5941b5f0-30",
+    "v_cf9e5941b5f0-31",
+    "v_cf9e5941b5f0-36",
+    "v_cf9e5941b5f0-37",
+    "v_b0ba0c7fe0c1-2",
+    "v_cf9e5941b5f0-32",
+    "v_cf9e5941b5f0-34",
+    "v_cf9e5941b5f0-38",
+    "v_cf9e5941b5f0-39",
+    "v_b0ba0c7fe0c1-3",
+    "v_b0ba0c7fe0c1-8",
+    "v_cf9e5941b5f0-12",
+    "v_cf9e5941b5f0-14",
+    "v_cf9e5941b5f0-18",
+    "v_cf9e5941b5f0-23",
+    "v_cf9e5941b5f0-27",
+    "v_cf9e5941b5f0-28",
+    "v_cf9e5941b5f0-29",
+    "v_cf9e5941b5f0-33",
+    "v_cf9e5941b5f0-35",
+    "v_cf9e5941b5f0-40",
+    "v_cf9e5941b5f0-41",
+    "v_cf9e5941b5f0-42"
+  ],
+  "usage": "Every extension detail page, below the buy box.",
+  "reuseGuidance": "Tonal options are styled in the design pass."
+}

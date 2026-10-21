@@ -1,0 +1,33 @@
+{
+  "variantName": "results-toolbar",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "field",
+    "purpose": "result count plus sort dropdown bar"
+  },
+  "contentPattern": {
+    "structure": "one row: | 134 Results | Sort By | Relevance, Newest, ... | optional filter link |"
+  },
+  "options": [
+    {
+      "class": "questions",
+      "label": "Questions"
+    },
+    {
+      "class": "filter-button",
+      "label": "Filter Button"
+    }
+  ],
+  "memberVariantIds": [
+    "v_bf96a773c963",
+    "v_10d951551c90",
+    "v_e8fd0a12a5fd"
+  ],
+  "usage": "Above listing results, reviews and questions lists.",
+  "reuseGuidance": "Add filter-button when a filter link is authored."
+}

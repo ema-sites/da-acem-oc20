@@ -1,0 +1,22 @@
+{
+  "variantName": "active-filter",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "heading + link",
+    "purpose": "listing heading bar: active filter / result-set label with action links (remove, clear, back to top)"
+  },
+  "contentPattern": {
+    "structure": "one row per bar: | label or heading | action links |"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_149789cd297e"
+  ],
+  "usage": "Listing pages, above the result grid.",
+  "reuseGuidance": "Use for a label + trailing link bar; for a full tag row use tag-list."
+}

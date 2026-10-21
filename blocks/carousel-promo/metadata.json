@@ -1,0 +1,22 @@
+{
+  "variantName": "carousel-promo",
+  "baseBlock": "carousel",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "moderate",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "list + link + button",
+    "purpose": "promo banner slides switched by tab controls"
+  },
+  "contentPattern": {
+    "structure": "one row per slide: | banner image | heading, text, CTA link | optional tab label |"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_9bf6cacc665a"
+  ],
+  "usage": "Homepage promo banner.",
+  "reuseGuidance": "Use for rotating promo banners; a single row renders a static banner."
+}

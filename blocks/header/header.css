@@ -1,273 +1,543 @@
-/* header and nav layout */
+/* ==========================================================================
+   Header — Adobe Commerce Marketplace
+   Mobile-first. Row 0: white bar (logo, nav, cart, sign in).
+   Row 1: dark bar (search + "Powered by" info).
+   ========================================================================== */
+
+/* stylelint-disable no-descending-specificity */
+
+header {
+  --header-font: adobe-clean, var(--body-font-family);
+  --header-font-medium: adobecleanmedium, adobe-clean, var(--body-font-family);
+  --header-search-font: robotoregular, 'Helvetica Neue', helvetica, arial, sans-serif;
+  --header-text: rgb(80 80 80);
+  --header-link: rgb(81 80 80);
+  --header-dark: rgb(43 43 44);
+  --header-accent: rgb(239 103 47);
+  --header-row0-height: 55px;
+  --header-row1-height: 75px;
+  --header-drawer-width: 321px;
+
+  height: calc(var(--header-row0-height) + var(--header-row1-height));
+}
+
 header .nav-wrapper {
-  background-color: var(--background-color);
-  width: 100%;
-  z-index: 2;
   position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  width: 100%;
+  background-color: rgb(255 255 255);
+  font-family: var(--header-font);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--header-text);
 }
 
-header nav {
+header .nav-wrapper ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+header .nav-wrapper a:any-link,
+header .nav-wrapper a:hover {
+  text-decoration: none;
+}
+
+/* ---------- row 0: main bar (mobile base) ---------- */
+header .nav-main {
+  position: relative;
+  left: 0;
+  z-index: 2;
   box-sizing: border-box;
-  display: grid;
-  grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / auto 1fr auto;
-  align-items: center;
-  gap: 0 24px;
-  margin: auto;
-  max-width: 1248px;
-  height: var(--nav-height);
-  padding: 0 24px;
-  font-family: var(--body-font-family);
+  height: var(--header-row0-height);
+  padding: 10px 20px;
+  background-color: rgb(255 255 255);
+  transition: left 0.3s;
 }
 
-header nav[aria-expanded='true'] {
-  grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
-  overflow-y: auto;
-  min-height: 100dvh;
+header .nav-hamburger {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  z-index: 3;
 }
 
-@media (width >= 900px) {
-  header .nav-wrapper {
-    position: relative;
-  }
-
-  header nav {
-    display: flex;
-    justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
-  }
-}
-
-header nav p {
+header .nav-hamburger button {
+  display: block;
+  width: 28px;
+  height: 40px;
   margin: 0;
-  line-height: 1;
-}
-
-header nav a:any-link {
-  color: currentcolor;
-}
-
-/* hamburger */
-header nav .nav-hamburger {
-  grid-area: hamburger;
-  height: 22px;
-  display: flex;
-  align-items: center;
-}
-
-header nav .nav-hamburger button {
-  height: 22px;
-  margin: 0;
+  padding: 0;
   border: 0;
   border-radius: 0;
-  padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
-  overflow: initial;
-  text-overflow: initial;
-  white-space: initial;
-}
-
-header nav .nav-hamburger-icon,
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-  width: 20px;
-}
-
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  content: '';
-  position: absolute;
-  background: currentcolor;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon,
-header nav[aria-expanded='false'] .nav-hamburger-icon::before,
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  height: 2px;
-  border-radius: 2px;
-  background: currentcolor;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon::before {
-  top: -6px;
-}
-
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  top: 6px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon {
-  height: 22px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::before,
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: 3px;
-  left: 1px;
-  transform: rotate(45deg);
-  transform-origin: 2px 1px;
-  width: 24px;
-  height: 2px;
-  border-radius: 2px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: unset;
-  bottom: 3px;
-  transform: rotate(-45deg);
-}
-
-@media (width >= 900px) {
-  header nav .nav-hamburger {
-    display: none;
-    visibility: hidden;
-  }
-}
-
-/* brand */
-header .nav-brand {
-  grid-area: brand;
-  flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
-  font-weight: 700;
-  line-height: 1;
-}
-
-header nav .nav-brand img {
-  width: 128px;
-  height: auto;
-}
-
-/* sections */
-header nav .nav-sections {
-  grid-area: sections;
-  flex: 1 1 auto;
-  display: none;
-  visibility: hidden;
-}
-
-header nav[aria-expanded='true'] .nav-sections {
-  display: block;
-  visibility: visible;
-  align-self: start;
-}
-
-header nav .nav-sections ul {
-  list-style: none;
-  padding-left: 0;
-  font-size: var(--body-font-size-s);
-}
-
-header nav .nav-sections ul > li {
-  font-weight: 500;
-}
-
-header nav .nav-sections .nav-drop > button {
-  all: unset;
-  display: inline-block;
-  position: relative;
-  padding-right: 16px;
+  background: transparent;
   cursor: pointer;
 }
 
-header nav .nav-sections .nav-drop > button::after {
-  content: '';
+header .nav-hamburger-icon,
+header .nav-hamburger-icon::before,
+header .nav-hamburger-icon::after {
   position: absolute;
-  top: 0.5em;
-  right: 2px;
-  transform: rotate(135deg);
-  width: 6px;
-  height: 6px;
-  border: 2px solid currentcolor;
-  border-radius: 0 1px 0 0;
-  border-width: 2px 2px 0 0;
+  left: 2px;
+  display: block;
+  width: 24px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: rgb(143 143 143);
+  content: '';
 }
 
-header nav .nav-sections .nav-drop > button[aria-expanded='true']::after {
-  top: unset;
-  bottom: 0.5em;
-  transform: rotate(315deg);
+header .nav-hamburger-icon {
+  top: 19px;
 }
 
-header nav .nav-sections .nav-drop > button:focus-visible {
-  outline: 2px solid currentcolor;
-  outline-offset: 2px;
+header .nav-hamburger-icon::before {
+  top: -7px;
+  left: 0;
 }
 
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
+header .nav-hamburger-icon::after {
+  top: 7px;
+  left: 0;
 }
 
-header nav .nav-sections ul > li > ul > li {
-  font-weight: 400;
+header .nav-brand {
+  position: relative;
+  z-index: 5;
+  width: 90px;
+  margin: 12px 0 0 50px;
 }
 
-header nav .nav-sections .nav-drop > button[aria-expanded='false'] + ul {
+header .nav-brand a,
+header .nav-brand img {
+  display: block;
+  width: 90px;
+  height: auto;
+}
+
+/* tools: cart icon (mobile shows icon only) */
+header .nav-tools {
+  position: absolute;
+  top: 15px;
+  right: 75px;
+  display: flex;
+  height: 34px;
+  align-items: center;
+}
+
+header .nav-tools ul {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+header .nav-tools .nav-tool-text {
   display: none;
 }
 
+header .nav-tools .nav-tool-icon a {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 34px;
+}
+
+header .nav-tools .nav-tool-icon img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin-top: 5px;
+}
+
+header .nav-tools .nav-tool-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- mobile drawer ---------- */
+header .nav-sections {
+  position: fixed;
+  top: 0;
+  left: calc(-1 * var(--header-drawer-width));
+  z-index: 102;
+  box-sizing: border-box;
+  width: var(--header-drawer-width);
+  height: 100dvh;
+  overflow-y: auto;
+  background-color: rgb(255 255 255);
+  transition: left 0.3s;
+}
+
+header .nav-tabs {
+  display: flex;
+  height: 71px;
+}
+
+header .nav-tab {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  flex: 0 0 calc(var(--header-drawer-width) / 3);
+  height: 71px;
+  margin: 0;
+  padding: 24px 0 0;
+  border: 0;
+  border-top: 3px solid transparent;
+  border-right: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--header-font);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgb(32 32 33);
+  text-align: center;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+header .nav-tab + .nav-tab {
+  border-left: 1px solid transparent;
+}
+
+header .nav-tab[aria-selected='true'] {
+  border-top-color: var(--header-accent);
+  border-right-color: rgb(228 227 225);
+  color: var(--header-accent);
+}
+
+header .nav-tab + .nav-tab[aria-selected='true'] {
+  border-left-color: rgb(228 227 225);
+}
+
+header .nav-panel {
+  box-sizing: border-box;
+  padding: 25px 0;
+}
+
+header .nav-panel[aria-hidden='true'] {
+  display: none;
+}
+
+header .nav-panel .nav-list {
+  display: block;
+  width: 100%;
+}
+
+header .nav-panel .nav-item {
+  display: block;
+  width: 100%;
+}
+
+header .nav-panel .nav-item > a {
+  display: block;
+  padding: 8px 20px 8px 15px;
+  font-family: var(--header-font);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgb(32 32 33);
+  text-transform: uppercase;
+}
+
+header .nav-panel .nav-item > a:hover {
+  color: rgb(32 32 33);
+}
+
+/* overlay behind drawer */
+header .nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 101;
+  display: none;
+  background-color: rgb(0 0 0 / 70%);
+}
+
+header .nav-wrapper.is-open .nav-overlay {
+  display: block;
+}
+
+header .nav-wrapper.is-open .nav-sections {
+  left: 0;
+  box-shadow: 0 0 5px 0 rgb(50 50 50 / 75%);
+}
+
+/* the page (header bar included) slides right with the drawer */
+header .nav-wrapper.is-open .nav-main,
+header .nav-wrapper.is-open .nav-bar {
+  left: var(--header-drawer-width);
+}
+
+header .nav-wrapper.is-open .nav-hamburger {
+  z-index: 103;
+}
+
+header .nav-wrapper.is-open .nav-main {
+  z-index: 103;
+  background-color: transparent;
+}
+
+header .nav-wrapper.is-open .nav-main .nav-brand,
+header .nav-wrapper.is-open .nav-main .nav-tools {
+  visibility: hidden;
+}
+
+/* ---------- row 1: dark search bar (mobile base) ---------- */
+header .nav-bar {
+  position: relative;
+  left: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  height: var(--header-row1-height);
+  background-color: var(--header-dark);
+  transition: left 0.3s;
+}
+
+header .nav-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 0 20px;
+}
+
+header .nav-search {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  max-width: 100%;
+  margin: 0;
+}
+
+header .nav-search-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+header .nav-search input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  padding: 12px 48px 12px 16px;
+  border: 0;
+  border-radius: 4px 4px 0 0;
+  background-color: rgb(255 255 255);
+  font-family: var(--header-search-font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgb(142 142 142);
+  transition: 0.2s;
+}
+
+header .nav-search input::placeholder {
+  color: rgb(142 142 142);
+  opacity: 1;
+}
+
+header .nav-search input:focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px rgb(0 123 255);
+}
+
+header .nav-search-icon {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  background: url("data:image/svg+xml;utf8,<svg width='40' height='40' viewBox='0 0 40 40' fill='%23A6A6A6' xmlns='http://www.w3.org/2000/svg'><path d='M15.553 31.107c8.59 0 15.554-6.964 15.554-15.554S24.143 0 15.553 0 0 6.964 0 15.553c0 8.59 6.964 15.554 15.553 15.554zm0-3.888c6.443 0 11.666-5.225 11.666-11.668 0-6.442-5.225-11.665-11.668-11.665-6.442 0-11.665 5.223-11.665 11.665 0 6.443 5.223 11.666 11.665 11.666zm12.21 3.84a2.005 2.005 0 0 1 .002-2.833l.463-.463a2.008 2.008 0 0 1 2.833-.003l8.17 8.168c.78.78.78 2.05-.004 2.833l-.462.463a2.008 2.008 0 0 1-2.834.004l-8.168-8.17z' fill-rule='evenodd'/></svg>") center / 20px 20px no-repeat;
+  pointer-events: none;
+}
+
+header .nav-search-submit {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+}
+
+header .nav-bar-info {
+  display: none;
+  margin: 0;
+  font-family: var(--header-font);
+  font-size: 14px;
+  line-height: 55px;
+  color: rgb(255 255 255);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Desktop
+   ========================================================================== */
 @media (width >= 900px) {
-  header nav .nav-sections {
+  header {
+    --header-row0-height: 90px;
+    --header-row1-height: 55px;
+  }
+
+  header .nav-main {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    background-color: rgb(255 255 255);
+  }
+
+  header .nav-hamburger,
+  header .nav-overlay,
+  header .nav-tabs {
+    display: none;
+  }
+
+  header .nav-brand {
+    flex: 0 0 auto;
+    margin: 33px 0 0;
+  }
+
+  /* drawer becomes inline horizontal nav */
+  header .nav-sections {
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: 3;
+    flex: 1 1 auto;
+    width: auto;
+    height: var(--header-row0-height);
+    margin: 0 236px 0 50px;
+    overflow: visible;
+    background-color: rgb(255 255 255);
+    box-shadow: none;
+    transition: none;
+  }
+
+  header .nav-panel {
+    padding: 0;
+  }
+
+  header .nav-panel-account {
+    display: none;
+  }
+
+  header .nav-panel-menu[aria-hidden] {
     display: block;
-    visibility: visible;
+  }
+
+  header .nav-panel .nav-list {
+    display: block;
+    width: auto;
     white-space: nowrap;
   }
 
-  header nav .nav-sections ul {
-    display: flex;
-    gap: 24px;
+  header .nav-panel .nav-item {
+    display: inline-block;
+    width: auto;
+    height: var(--header-row0-height);
     margin: 0;
+    vertical-align: top;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
+  header .nav-panel .nav-item > a {
     position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    height: var(--header-row0-height);
+    padding: 15px;
+    font-family: var(--header-font-medium);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 60px;
+    color: var(--header-link);
+    text-transform: none;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
-    display: none;
-    position: relative;
+  header .nav-panel .nav-item > a:hover,
+  header .nav-panel .nav-item > a:focus-visible {
+    background-color: rgb(242 243 243);
+    box-shadow: 0 2px 4px 0 rgb(156 151 151 / 50%);
+    color: rgb(0 0 0);
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > button[aria-expanded='true'] + ul {
+  header .nav-tools {
+    position: absolute;
+    top: 30px;
+    right: 25px;
+    z-index: 10;
+    height: 38px;
+  }
+
+  header .nav-tools .nav-tool-icon a {
+    width: 24px;
+    height: 38px;
+  }
+
+  header .nav-tools .nav-tool-icon img {
+    margin-top: 7px;
+  }
+
+  header .nav-tools .nav-tool-text {
     display: block;
-    position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
-    white-space: initial;
+    padding: 0 0 0 20px;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
+  header .nav-tools .nav-tool-text a {
+    font-family: var(--header-font);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22.857px;
+    color: rgb(0 0 0);
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
+  header .nav-tools .nav-tool-text a:hover {
+    color: rgb(0 0 0);
   }
-}
 
-/* tools */
-header nav .nav-tools {
-  grid-area: tools;
+  header .nav-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  header .nav-search {
+    flex: 1 1 auto;
+    align-self: flex-start;
+    padding: 10px 0 0 20px;
+  }
+
+  header .nav-search input {
+    width: 450px;
+    height: 36px;
+  }
+
+  header .nav-search-icon {
+    top: 18px;
+    right: auto;
+    left: 434px;
+    margin-top: 0;
+  }
+
+  header .nav-bar-info {
+    display: block;
+    margin: 0 20px 0 0;
+  }
 }

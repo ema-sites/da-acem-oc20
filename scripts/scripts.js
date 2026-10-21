@@ -143,6 +143,35 @@ function decorateButtons(main) {
 }
 
 /**
+ * Applies section-metadata tables left in the markup (e.g. local preview of
+ * .plain.html) as section classes / data attributes, then removes the table.
+ * A no-op where the delivery pipeline already processed them.
+ * @param {Element} main The main element
+ */
+function decorateSectionMetadata(main) {
+  main.querySelectorAll(':scope > .section > div > .section-metadata, :scope > .section > .section-metadata').forEach((meta) => {
+    const section = meta.closest('.section');
+    [...meta.children].forEach((row) => {
+      const [keyCell, valueCell] = row.children;
+      if (!keyCell || !valueCell) return;
+      const key = keyCell.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const value = valueCell.textContent.trim();
+      if (!key) return;
+      if (key === 'style') {
+        value.split(',').map((v) => v.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-'))
+          .filter(Boolean)
+          .forEach((cls) => section.classList.add(cls));
+      } else {
+        section.dataset[key.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase())] = value;
+      }
+    });
+    const wrapper = meta.parentElement;
+    meta.remove();
+    if (wrapper !== section && !wrapper.children.length) wrapper.remove();
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -151,6 +180,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionMetadata(main);
   decorateBlocks(main);
   decorateButtons(main);
 }

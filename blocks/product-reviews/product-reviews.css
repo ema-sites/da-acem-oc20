@@ -1,0 +1,112 @@
+.product-reviews .product-reviews-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.product-reviews .product-reviews-item {
+  padding: 24px 0;
+}
+
+.product-reviews .product-reviews-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+}
+
+.product-reviews .product-reviews-meta {
+  flex: 1;
+}
+
+.product-reviews .product-reviews-meta > * {
+  margin: 0;
+}
+
+.product-reviews .product-reviews-verified {
+  margin-left: auto;
+}
+
+.product-reviews .product-reviews-verified::before {
+  content: '\2713';
+  margin-right: 4px;
+}
+
+.product-reviews .product-reviews-star::before {
+  content: '\2605';
+  opacity: 0.25;
+}
+
+.product-reviews .product-reviews-star.full::before {
+  opacity: 1;
+}
+
+.product-reviews .product-reviews-star.half::before {
+  opacity: 0.6;
+}
+
+.product-reviews .product-reviews-title {
+  margin: 8px 0;
+}
+
+.product-reviews .product-reviews-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (width >= 900px) {
+  .product-reviews .product-reviews-content {
+    grid-template-columns: 1fr minmax(180px, 30%);
+    padding-left: 15%;
+  }
+}
+
+.product-reviews .product-reviews-body > :first-child {
+  margin-top: 0;
+}
+
+.product-reviews .product-reviews-criteria {
+  margin: 0;
+}
+
+.product-reviews .product-reviews-criteria dt {
+  margin-top: 8px;
+}
+
+.product-reviews .product-reviews-criteria dd {
+  margin: 0;
+  min-height: 1em;
+}
+
+.product-reviews .product-reviews-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.product-reviews .product-reviews-helpful {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-reviews .product-reviews-helpful button {
+  margin: 0;
+  padding: 4px 12px;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.product-reviews .product-reviews-helpful button:disabled {
+  cursor: default;
+}
+
+.product-reviews .product-reviews-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

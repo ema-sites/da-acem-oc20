@@ -1,0 +1,33 @@
+{
+  "variantName": "notice",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "link",
+    "purpose": "bordered callout box of notice text"
+  },
+  "contentPattern": {
+    "structure": "one cell of rich text with links; optional heading as title"
+  },
+  "options": [
+    {
+      "class": "location",
+      "label": "Location"
+    },
+    {
+      "class": "warning",
+      "label": "Warning"
+    }
+  ],
+  "memberVariantIds": [
+    "v_6e97f91526ff-4",
+    "v_3e453e838fda",
+    "v_99e588dac7f3"
+  ],
+  "usage": "PDP category policy notes, location restrictions and warnings.",
+  "reuseGuidance": "Use location or warning options for those tones."
+}

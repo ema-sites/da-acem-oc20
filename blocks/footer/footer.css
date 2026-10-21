@@ -1,20 +1,230 @@
-footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+/* Footer — source: commercemarketplace.adobe.com footer.page-footer (mobile-first) */
+footer .footer {
+  background-color: #31302b;
+  color: #fff;
+  font-family: adobe-clean, var(--body-font-family);
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0 0 25px;
+  overflow-x: clip;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 footer .footer p {
   margin: 0;
 }
 
+footer .footer a:any-link {
+  color: #fff;
+  text-decoration: none;
+  overflow-wrap: normal;
+}
+
+footer .footer a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* link-column band: seven static columns at every width (source does not collapse them) */
+footer .footer .footer-nav {
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px 0;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  column-gap: 0;
+}
+
+footer .footer .footer-column {
+  min-height: 230px;
+}
+
+footer .footer .footer-column h3 {
+  box-sizing: border-box;
+  margin: 20px 0 10px;
+  padding: 0;
+  color: #fff;
+  font-family: AdobeCleanBold, adobe-clean, var(--body-font-family);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 19.8px;
+  text-transform: capitalize;
+}
+
+footer .footer .footer-column a {
+  display: block;
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* bottom bar */
+footer .footer .footer-bottom {
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 50px 20px 0;
+  border-top: 1px solid #979797;
+  display: flex;
+  flex-direction: column;
+}
+
+footer .footer .footer-brand-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer .footer .footer-brand-row .footer-cell {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+footer .footer .footer-logo img {
+  display: inline;
+  width: 90px;
+  height: auto;
+}
+
+footer .footer .footer-info p {
+  margin: 0 0 10px;
+  padding: 7px 0 0;
+  text-align: center;
+}
+
+footer .footer .footer-legal-row {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  line-height: 17.14px;
+}
+
+footer .footer .footer-copyright {
+  order: 1;
+  padding: 40px 25px 16px 0;
+}
+
+footer .footer .footer-legal {
+  order: 0;
+  padding: 40px 0 0;
+}
+
+footer .footer .footer-legal li {
+  padding: 0 0 7px;
+}
+
+footer .footer .footer-legal a {
+  display: block;
+}
+
+footer .footer .footer-social {
+  text-align: right;
+  font-size: 16px;
+  line-height: 22.86px;
+}
+
+footer .footer .footer-social-label {
+  margin: 0;
+  padding: 7px 0 0;
+  line-height: 40px;
+}
+
+footer .footer .footer-social-list {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* source quirk below 768px: list items collapse to ~1px so the 34px circles overlap
+   at a 20px pitch and overflow the cell to the right */
+footer .footer .footer-social-list li {
+  width: 1.1px;
+  margin: 0 0 0 19px;
+}
+
+footer .footer .footer-social-list a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  background-color: transparent;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+}
+
+footer .footer .footer-social-list a:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* social glyph: the fragment image is used as a mask so the glyph follows currentColor */
+footer .footer .footer-social-icon {
+  display: block;
+  width: 13.5px;
+  height: 13.5px;
+  background-color: currentcolor;
+  mask: var(--footer-icon) center / contain no-repeat;
+}
+
+@media (width >= 600px) {
+  /* 15px margin + ~4px inline-block whitespace on source */
+  footer .footer .footer-social-list li {
+    width: auto;
+  }
+
+  footer .footer .footer-legal-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  footer .footer .footer-copyright {
+    order: 0;
+  }
+
+  footer .footer .footer-legal {
+    display: flex;
+    gap: 15px;
+  }
+
+  footer .footer .footer-legal li {
+    padding: 0 0 0 15px;
+  }
+}
+
 @media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+  footer .footer .footer-nav {
+    padding: 60px 30px 0;
+  }
+
+  footer .footer .footer-column h3 {
+    min-height: 58px;
+    margin: 0;
+    padding: 0 10px 0 0;
+  }
+
+  footer .footer .footer-bottom {
+    padding: 50px 30px 0;
+  }
+
+  footer .footer .footer-brand-row .footer-cell {
+    min-height: 37px;
+  }
+
+  footer .footer .footer-social {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  footer .footer .footer-social-label {
+    line-height: 22.86px;
   }
 }

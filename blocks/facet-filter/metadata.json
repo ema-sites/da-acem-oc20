@@ -1,0 +1,22 @@
+{
+  "variantName": "facet-filter",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "list + field",
+    "purpose": "checkbox facet list with result counts"
+  },
+  "contentPattern": {
+    "structure": "optional heading row, then one row per value: | label (text or link) | count |, or a single list"
+  },
+  "options": [],
+  "memberVariantIds": [
+    "v_642c11b9415d"
+  ],
+  "usage": "Listing page sidebars (edition, price type, category facets).",
+  "reuseGuidance": "One block per facet group."
+}

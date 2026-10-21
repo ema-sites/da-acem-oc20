@@ -1,0 +1,313 @@
+{
+  "variantName": "product-buy-box",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "dense",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "heading + link + image + field + button",
+    "purpose": "marketplace PDP buy box: header, gallery, edition/version/support selects, add-on checkboxes, price lines with total, add to cart and contact vendor"
+  },
+  "contentPattern": {
+    "structure": "one row per part, label | value: header (logo + heading + vendor), | Gallery | images |, | Edition | choices |, | [ ] Installation service | $10.00 |, | Product | $0.00 |, | Total | $0.00 |, | action links |, | rating |, other text as info"
+  },
+  "options": [
+    {
+      "class": "no-installation",
+      "label": "No Installation"
+    },
+    {
+      "class": "fee-notice",
+      "label": "Fee Notice"
+    },
+    {
+      "class": "partner-badge-no-installation",
+      "label": "Partner Badge No Installation"
+    },
+    {
+      "class": "partner-badge",
+      "label": "Partner Badge"
+    },
+    {
+      "class": "with-support",
+      "label": "With Support"
+    },
+    {
+      "class": "single-image",
+      "label": "Single Image"
+    },
+    {
+      "class": "rating",
+      "label": "Rating"
+    },
+    {
+      "class": "installation-fee-notice",
+      "label": "Installation Fee Notice"
+    },
+    {
+      "class": "installation-fee-notice-with-support",
+      "label": "Installation Fee Notice With Support"
+    },
+    {
+      "class": "partner-badge-image-blue-grey",
+      "label": "Partner Badge Image Blue Grey"
+    },
+    {
+      "class": "rating-installation",
+      "label": "Rating Installation"
+    },
+    {
+      "class": "partner-badge-single-image",
+      "label": "Partner Badge Single Image"
+    },
+    {
+      "class": "partner-badge-rating-fee-notice",
+      "label": "Partner Badge Rating Fee Notice"
+    },
+    {
+      "class": "partner-badge-rating",
+      "label": "Partner Badge Rating"
+    },
+    {
+      "class": "partner-badge-fee-notice",
+      "label": "Partner Badge Fee Notice"
+    },
+    {
+      "class": "rating-installation-with-support",
+      "label": "Rating Installation With Support"
+    },
+    {
+      "class": "single-image-fee-notice",
+      "label": "Single Image Fee Notice"
+    },
+    {
+      "class": "partner-badge-rating-blue-image-grey",
+      "label": "Partner Badge Rating Blue Image Grey"
+    },
+    {
+      "class": "partner-badge-buy-button",
+      "label": "Partner Badge Buy Button"
+    },
+    {
+      "class": "partner-badge-rating-fee-notice-image-blue-grey",
+      "label": "Partner Badge Rating Fee Notice Image Blue Grey"
+    },
+    {
+      "class": "star-score-fee-notice",
+      "label": "Star Score Fee Notice"
+    },
+    {
+      "class": "version-select-only",
+      "label": "Version Select Only"
+    },
+    {
+      "class": "price-line-only",
+      "label": "Price Line Only"
+    },
+    {
+      "class": "main-image-only",
+      "label": "Main Image Only"
+    },
+    {
+      "class": "rating-single-image",
+      "label": "Rating Single Image"
+    },
+    {
+      "class": "thumbnail-strip-only",
+      "label": "Thumbnail Strip Only"
+    },
+    {
+      "class": "star-score",
+      "label": "Star Score"
+    },
+    {
+      "class": "assurance-badge-diagram-buy-button",
+      "label": "Assurance Badge Diagram Buy Button"
+    },
+    {
+      "class": "gallery-after-panel",
+      "label": "Gallery After Panel"
+    },
+    {
+      "class": "star-score-installation",
+      "label": "Star Score Installation"
+    },
+    {
+      "class": "star-score-installation-blue-image-grey",
+      "label": "Star Score Installation Blue Image Grey"
+    },
+    {
+      "class": "three-thumbnail-strip",
+      "label": "Three Thumbnail Strip"
+    },
+    {
+      "class": "partner-badge-rating-single-image",
+      "label": "Partner Badge Rating Single Image"
+    },
+    {
+      "class": "fee-notice-contact-only",
+      "label": "Fee Notice Contact Only"
+    },
+    {
+      "class": "installation-checkbox-only",
+      "label": "Installation Checkbox Only"
+    },
+    {
+      "class": "single-image-blue-image-grey",
+      "label": "Single Image Blue Image Grey"
+    },
+    {
+      "class": "partner-badge-support-options",
+      "label": "Partner Badge Support Options"
+    },
+    {
+      "class": "partner-badge-single-image-buy-button",
+      "label": "Partner Badge Single Image Buy Button"
+    },
+    {
+      "class": "assurance-badge-fee-notice",
+      "label": "Assurance Badge Fee Notice"
+    },
+    {
+      "class": "overlay-thumbnails-fee-notice",
+      "label": "Overlay Thumbnails Fee Notice"
+    },
+    {
+      "class": "overlay-thumbnails-installation",
+      "label": "Overlay Thumbnails Installation"
+    },
+    {
+      "class": "assurance-badge-rating",
+      "label": "Assurance Badge Rating"
+    },
+    {
+      "class": "installation-checkbox-only-dark",
+      "label": "Installation Checkbox Only Dark"
+    },
+    {
+      "class": "single-image-contact-only",
+      "label": "Single Image Contact Only"
+    },
+    {
+      "class": "partner-badge-rating-single-image-contact-only",
+      "label": "Partner Badge Rating Single Image Contact Only"
+    },
+    {
+      "class": "partner-badge-support-options-add-to-cart",
+      "label": "Partner Badge Support Options Add To Cart"
+    },
+    {
+      "class": "contact-only",
+      "label": "Contact Only"
+    },
+    {
+      "class": "image-grey",
+      "label": "Image Grey"
+    },
+    {
+      "class": "rating-single-image-contact-only",
+      "label": "Rating Single Image Contact Only"
+    },
+    {
+      "class": "partner-badge-panel-first",
+      "label": "Partner Badge Panel First"
+    },
+    {
+      "class": "partner-badge-single-image-installation",
+      "label": "Partner Badge Single Image Installation"
+    },
+    {
+      "class": "partner-badge-contact-only",
+      "label": "Partner Badge Contact Only"
+    },
+    {
+      "class": "star-score-single-image",
+      "label": "Star Score Single Image"
+    },
+    {
+      "class": "subscription-installation",
+      "label": "Subscription Installation"
+    },
+    {
+      "class": "rating-free-product",
+      "label": "Rating Free Product"
+    },
+    {
+      "class": "single-image-buy-button",
+      "label": "Single Image Buy Button"
+    },
+    {
+      "class": "star-score-installation-fee-notice",
+      "label": "Star Score Installation Fee Notice"
+    },
+    {
+      "class": "wide-banner-gallery",
+      "label": "Wide Banner Gallery"
+    }
+  ],
+  "memberVariantIds": [
+    "v_6e97f91526ff",
+    "v_6e97f91526ff-3",
+    "v_6e97f91526ff-5",
+    "v_6e97f91526ff-9",
+    "v_6e97f91526ff-7",
+    "v_cf9e5941b5f0-1",
+    "v_6e97f91526ff-10",
+    "v_6e97f91526ff-13",
+    "v_6e97f91526ff-14",
+    "v_cf9e5941b5f0-4",
+    "v_6e97f91526ff-8",
+    "v_6e97f91526ff-15",
+    "v_6e97f91526ff-21",
+    "v_6e97f91526ff-19",
+    "v_6e97f91526ff-17",
+    "v_cf9e5941b5f0-9",
+    "v_6e97f91526ff-16",
+    "v_6e97f91526ff-22",
+    "v_6e97f91526ff-18",
+    "v_6e97f91526ff-23",
+    "v_6e97f91526ff-20",
+    "v_6e97f91526ff-24",
+    "v_378c3899da1e",
+    "v_f5279ae8cf4d",
+    "v_565e64ab95c5",
+    "v_cf9e5941b5f0-20",
+    "v_171ab5ed34aa",
+    "v_6e97f91526ff-28",
+    "v_6e97f91526ff-29",
+    "v_cf9e5941b5f0-25",
+    "v_6e97f91526ff-26",
+    "v_6e97f91526ff-27",
+    "v_3317f8fb1059",
+    "v_6e97f91526ff-30",
+    "v_6e97f91526ff-6",
+    "v_a4af0e02b4ca",
+    "v_6e97f91526ff-11",
+    "v_6e97f91526ff-32",
+    "v_6e97f91526ff-34",
+    "v_6e97f91526ff-35",
+    "v_6e97f91526ff-36",
+    "v_6e97f91526ff-37",
+    "v_6e97f91526ff-38",
+    "v_096fbdde5b35",
+    "v_6e97f91526ff-12",
+    "v_6e97f91526ff-31",
+    "v_6e97f91526ff-33",
+    "v_6e97f91526ff-1",
+    "v_6e97f91526ff-2",
+    "v_6e97f91526ff-25",
+    "v_6e97f91526ff-39",
+    "v_6e97f91526ff-40",
+    "v_6e97f91526ff-41",
+    "v_6e97f91526ff-42",
+    "v_6e97f91526ff-43",
+    "v_6e97f91526ff-44",
+    "v_6e97f91526ff-45",
+    "v_cf9e5941b5f0-43",
+    "v_cf9e5941b5f0-44"
+  ],
+  "usage": "Every extension detail page (top of page).",
+  "reuseGuidance": "Most options only record which parts a product has; author only the parts present."
+}

@@ -1,0 +1,38 @@
+{
+  "variantName": "product-questions",
+  "baseBlock": "custom",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "moderate",
+    "hasGrid": false,
+    "imagePattern": "noimg",
+    "structure": "list + heading + button",
+    "purpose": "customer Q&A list with answer counts and answer buttons, plus optional header bar"
+  },
+  "contentPattern": {
+    "structure": "optional header row (| Questions | Ask a question link |), then one row per question: | author · date | question | answer count | answer link |; a links-only row is an actions bar"
+  },
+  "options": [
+    {
+      "class": "ask-button-only",
+      "label": "Ask Button Only"
+    },
+    {
+      "class": "header-bar",
+      "label": "Header Bar"
+    },
+    {
+      "class": "header-bar-error-actions",
+      "label": "Header Bar Error Actions"
+    }
+  ],
+  "memberVariantIds": [
+    "v_f6c8fdd3643e",
+    "v_2b87f2ea6d71",
+    "v_2289b036cdd2",
+    "v_cdca447f2209"
+  ],
+  "usage": "PDP Q&A sections and their empty state.",
+  "reuseGuidance": "Use ask-button-only for the empty state, header-bar for the title bar."
+}

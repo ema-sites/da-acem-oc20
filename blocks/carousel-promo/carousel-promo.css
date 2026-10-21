@@ -1,0 +1,158 @@
+/* Block: carousel-promo -- values from source computed styles
+ * (commercemarketplace.adobe.com .block-banners / pagebuilder slick slider)
+ */
+
+/* source slider sits 20px inside the 1200px container (10px row padding + 10px margin)
+ * and 30px below the header (10px row padding + 20px slider margin) */
+.carousel-promo {
+  margin: 0 calc(20px - var(--content-padding));
+  padding-top: 10px;
+}
+
+.carousel-promo .carousel-promo-slides-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-promo .carousel-promo-slides {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: transform 0.5s ease;
+}
+
+.carousel-promo .carousel-promo-slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  margin: 0;
+  visibility: hidden;
+  transition: visibility 0s 0.5s;
+}
+
+.carousel-promo .carousel-promo-slide.active {
+  visibility: visible;
+  transition: visibility 0s;
+}
+
+.carousel-promo .carousel-promo-slide-image {
+  line-height: 0;
+}
+
+.carousel-promo .carousel-promo-slide-image p {
+  margin: 0;
+}
+
+.carousel-promo .carousel-promo-slide-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.carousel-promo .carousel-promo-slide-content {
+  padding: 0;
+  text-align: left;
+}
+
+.carousel-promo .carousel-promo-slide-content > :first-child {
+  margin-top: 20px;
+}
+
+.carousel-promo .carousel-promo-slide-content p {
+  margin: 0;
+}
+
+/* CTA: source .pagebuilder-button-primary */
+main .carousel-promo a.button.primary:any-link {
+  min-height: 48px;
+  padding: 12px 25px;
+  border: 1px solid var(--button-primary-background);
+  font-size: 18px;
+  line-height: 22px;
+}
+
+main .carousel-promo a.button.primary:hover {
+  border-color: var(--button-primary-background-hover);
+}
+
+@media (width >= 900px) {
+  /* source slide: 1160 x 348, background-size: cover, position: left top */
+  .carousel-promo .carousel-promo-slide-image img {
+    height: 348px;
+  }
+
+  /* source poster overlay places the button 280px from the slide top */
+  .carousel-promo .carousel-promo-slide-content {
+    position: absolute;
+    top: 280px;
+    left: 50px;
+  }
+
+  .carousel-promo .carousel-promo-slide-content > :first-child {
+    margin-top: 0;
+  }
+
+  /* per-banner CTA offsets from the source overlays (padding-left 50 / 750 / 35px);
+   * the banner art contains its own copy, so the button is placed clear of it */
+  .carousel-promo .carousel-promo-slide:nth-child(3n + 2) .carousel-promo-slide-content {
+    left: 750px;
+  }
+
+  .carousel-promo .carousel-promo-slide:nth-child(3n + 3) .carousel-promo-slide-content {
+    left: 35px;
+  }
+}
+
+/* dots: source .slick-dots (15px padding around a 17.625px line box,
+ * dots sit on its bottom edge) */
+.carousel-promo .carousel-promo-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 17.625px;
+  margin: 0;
+  padding: 15px 0;
+}
+
+.carousel-promo .carousel-promo-tab {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 14px;
+  height: 14px;
+  margin: 0 5px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: none;
+  color: #fff;
+  font-size: 14px;
+  line-height: 16px;
+  text-indent: -99999px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.carousel-promo .carousel-promo-tab:hover {
+  border-color: #b3b3b3;
+}
+
+.carousel-promo .carousel-promo-tab[aria-selected='true'] {
+  background: #1c1918;
+}
+
+.carousel-promo .carousel-promo-tab:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-promo .carousel-promo-slides,
+  .carousel-promo .carousel-promo-tab {
+    transition: none;
+  }
+}

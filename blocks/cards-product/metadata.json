@@ -1,0 +1,41 @@
+{
+  "variantName": "cards-product",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "moderate",
+    "hasGrid": true,
+    "imagePattern": "noimg",
+    "structure": "link + heading + image",
+    "purpose": "grid of uniform extension cards with logo, name, vendor, star rating, partner tier and price"
+  },
+  "contentPattern": {
+    "structure": "one row per card: | logo image | name (link/heading), vendor, rating (\"4.5\" or stars), partner tier, price |"
+  },
+  "options": [
+    {
+      "class": "image",
+      "label": "Image"
+    }
+  ],
+  "memberVariantIds": [
+    "v_43c0d5fe9f1c",
+    "v_714128e81961",
+    "v_714128e81961-1",
+    "v_43c0d5fe9f1c-1",
+    "v_714128e81961-2",
+    "v_43c0d5fe9f1c-2",
+    "v_43c0d5fe9f1c-3",
+    "v_43c0d5fe9f1c-4",
+    "v_43c0d5fe9f1c-10",
+    "v_43c0d5fe9f1c-11",
+    "v_43c0d5fe9f1c-5",
+    "v_43c0d5fe9f1c-6",
+    "v_43c0d5fe9f1c-7",
+    "v_43c0d5fe9f1c-8",
+    "v_43c0d5fe9f1c-9"
+  ],
+  "usage": "Category, curated listing, seller profile and homepage product grids.",
+  "reuseGuidance": "Use for any product/extension grid; add the image option for full-width card images."
+}

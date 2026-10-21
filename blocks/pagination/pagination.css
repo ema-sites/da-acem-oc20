@@ -1,0 +1,37 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.pagination .pagination-size {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination .pagination-size select {
+  min-width: 72px;
+  padding: 8px;
+}
+
+.pagination .pagination-pages ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.pagination .pagination-current {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.pagination.page-numbers .pagination-pages {
+  margin-left: auto;
+}

@@ -1,0 +1,136 @@
+/* cards-promo: values from https://commercemarketplace.adobe.com/ .col-box computed styles */
+
+.cards-promo > ul {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards-promo .cards-promo-card {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 322px;
+  margin: 0 0 14px;
+  padding: 10px 2px 0;
+  border: 1px solid #aeafb1;
+  border-radius: 4px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+/* title */
+.cards-promo .cards-promo-card-heading {
+  padding-top: 30px;
+}
+
+.cards-promo .cards-promo-card-heading > * {
+  margin: 0;
+  color: var(--heading-color);
+  font-family: var(--font-family-bold);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 21.4286px;
+}
+
+/* icon: every icon renders in a 100px tall line box, as in the source */
+.cards-promo .cards-promo-card-image {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  line-height: 0;
+}
+
+.cards-promo .cards-promo-card-image p {
+  margin: 0;
+}
+
+.cards-promo .cards-promo-card-image .icon {
+  display: inline-block;
+  width: auto;
+  height: 100px;
+}
+
+.cards-promo .cards-promo-card-image img {
+  width: auto;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* text */
+.cards-promo .cards-promo-card-body {
+  /* source text column is 255px wide on mobile (its card overflows by 6px) */
+  padding: 5px 37px 21px;
+}
+
+.cards-promo .cards-promo-card-body p {
+  margin: 0 0 10px;
+  color: #222;
+  font-size: 12.5px;
+  line-height: 17.8571px;
+}
+
+.cards-promo .cards-promo-card-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* divider + button pinned to the card bottom */
+.cards-promo .cards-promo-card-cta {
+  margin: auto -2px 0;
+  padding-bottom: 20px;
+}
+
+.cards-promo .cards-promo-card-cta::before {
+  content: '';
+  display: block;
+  height: 1px;
+  margin: 0 10% 23px;
+  background-color: #d6d7d8;
+}
+
+.cards-promo .cards-promo-card-cta p {
+  margin: 0;
+}
+
+main .cards-promo a.button.secondary:any-link {
+  display: flex;
+  width: 100px;
+  height: 32px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+@media (width >= 768px) {
+  .cards-promo > ul {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .cards-promo .cards-promo-card {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 436px;
+    margin: 0 10px 0 0;
+    padding: 2px 2px 0;
+  }
+
+  .cards-promo .cards-promo-card:last-child {
+    margin-right: 0;
+  }
+
+  .cards-promo .cards-promo-card-body {
+    padding: 5px 40px 21px;
+  }
+}
+
+@media (width >= 992px) {
+  .cards-promo .cards-promo-card {
+    min-height: 331px;
+  }
+}

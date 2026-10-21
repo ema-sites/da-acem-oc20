@@ -1,0 +1,36 @@
+.table-plain .table-plain-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-plain table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-plain th,
+.table-plain td {
+  padding: 0.75em 0.5em;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table-plain th {
+  font-weight: 700;
+}
+
+.table-plain th p,
+.table-plain td p {
+  margin: 0;
+}
+
+.table-plain td p + p {
+  margin-top: 0.25em;
+}
+
+@media (width >= 900px) {
+  .table-plain th:first-child,
+  .table-plain td:first-child {
+    width: 30%;
+  }
+}

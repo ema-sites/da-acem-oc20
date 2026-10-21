@@ -1,0 +1,90 @@
+/*
+ * Brand tokens extracted from https://commercemarketplace.adobe.com/
+ * (raw extraction: migration-work/brand.json)
+ */
+
+:root {
+  /* colors */
+  --background-color: #fff;
+  --text-color: #505050;
+  --heading-color: #000;
+  --light-color: #f2f3f3;
+  --dark-color: #505050;
+  --border-color: #d5d5d5;
+  --link-color: #0469e3;
+  --link-hover-color: #045dca;
+  --link-visited-color: #0352b1;
+  --link-active-color: #eb5202;
+  --focus-ring-color: #147af3;
+
+  /* fonts */
+  --body-font-family: adobe-clean, adobe-clean-fallback, 'Source Sans Pro', -apple-system, 'Segoe UI', roboto, sans-serif;
+  --heading-font-family: var(--body-font-family);
+  --font-family-medium: adobecleanmedium, var(--body-font-family);
+  --font-family-bold: adobecleanbold, var(--body-font-family);
+  --button-font-family: robotoregular, 'Helvetica Neue', helvetica, arial, sans-serif;
+
+  /* body sizes */
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+  --body-line-height: 20px;
+
+  /* heading sizes (mobile) */
+  --heading-font-size-xxl: 28px;
+  --heading-font-size-xl: 30px;
+  --heading-font-size-l: 20px;
+  --heading-font-size-m: 18px;
+  --heading-font-size-s: 16px;
+  --heading-font-size-xs: 14px;
+  --heading-line-height: 1.1;
+  --heading-font-weight: 400;
+
+  /* spacing / layout */
+  --content-max-width: 1200px;
+  --content-padding: 20px;
+  --section-spacing: 30px;
+  --section-band-spacing: 50px;
+  --section-padding: 40px;
+
+  /* nav height */
+  --nav-height: 145px;
+
+  /* buttons: primary = orange "Get Started" CTA */
+  --button-primary-background: #eb5202;
+  --button-primary-background-hover: #cc6127;
+  --button-primary-color: #fff;
+
+  /* buttons: secondary = outlined pill "Learn more" */
+  --button-secondary-color: #0a0a0a;
+  --button-secondary-border: #d5d5d5;
+  --button-secondary-background-hover: #d5d5d5;
+  --button-secondary-border-hover: #b1b1b1;
+  --button-secondary-background-active: #b1b1b1;
+  --button-secondary-border-active: #909090;
+
+  /* buttons: accent = blue "Add to cart" */
+  --button-accent-background: #0265dc;
+  --button-accent-background-hover: #0054b6;
+  --button-accent-background-active: #004491;
+  --button-accent-color: #fff;
+
+  /* buttons: disabled */
+  --button-disabled-background: #e6e6e6;
+  --button-disabled-color: #b1b1b1;
+}
+
+@media (width >= 900px) {
+  :root {
+    /* heading sizes (desktop) */
+    --heading-font-size-xxl: 28px;
+    --heading-font-size-xl: 36px;
+    --heading-font-size-l: 20px;
+    --heading-font-size-m: 22px;
+    --heading-font-size-s: 16px;
+    --heading-font-size-xs: 14px;
+
+    /* layout */
+    --content-padding: 30px;
+  }
+}
