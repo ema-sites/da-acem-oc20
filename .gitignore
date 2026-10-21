@@ -19,3 +19,4 @@ migration-work/navigation-validation/
 tools/importer/reports/
 tools/importer/*.bundle.js
 tools/importer/urls-*.txt
+tools/importer/bd-snapshots

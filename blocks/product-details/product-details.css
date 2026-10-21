@@ -359,3 +359,8 @@
     margin-left: 67px;
   }
 }
+
+/* empty list items left by hidden source rows (e.g. release-note platform lines) */
+.product-details li:empty {
+  display: none;
+}
