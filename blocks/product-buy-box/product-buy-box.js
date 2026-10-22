@@ -93,7 +93,11 @@ function stars(value, count) {
     const s = document.createElement('span');
     s.className = 'product-buy-box-star';
     if (value >= i) s.classList.add('full');
-    else if (value > i - 1) s.classList.add('half');
+    else if (value > i - 1) {
+      // partial star filled to the exact fraction (4.2 -> 20%), as on the source
+      s.classList.add('partial');
+      s.style.setProperty('--fill', `${Math.round((value - (i - 1)) * 100)}%`);
+    }
     meter.append(s);
   }
   const score = document.createElement('span');

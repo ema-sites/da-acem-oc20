@@ -31,8 +31,27 @@ export default function decorate(block) {
       // bare text nodes (no wrapping <p>)
       if (!children.length) label.append(...first.childNodes);
     } else {
-      // first cell is only links: they are chips / actions
+      // first cell is only links: they are removable filter chips
+      // (source a.selected-filter-item > span.remove-icon + span.filter-label)
       actions.append(...first.childNodes);
+      actions.querySelectorAll('a').forEach((a) => {
+        if (a.querySelector('.active-filter-chip-label')) return;
+        const icon = document.createElement('span');
+        icon.className = 'active-filter-chip-remove';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.textContent = 'X';
+        const text = document.createElement('span');
+        text.className = 'active-filter-chip-label';
+        if (!a.hasAttribute('aria-label')) {
+          a.setAttribute('aria-label', a.textContent.replace(/\s+/g, ' ').trim());
+        }
+        text.append(...a.childNodes);
+        // source lays strong + text out as flex items, so the space between them collapses
+        const after = text.querySelector(':scope > strong')?.nextSibling;
+        if (after?.nodeType === Node.TEXT_NODE) after.textContent = after.textContent.trimStart();
+        a.classList.add('active-filter-chip');
+        a.replaceChildren(icon, text);
+      });
     }
     rest.forEach((cell) => actions.append(...cell.childNodes));
 

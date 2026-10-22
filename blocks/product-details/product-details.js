@@ -73,8 +73,41 @@ function splitPair(li) {
 
 const SPEC_COLUMNS = 3;
 
+// Source column of the known marketplace labels (Technical Specifications and
+// Quality Report); unknown labels stay in the column of the label before them.
+const SPEC_COLUMN_OF = [
+  [/^(type|updated|categories|plagiarism check|malware check)$/i, 1],
+  [/^(documentation|license type|policy|marketing review|manual testing)$/i, 2],
+];
+
+function specColumns(pairs) {
+  const known = pairs.map(([dt]) => {
+    const label = dt.textContent.trim();
+    const hit = SPEC_COLUMN_OF.find(([re]) => re.test(label));
+    return hit ? hit[1] : null;
+  });
+  if (known.some((c) => c !== null)) {
+    const cols = [];
+    let col = 0;
+    pairs.forEach((pair, i) => {
+      if (known[i] !== null && known[i] > col) col = known[i];
+      (cols[col] = cols[col] || []).push(pair);
+    });
+    return cols.filter(Boolean);
+  }
+  // no known labels: split in order into up to three even columns
+  const cols = [];
+  let start = 0;
+  for (let col = SPEC_COLUMNS; col > 0 && start < pairs.length; col -= 1) {
+    const size = Math.ceil((pairs.length - start) / col);
+    cols.push(pairs.slice(start, start + size));
+    start += size;
+  }
+  return cols;
+}
+
 // "Label: value" lists in a specifications-type section become a definition grid,
-// split in order into up to three columns (source .technical-specs-section).
+// split into up to three columns as on the source (.technical-specs-section).
 function decorateSpecs(title, content) {
   if (!/spec|detail|information|quality|report/i.test(title)) return;
   content.querySelectorAll(':scope > ul').forEach((ul) => {
@@ -84,19 +117,33 @@ function decorateSpecs(title, content) {
     const pairs = items.map(splitPair).filter(Boolean);
     const grid = document.createElement('div');
     grid.className = 'product-details-specs';
-    let start = 0;
-    for (let col = SPEC_COLUMNS; col > 0 && start < pairs.length; col -= 1) {
-      const size = Math.ceil((pairs.length - start) / col);
+    specColumns(pairs).forEach((col) => {
       const dl = document.createElement('dl');
-      pairs.slice(start, start + size).forEach((pair) => {
+      col.forEach(([dt, dd]) => {
         const wrap = document.createElement('div');
-        wrap.append(...pair);
+        wrap.dataset.label = toClassName(dt.textContent);
+        // the source keeps a hidden "Reference Manuals" line above the other documents
+        if (wrap.dataset.label === 'documentation' && !/reference/i.test(dd.textContent)) {
+          dd.classList.add('product-details-offset');
+        }
+        wrap.append(dt, dd);
         dl.append(wrap);
       });
       grid.append(dl);
-      start += size;
-    }
+    });
     ul.replaceWith(grid);
+  });
+}
+
+// Empty headings are the source's blank spacer lines: keep their height, drop them
+// from the document outline.
+function decorateSpacers(content) {
+  content.querySelectorAll(':scope > :is(h2, h3, h4, p)').forEach((el) => {
+    if (el.textContent.trim() || el.querySelector('img, picture, iframe, a')) return;
+    const spacer = document.createElement('div');
+    spacer.className = `product-details-spacer product-details-spacer-${el.tagName.toLowerCase()}`;
+    spacer.setAttribute('aria-hidden', 'true');
+    el.replaceWith(spacer);
   });
 }
 
@@ -104,11 +151,22 @@ function decorateSpecs(title, content) {
 // above it (source order); "N out of 5 stars" lines also get a visual star rating.
 function decorateEntries(title, content) {
   if (!/q\s*&\s*a|question|review/i.test(title)) return;
-  // a lone plain paragraph is the empty state ("Be the first to ask a question")
+  // a lone paragraph is the empty state ("Be the first to ask a question"). The source
+  // button opens a Bazaarvoice form that does not exist here, so it stays plain text
+  // unless the author links it somewhere (then it is a real link styled as the button).
   const only = content.children.length === 1 ? content.firstElementChild : null;
-  if (only && only.tagName === 'P' && !only.children.length) {
-    only.classList.add('product-details-empty');
-    return;
+  if (only && only.tagName === 'P' && !only.querySelector(':scope > :not(a, strong, em)')) {
+    const link = only.querySelector(':scope > a');
+    if (!link) {
+      only.classList.add('product-details-empty');
+      return;
+    }
+    if (only.textContent.trim() === link.textContent.trim()) {
+      only.classList.add('product-details-empty-action');
+      link.classList.remove('button');
+      only.classList.remove('button-container');
+      return;
+    }
   }
   content.querySelectorAll(':scope > p > em:only-child').forEach((em) => {
     const p = em.parentElement;
@@ -116,12 +174,13 @@ function decorateEntries(title, content) {
     p.classList.add('product-details-meta');
     const heading = p.previousElementSibling;
     if (heading && /^H[2-6]$/.test(heading.tagName)) heading.before(p);
-    const match = em.textContent.trim().match(/^([0-5]) out of 5 stars/i);
+    const match = em.textContent.trim().match(/^([0-5](?:\.\d)?) out of 5 stars/i);
     if (!match) return;
+    // five-star bar filled to the rating (source bv-rating-stars-on width)
     const stars = document.createElement('span');
     stars.className = 'product-details-stars';
     stars.setAttribute('aria-hidden', 'true');
-    stars.textContent = '★'.repeat(Number(match[1]));
+    stars.style.setProperty('--rating', `${(Number(match[1]) / 5) * 100}%`);
     em.before(stars);
     // the "N out of 5 stars" text stays for screen readers only (source bv-off-screen)
     const rest = em.textContent.trim().slice(match[0].length).replace(/^\s*·\s*/, '');
@@ -129,7 +188,12 @@ function decorateEntries(title, content) {
       const sr = document.createElement('span');
       sr.className = 'product-details-sr';
       sr.textContent = `${match[0]} · `;
-      em.replaceChildren(sr, rest);
+      // "author · date": the author name has its own (source bv-author) style
+      const [author, ...when] = rest.split(/\s+·\s+/);
+      const name = document.createElement('span');
+      name.className = 'product-details-author';
+      name.textContent = author;
+      em.replaceChildren(sr, name, ...(when.length ? [` · ${when.join(' · ')}`] : []));
     }
   });
   // "Answer (vendor · date)" lines and the entry texts
@@ -153,16 +217,16 @@ function trackCurrent(nav, sections) {
       else a.removeAttribute('aria-current');
     });
   };
-  setCurrent(sections[0].id);
   let ticking = false;
+  // as on the source, nothing is marked until a section has scrolled up to the top
   const update = () => {
     ticking = false;
     const offset = 200;
-    let current = sections[0];
+    let current = null;
     sections.forEach((s) => {
       if (s.getBoundingClientRect().top <= offset) current = s;
     });
-    setCurrent(current.id);
+    setCurrent(current ? current.id : '');
   };
   window.addEventListener('scroll', () => {
     if (ticking) return;
@@ -264,6 +328,7 @@ export default async function decorate(block) {
         p.textContent = panel.textContent.trim();
         panel.replaceChildren(p);
       }
+      decorateSpacers(panel);
       decorateSpecs(title, panel);
       decorateEntries(title, panel);
     }
@@ -280,6 +345,12 @@ export default async function decorate(block) {
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     window.history.replaceState({}, '', a.getAttribute('href'));
   });
+
+  // on the source the details row starts right below the buy box row
+  const prevSection = block.closest('.section')?.previousElementSibling;
+  if (prevSection && prevSection.querySelector(':scope > div:last-child .product-buy-box')) {
+    block.classList.add('follows-buy-box');
+  }
 
   const hasNav = navList.children.length > 1;
   block.replaceChildren(...(hasNav ? [nav, body] : [body]));

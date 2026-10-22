@@ -273,3 +273,122 @@ main > .section.results .tag-list .tag-list-link:any-link:hover {
     padding: 0 25px;
   }
 }
+
+/*
+ * breadcrumb on product and text pages (source .breadcrumbs on /<extension>.html and
+ * /privacy-policy-cookie-restriction-mode): 12px/17.1429px trail, "Home" in
+ * AdobeCleanMedium #202021, current page #0469e3, luma-icons chevron (\e608) separator
+ * drawn as a mask (the icon font is not served to other origins); the source whitespace
+ * after the link and between items is kept as 0.231em spacing. Listing pages
+ * (main > .section.sidebar) keep the rules above.
+ */
+
+/* product pages: 10px below the section top, 24px row + 15px to the title; hidden below 992px */
+main:has(.product-buy-box) .tag-list.breadcrumb {
+  display: none;
+  margin: 0 0 15px;
+  padding: 10px 30px 0 0;
+}
+
+@media (width >= 992px) {
+  main:has(.product-buy-box) .tag-list.breadcrumb {
+    display: block;
+  }
+}
+
+main:has(.product-buy-box) .tag-list.breadcrumb nav {
+  min-height: 24px;
+}
+
+main:not(:has(> .section.sidebar, .product-buy-box, .product-title.partner-profile)) .tag-list.breadcrumb {
+  padding: 0 30px 0 0;
+}
+
+main:has(.product-buy-box) .tag-list.breadcrumb .tag-list-items,
+main:not(:has(> .section.sidebar, .product-buy-box, .product-title.partner-profile)) .tag-list.breadcrumb .tag-list-items {
+  align-items: baseline;
+  column-gap: 0.231em;
+  color: #8e8e8e;
+  font-size: 12px;
+  line-height: 17.1429px;
+}
+
+main:has(.product-buy-box) .tag-list.breadcrumb .tag-list-item,
+main:not(:has(> .section.sidebar, .product-buy-box, .product-title.partner-profile)) .tag-list.breadcrumb .tag-list-item {
+  align-items: flex-start;
+}
+
+main:has(.product-buy-box) .tag-list.breadcrumb .tag-list-item:not(:last-child)::after,
+main:not(:has(> .section.sidebar, .product-buy-box, .product-title.partner-profile)) .tag-list.breadcrumb .tag-list-item:not(:last-child)::after {
+  content: '';
+  top: 0;
+  width: 10px;
+  height: 18px;
+  margin: 0 10px;
+  color: #8e8e8e;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 18'%3E%3Cpath d='M2.5 4.7h1.4l3.6 4.35-3.6 4.35H2.5l3.6-4.35z'/%3E%3C/svg%3E") center / 10px 18px no-repeat;
+}
+
+main:has(.product-buy-box) .tag-list.breadcrumb .tag-list-item > a:any-link,
+main:not(:has(> .section.sidebar, .product-buy-box, .product-title.partner-profile)) .tag-list.breadcrumb .tag-list-item > a:any-link {
+  margin-right: 0.231em;
+  color: #202021;
+  font-family: var(--font-family-medium);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 17.1429px;
+  text-decoration: none;
+}
+
+main:has(.product-buy-box) .tag-list.breadcrumb .tag-list-item > span,
+main:not(:has(> .section.sidebar, .product-buy-box, .product-title.partner-profile)) .tag-list.breadcrumb .tag-list-item > span {
+  color: #0469e3;
+  font-size: 11px;
+  line-height: 15.7143px;
+}
+
+/* text pages: 13px link and current page, black chevron with 1px sides */
+main:not(:has(> .section.sidebar, .product-buy-box, .product-title.partner-profile)) .tag-list.breadcrumb .tag-list-item:not(:last-child)::after {
+  margin: 0 1px;
+  color: #000;
+}
+
+main:not(:has(> .section.sidebar, .product-buy-box, .product-title.partner-profile)) .tag-list.breadcrumb .tag-list-item > a:any-link,
+main:not(:has(> .section.sidebar, .product-buy-box, .product-title.partner-profile)) .tag-list.breadcrumb .tag-list-item > span {
+  font-size: 13px;
+  line-height: 18.5714px;
+}
+
+/* page holding nothing but the breadcrumb (source no-route search page): all grey, 12px */
+main:not(:has(.default-content-wrapper, .block:not(.tag-list))) .tag-list.breadcrumb .tag-list-item:not(:last-child)::after {
+  margin: 0 10px;
+  color: #8e8e8e;
+}
+
+main:not(:has(.default-content-wrapper, .block:not(.tag-list))) .tag-list.breadcrumb .tag-list-item > a:any-link,
+main:not(:has(.default-content-wrapper, .block:not(.tag-list))) .tag-list.breadcrumb .tag-list-item > span {
+  color: #8e8e8e;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17.1429px;
+}
+
+/* seller profile (source /partner/<name>/): 14px trail, current #333, 10px ">" with 7px sides */
+main:has(.product-title.partner-profile) .tag-list.breadcrumb {
+  margin: -10px 0 10px;
+}
+
+main:has(.product-title.partner-profile) .tag-list.breadcrumb .tag-list-item:not(:last-child)::after {
+  margin: 0 7px;
+  font-size: 10px;
+}
+
+main:has(.product-title.partner-profile) .tag-list.breadcrumb .tag-list-item > a:any-link {
+  text-decoration: none;
+}
+
+main:has(.product-title.partner-profile) .tag-list.breadcrumb .tag-list-item > span {
+  color: #333;
+}

@@ -10,6 +10,11 @@
   line-height: 20px;
 }
 
+/* source: no gap between the buy box row and this row (cancels the section spacing) */
+.product-details.follows-buy-box {
+  margin-top: calc(-1 * var(--section-spacing));
+}
+
 /* ---------- CONTENTS nav (source .product-page-left-navigation / spectrum-SideNav) ---------- */
 .product-details .product-details-nav {
   padding: 0 20px;
@@ -108,6 +113,8 @@
 
 /* section content (source .box) */
 .product-details .product-details-content {
+  /* long unbroken strings in vendor notes must not widen the page */
+  overflow-wrap: anywhere;
   display: flow-root;
   padding: 20px 20px 0;
   color: #202021;
@@ -129,14 +136,25 @@
   line-height: 1.1;
 }
 
-/* source separates headings with an empty paragraph (28px line + 10px margins) */
-.product-details .product-details-content h2:not(:first-child) {
-  margin-top: 48px;
+/*
+ * Blank source lines (empty h2/h3/p, kept by the importer as empty elements) are
+ * spacers of the element's own line box + bottom margin. Headings have no top margin
+ * on the source; blank "<p>&nbsp;</p>" lines dropped by the importer are not restored.
+ */
+.product-details .product-details-content .product-details-spacer {
+  height: 28px;
+  margin: 0 0 10px;
 }
 
-.product-details .product-details-content ul + h2:not(:first-child),
-.product-details .product-details-content ol + h2:not(:first-child) {
-  margin-top: 63px;
+.product-details .product-details-content .product-details-spacer-h2 {
+  height: 33px;
+  margin-bottom: 25px;
+}
+
+.product-details .product-details-content .product-details-spacer-h3,
+.product-details .product-details-content .product-details-spacer-h4 {
+  height: 22px;
+  margin-bottom: 25px;
 }
 
 .product-details .product-details-content h3 {
@@ -209,6 +227,11 @@
   margin: 0 0 10px;
 }
 
+/* room of the hidden "Reference Manuals" line (source p: 0 height + 10px margin) */
+.product-details .product-details-specs dd.product-details-offset {
+  padding-top: 10px;
+}
+
 /* ---------- Q & A / reviews (source Bazaarvoice widgets) ---------- */
 
 /* "author · date" (and "N out of 5 stars") line above each entry */
@@ -233,11 +256,22 @@
   white-space: nowrap;
 }
 
+/* five 15.4px stars, filled to --rating (source bv-rating-stars, off stars are white) */
 .product-details .product-details-stars {
-  margin-right: 4.8px;
-  color: #0469e3;
-  font-size: 20px;
+  display: inline-block;
+  width: 77px;
+  height: 15px;
+  margin-right: 7px;
+  background: linear-gradient(90deg, #0469e3 var(--rating, 0%), transparent 0);
   vertical-align: -1px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 25'%3E%3Cpath d='M12.5 0l3.6 8.2 8.9.8-6.7 5.9 2 8.7-7.8-4.6-7.8 4.6 2-8.7L0 9l8.9-.8z'/%3E%3C/svg%3E") 0 0 / 15.4px 15px repeat-x;
+}
+
+/* review author (source .bv-author: 14px AdobeCleanMedium) */
+.product-details .product-details-meta .product-details-author {
+  font-family: var(--font-family-medium);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .product-details [data-section="q-a"] .product-details-content > p.product-details-meta {
@@ -248,6 +282,11 @@
   margin-right: 10px;
   padding-top: 15px;
   border-top: 2px solid #aeafb1;
+}
+
+/* the source review list sits below a 60px BV header + 10px list padding */
+.product-details [data-section="reviews"] .product-details-content > p.product-details-meta:first-child {
+  margin-top: 70px;
 }
 
 /* separator under the previous answer (source: indented to the answer column) */
@@ -297,21 +336,36 @@
 
 .product-details [data-section="reviews"] .product-details-content > p.product-details-text {
   max-width: 467px;
-  margin: 12px 10px 16px 122px;
+  margin: 16px 10px 16px 122px;
   overflow-wrap: anywhere;
 }
 
-/* empty Q & A: "Be the first to ask a question" (source .bv-first-to-ask-question) */
-.product-details .product-details-content > p.product-details-empty {
-  display: inline-block;
+/*
+ * empty Q & A: "Be the first to ask a question". On the source it is the Bazaarvoice
+ * ask button (.bv-first-to-ask-question); without that form it is a plain notice, and
+ * only an authored link gets the button look.
+ */
+.product-details .product-details-content > p.product-details-empty,
+.product-details .product-details-content > p.product-details-empty-action {
   margin: 30px 0 15px;
+  color: #31302b;
+  font-family: OpenSans, 'Helvetica Neue', Verdana, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 25px;
+}
+
+/* plain notice keeps the button's line box (7px padding) so the layout below is unchanged */
+.product-details .product-details-content > p.product-details-empty {
+  padding: 7px 0;
+}
+
+.product-details .product-details-content > p.product-details-empty-action a:any-link {
+  display: inline-block;
   padding: 7px 14px;
   border-radius: 2px;
   background-color: #0469e3;
   color: #fff;
-  font-family: OpenSans, 'Helvetica Neue', Verdana, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 25px;
+  text-decoration: none;
 }
 
 @media (width >= 768px) {

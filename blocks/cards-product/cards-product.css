@@ -3,6 +3,7 @@
  * source: commercemarketplace.adobe.com/extensions.html #products-grid
  * (migration-work/cards-product-extracted.css)
  * grid: 7px top/bottom padding, 10px gap, 15px bottom margin;
+ * every row (incl. the last) keeps its 10px row spacing, so 17px sit under the last card;
  * 1 col < 375px, 2 cols >= 375px, 3 cols >= 600px, 4 cols >= 768px,
  * 5px side padding >= 769px
  */
@@ -11,7 +12,7 @@
   grid-template-columns: minmax(0, 1fr);
   gap: 10px;
   margin: 0 0 15px;
-  padding: 7px 0;
+  padding: 7px 0 17px;
   list-style: none;
 }
 
@@ -35,7 +36,7 @@
 
 @media (width >= 769px) {
   .cards-product > ul {
-    padding: 7px 5px;
+    padding: 7px 5px 17px;
   }
 }
 
@@ -80,6 +81,11 @@
   overflow: hidden;
   border-radius: 4px;
   background-color: #f8f8f8;
+}
+
+/* no logo: source shows the Magento "no_selection" placeholder (#f0f0f0 mark on #f8f8f8) */
+.cards-product .cards-product-card-image:empty {
+  background: #f8f8f8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='1.609 0 20.782 24'%3E%3Cpath fill='%23f0f0f0' d='M12 24l-4.455-2.572v-12l2.97-1.715v12.001L12 20.57l1.485-.856V7.713l2.97 1.715v12L12 24zM22.391 6v12l-2.969 1.714V7.713L12 3.43 4.574 7.713v12.001L1.609 18V6L12 0l10.391 6z'/%3E%3C/svg%3E") center / auto 41px no-repeat;
 }
 
 .cards-product .cards-product-card-image p {
@@ -200,13 +206,21 @@
   height: auto;
 }
 
-/* price (source span.price: 14px/20px #2c3e50, right aligned, 10px top offset) */
+/*
+ * price: source div.price (#505050, 30px box centred in the footer) holds
+ * .price-box (margin-top 10px) > span.price (14px/20px #2c3e50, right aligned)
+ */
 .cards-product .cards-product-footer .cards-product-price {
-  margin: 10px 0 0 auto;
-  color: #2c3e50;
+  margin: 0 0 0 auto;
+  padding-top: 10px;
+  color: var(--text-color);
   font-size: 14px;
   line-height: 20px;
   text-align: right;
+}
+
+.cards-product .cards-product-price-amount {
+  color: #2c3e50;
 }
 
 /*
@@ -235,8 +249,9 @@
   margin-top: 15px;
 }
 
+/* 6px margin + 10px price-box offset = amount 16px below the footer top */
 .cards-product.no-vendor .cards-product-footer .cards-product-price {
-  margin-top: 16px;
+  margin-top: 6px;
   line-height: 24.5px;
 }
 

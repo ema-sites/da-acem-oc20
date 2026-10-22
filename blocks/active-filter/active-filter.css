@@ -87,40 +87,39 @@
 
 .active-filter .active-filter-bar:not(:has(> .active-filter-label)) .active-filter-actions p {
   display: block;
+  max-width: 100%;
   margin: 0;
 }
 
-/* chip: grey "X" box (::before) + label; selector also beats main a.button:any-link */
-.active-filter .active-filter-bar:not(:has(> .active-filter-label)) a.active-filter-action:any-link {
-  position: relative;
+/*
+ * chip (source a.selected-filter-item): grey "X" box + label as two flex items;
+ * selector also beats main a.button:any-link
+ */
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) a.active-filter-chip:any-link {
   display: inline-flex;
-  align-items: center;
+  align-items: stretch;
   box-sizing: border-box;
-  min-height: 30px;
+  max-width: 100%;
   margin: 0;
-  padding: 4px 8px 4px 38px;
+  padding: 0;
   overflow: hidden;
   border: 1px solid #d0d0d0;
   border-radius: 3px;
   background: #f9f9f9;
-  color: #636363;
+  color: var(--link-color);
   font-family: var(--body-font-family);
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 18.5714px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
   text-decoration: none;
-  white-space: normal;
   cursor: pointer;
   transition: opacity 0.2s;
 }
 
-.active-filter .active-filter-bar:not(:has(> .active-filter-label)) a.active-filter-action::before {
-  content: 'X';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
+/* source .remove-icon: 30 x 28 */
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) .active-filter-chip-remove {
   display: flex;
+  flex: none;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
@@ -133,16 +132,41 @@
   line-height: 20px;
 }
 
-.active-filter .active-filter-bar:not(:has(> .active-filter-label)) a.active-filter-action strong {
+/*
+ * source .filter-label: one line. The source font (single synthetic-bold face) is
+ * ~8px narrower than the Typekit bold, so a long label is kept on one line and
+ * ellipsed inside the 245px sidebar instead of wrapping to a 47px chip.
+ */
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) .active-filter-chip-label {
   display: block;
+  flex: 0 1 auto;
+  align-self: center;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 4px 8px;
+  overflow: hidden;
+  color: #636363;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18.5714px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: text-decoration 0.2s;
+}
+
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) .active-filter-chip-label strong {
   margin: 0 2px 0 0;
   color: #636363;
   font-weight: 600;
 }
 
-/* hover: chip fades, label (not the X) is struck through */
-.active-filter .active-filter-bar:not(:has(> .active-filter-label)) a.active-filter-action:hover {
+/* hover: chip fades; only the label (not the X) is struck through, as on source */
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) a.active-filter-chip:hover {
   opacity: 0.8;
-  color: #636363;
+  color: var(--link-hover-color);
+  text-decoration: none;
+}
+
+.active-filter .active-filter-bar:not(:has(> .active-filter-label)) a.active-filter-chip:hover .active-filter-chip-label {
   text-decoration: line-through;
 }

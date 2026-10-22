@@ -4,6 +4,16 @@
  * #instant-search-facets-container .facet-group > ul.facet-items
  * The facet title bar (h3) and the group separator live in styles/styles.css (.section.sidebar).
  */
+
+/*
+ * source ul.facet-items ends at the last item's border box; that item's 8px margin
+ * falls into the group's 15px bottom padding. The block carries it as its own
+ * margin (kept inside the flow-root wrapper), so the next heading stays put.
+ */
+.facet-filter {
+  margin-bottom: 8px;
+}
+
 .facet-filter .facet-filter-group {
   min-width: 0;
   margin: 0;
@@ -32,11 +42,15 @@
   list-style: none;
 }
 
-/* source .facet-item: every item (incl. the last) keeps margin-bottom 8px inside the group */
+/* source .facet-item: margin-bottom 8px */
 .facet-filter .facet-filter-item {
   display: block;
   margin: 0 0 8px;
   padding: 0;
+}
+
+.facet-filter .facet-filter-item:last-child {
+  margin-bottom: 0;
 }
 
 /* source .facet-item label */

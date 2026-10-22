@@ -16,7 +16,8 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
  *     div.cards-product-card-image      (always present: grey logo tile)
  *     div.cards-product-card-body
  *       .cards-product-name, .cards-product-vendor, .cards-product-rating,
- *       div.cards-product-footer > .cards-product-tier + .cards-product-price
+ *       div.cards-product-footer > .cards-product-tier
+ *         + .cards-product-price > span.cards-product-price-amount
  */
 
 const PRICE_RE = /^(free|[$€£¥]\s?\d|\d[\d.,]*\s?(usd|eur|gbp))/i;
@@ -80,7 +81,12 @@ function classifyBody(body) {
       return;
     }
     if (PRICE_RE.test(text)) {
+      // source: div.price (text colour) > span.price (amount colour)
       el.classList.add('cards-product-price');
+      const amount = document.createElement('span');
+      amount.className = 'cards-product-price-amount';
+      amount.append(...el.childNodes);
+      el.append(amount);
       return;
     }
     if (/partner/i.test(text)) {

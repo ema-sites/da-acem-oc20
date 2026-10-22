@@ -51,13 +51,10 @@
   appearance: none;
 }
 
-.pagination .pagination-size select:hover {
-  border-color: #9ca3af;
-}
-
+/* source: global select { border: 1px solid #aeafb1 !important } wins over the
+   #livesearch-limiter :hover/:focus border colours, so only the focus ring shows */
 .pagination .pagination-size select:focus {
   outline: none;
-  border-color: #3b82f6;
   box-shadow: 0 0 0 2px rgb(59 130 246 / 10%);
 }
 
