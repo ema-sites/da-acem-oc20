@@ -705,6 +705,237 @@ main > .section.results .tag-list-wrapper + .default-content-wrapper > p:first-c
   }
 }
 
+/*
+ * partners listing (/partners, source #magento-developer-main): same shell, scoped by the
+ * cards block, which only this page uses. Differences from the extension listings:
+ * breadcrumb on every width, h1 line-height 1.1 (24px <= 480px), 25% sidebar from 769px,
+ * #f4f4f4 facet titles, 33px checkbox rows, grey stat bar, pill "Results per page" box,
+ * and a 75% wide results column below 769px (as on the source).
+ * main bottom padding: source 40px .page-main tail + 75px before the footer.
+ */
+main:has(> .section.sidebar):has(.cards) {
+  padding-bottom: 115px;
+}
+
+main:has(> .section.sidebar):has(.cards) > .section:first-of-type {
+  padding-top: 10px;
+}
+
+main:has(> .section.sidebar):has(.cards) > .section > .tag-list-wrapper:has(> .tag-list.breadcrumb) {
+  display: block;
+  margin-bottom: 14px;
+}
+
+main:has(> .section.sidebar):has(.cards) > .section > .default-content-wrapper > h1 {
+  line-height: 1.1;
+}
+
+/* facet groups (source .facet: h3 + checkbox rows, 15px padding + 1px line + 20px gap) */
+main:has(> .section.sidebar):has(.cards) > .section.sidebar h3 {
+  margin: 36px 0 15px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  color: #2b2b2c;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+main:has(> .section.sidebar):has(.cards) > .section.sidebar > .default-content-wrapper:first-child > h3:first-child {
+  margin-top: 0;
+}
+
+main:has(> .section.sidebar):has(.cards) > .section.sidebar > .default-content-wrapper:first-child > h3:first-child::before {
+  content: none;
+}
+
+/* source label: 13px row, padding 0 5px, followed by a 20px <br> line */
+main:has(> .section.sidebar):has(.cards) .facet-filter {
+  margin-bottom: 0;
+}
+
+main:has(> .section.sidebar):has(.cards) .facet-filter .facet-filter-list {
+  padding: 0;
+}
+
+main:has(> .section.sidebar):has(.cards) .facet-filter .facet-filter-item,
+main:has(> .section.sidebar):has(.cards) .facet-filter .facet-filter-item:last-child {
+  margin: 0 0 20px;
+}
+
+main:has(> .section.sidebar):has(.cards) .facet-filter .facet-filter-item label {
+  box-sizing: border-box;
+  padding: 0 5px;
+  line-height: 13px;
+}
+
+main:has(> .section.sidebar):has(.cards) .facet-filter .facet-filter-item input[type='checkbox'] {
+  accent-color: #0073e6;
+}
+
+main:has(> .section.sidebar):has(.cards) .facet-filter .facet-filter-label {
+  margin-right: 10px;
+  line-height: 13px;
+}
+
+main:has(> .section.sidebar):has(.cards) .facet-filter .facet-filter-count {
+  min-width: 20px;
+  line-height: 13px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* "Showing 1-36 of 7420 partners" (source #developer-search-stats) */
+main:has(> .section.sidebar):has(.cards) > .section.results > .default-content-wrapper:has(+ .cards-wrapper) {
+  text-align: start;
+}
+
+main:has(> .section.sidebar):has(.cards) > .section.results > .default-content-wrapper:has(+ .cards-wrapper) > p {
+  margin: 0 0 20px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  color: #666;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4286;
+}
+
+/* source #partners-controls / #hits-per-page-container */
+main:has(> .section.sidebar):has(.cards) .pagination {
+  gap: 30px;
+  justify-content: space-between;
+  margin: 40px 0 30px;
+  padding: 0;
+}
+
+main:has(> .section.sidebar):has(.cards) .pagination .pagination-size {
+  width: auto;
+  gap: 3px;
+  margin-left: 10px;
+  padding: 4px 8px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+  color: #424242;
+}
+
+main:has(> .section.sidebar):has(.cards) .pagination .pagination-size label {
+  color: #666;
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+main:has(> .section.sidebar):has(.cards) .pagination .pagination-size select {
+  width: 60px;
+  height: 30px;
+  padding: 2px 6px;
+  border: 1px solid #aeafb1;
+  border-radius: 4px;
+  color: #666;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@media (width <= 768px) {
+  main:has(> .section.sidebar):has(.cards) > .section.sidebar {
+    margin-bottom: 40px;
+    padding: 16px 16px 31px;
+    background-color: #fff;
+  }
+
+  main:has(> .section.sidebar):has(.cards) > .section.sidebar h3 {
+    margin-top: 31px;
+  }
+
+  main:has(> .section.sidebar):has(.cards) > .section.sidebar h3::before {
+    top: -16px;
+  }
+
+  main:has(> .section.sidebar):has(.cards) > .section.results > div {
+    box-sizing: content-box;
+    width: calc((100% - 2 * var(--content-padding)) * 0.75);
+    margin: 0;
+  }
+}
+
+@media (width <= 480px) {
+  main:has(> .section.sidebar):has(.cards) > .section > .default-content-wrapper > h1 {
+    font-size: 24px;
+  }
+
+  main:has(> .section.sidebar):has(.cards) > .section.sidebar h3 {
+    margin-top: 46px;
+  }
+
+  main:has(> .section.sidebar):has(.cards) > .section.sidebar h3::before {
+    top: -31px;
+  }
+
+  main:has(> .section.sidebar):has(.cards) > .section.sidebar > .default-content-wrapper:has(> h3[id='country']) + .facet-filter-wrapper .facet-filter-item {
+    margin-bottom: 28px;
+  }
+
+  main:has(> .section.sidebar):has(.cards) .pagination {
+    gap: 20px;
+    margin: 20px 0 15px;
+    padding: 0 10px;
+  }
+
+  main:has(> .section.sidebar):has(.cards) .pagination .pagination-size {
+    padding: 2px 4px;
+  }
+
+  main:has(> .section.sidebar):has(.cards) .pagination .pagination-size label {
+    font-size: 12px;
+  }
+
+  main:has(> .section.sidebar):has(.cards) .pagination .pagination-size select {
+    width: 55px;
+  }
+}
+
+@media (width >= 769px) {
+  main:has(> .section.sidebar):has(.cards) {
+    display: grid;
+    grid-template-columns: 25% minmax(0, 1fr);
+    column-gap: 20px;
+    align-items: start;
+    box-sizing: border-box;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding) 115px;
+  }
+
+  main:has(> .section.sidebar):has(.cards) > .section {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  main:has(> .section.sidebar):has(.cards) > .section > div {
+    max-width: none;
+    padding: 0;
+  }
+
+  main:has(> .section.sidebar):has(.cards) > .section.sidebar {
+    grid-column: 1;
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  main:has(> .section.sidebar):has(.cards) > .section.results {
+    grid-column: 2;
+  }
+}
+
+@media (width >= 992px) {
+  main:has(> .section.sidebar):has(.cards) > .section > .tag-list-wrapper:has(> .tag-list.breadcrumb) {
+    margin-bottom: 10px;
+  }
+}
+
 /* stylelint-disable no-descending-specificity -- band selectors are unrelated to the listing rules above */
 
 /*

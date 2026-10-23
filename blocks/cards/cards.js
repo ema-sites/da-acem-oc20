@@ -1,14 +1,21 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
+/*
+ * Cards block (partner card grid, source #developer-hits-results .hit-instance)
+ * Rows: | logo (picture, may be empty) | name heading + "Learn More" link |
+ * The first cell of a multi-cell row is the logo slot even when it is empty:
+ * the source keeps the logo box height for partners without a logo.
+ */
 export default function decorate(block) {
-  /* change to ul, li */
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
-    while (row.firstElementChild) li.append(row.firstElementChild);
-    [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-      else div.className = 'cards-card-body';
+    const cells = [...row.children];
+    cells.forEach((div, i) => {
+      const hasImage = div.querySelector('picture, img') && !div.textContent.trim();
+      const isEmptyLogoSlot = i === 0 && cells.length > 1 && !div.textContent.trim();
+      div.className = hasImage || isEmptyLogoSlot ? 'cards-card-image' : 'cards-card-body';
+      li.append(div);
     });
     ul.append(li);
   });

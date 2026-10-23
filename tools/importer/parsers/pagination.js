@@ -51,7 +51,8 @@ export default function parse(element, { document }) {
   if (!pageItems.length) pageItems = [...element.querySelectorAll('.pagination > .page-link')];
   const ul = document.createElement('ul');
   pageItems.forEach((item) => {
-    const link = item.querySelector('a[href]');
+    // partner directory items are the <a class="page-link"> elements themselves
+    const link = item.matches('a[href]') ? item : item.querySelector('a[href]');
     const text = clean((link || item).textContent);
     if (!text) return;
     const li = document.createElement('li');

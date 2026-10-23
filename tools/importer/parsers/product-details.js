@@ -68,6 +68,12 @@ function sanitize(document, root) {
   });
   root.querySelectorAll('a[href]').forEach((a) => a.setAttribute('href', abs(a.getAttribute('href'))));
   root.querySelectorAll('img[src]').forEach((img) => img.setAttribute('src', abs(img.getAttribute('src'))));
+  // vendor pseudo-headings (<p class="heading1|heading2">) are headings on the source
+  root.querySelectorAll('p.heading1, p.heading2').forEach((p) => {
+    const h = el(document, p.classList.contains('heading1') ? 'h2' : 'h3');
+    h.innerHTML = p.innerHTML;
+    p.replaceWith(h);
+  });
   // <br> directly inside lists is invalid and breaks list conversion
   root.querySelectorAll('ul > br, ol > br').forEach((br) => br.remove());
   // labels like "<b>Compatible with X   :</b>" -> "Compatible with X:"

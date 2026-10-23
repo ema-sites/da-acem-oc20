@@ -527,7 +527,8 @@
   text-align: right;
 }
 
-.product-buy-box .product-buy-box-price-line[data-line='installation'] dd {
+.product-buy-box .product-buy-box-price-line[data-line='installation'] dd,
+.product-buy-box .product-buy-box-price-line[data-line='support'] dd {
   font-size: 18px;
   line-height: 25.7143px;
 }
@@ -608,4 +609,9 @@ main .product-buy-box .product-buy-box-actions a.button.secondary:focus-visible 
 .product-buy-box.installation-checkbox-only-dark .product-buy-box-checkbox {
   border-bottom: 0;
   padding-bottom: 0;
+}
+
+/* source: a Support select and the installation checkbox share one container (15px gap only) */
+.product-buy-box .product-buy-box-field:has(select[data-line='support']) + .product-buy-box-checkbox {
+  padding-top: 0;
 }
