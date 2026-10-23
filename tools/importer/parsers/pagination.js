@@ -46,7 +46,9 @@ export default function parse(element, { document }) {
   }
 
   // page links
-  const pageItems = [...element.querySelectorAll('ul.pages-items > li')];
+  // Extension listings: ul.pages-items > li; partner directory: .pagination > a.page-link / span.page-link.current
+  let pageItems = [...element.querySelectorAll('ul.pages-items > li')];
+  if (!pageItems.length) pageItems = [...element.querySelectorAll('.pagination > .page-link')];
   const ul = document.createElement('ul');
   pageItems.forEach((item) => {
     const link = item.querySelector('a[href]');

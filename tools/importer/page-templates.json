@@ -3464,7 +3464,11 @@
         "https://commercemarketplace.adobe.com/zonos-hello.html",
         "https://commercemarketplace.adobe.com/zymion-module-faq.html",
         "https://commercemarketplace.adobe.com/zymion-module-seo-friendly-images.html",
-        "https://commercemarketplace.adobe.com/zymion-module-shipping-restrictions.html"
+        "https://commercemarketplace.adobe.com/zymion-module-shipping-restrictions.html",
+        "https://commercemarketplace.adobe.com/fme-currency-switcher.html",
+        "https://commercemarketplace.adobe.com/mage-delight-imagecleanup-module.html",
+        "https://commercemarketplace.adobe.com/plumrocket-lgpd.html",
+        "https://commercemarketplace.adobe.com/webkul-marketplace-correios-shipping-method.html"
       ],
       "description": "Product detail page with breadcrumb, product title and buy box (image gallery, edition/version selects, price, add to cart), sticky contents nav and long product details body with specs, quality report, release notes, Q&A and reviews",
       "blocks": [
@@ -56608,6 +56612,87 @@
           "div.ui-dialog.ui-corner-all"
         ]
       }
+    },
+    {
+      "name": "partners-directory",
+      "description": "Partner directory: breadcrumb + title, facet sidebar (partner type, certification, solutions type, country), partner card grid, pagination. Added after the preview crawl (not in the source sitemap).",
+      "urls": [
+        "https://commercemarketplace.adobe.com/partners"
+      ],
+      "blocks": [
+        {
+          "name": "tag-list",
+          "instances": [
+            "#magento-developer-main > div.breadcrumbs:has(li)"
+          ]
+        },
+        {
+          "name": "facet-filter",
+          "instances": [
+            "#magento-developer-main #current-refinements > .facet > div[id^=\"developer-\"]"
+          ]
+        },
+        {
+          "name": "cards",
+          "instances": [
+            "#magento-developer-main #developer-hits-results"
+          ]
+        },
+        {
+          "name": "pagination",
+          "instances": [
+            "#magento-developer-main #partners-controls"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "listing-header",
+          "name": "Breadcrumb and title",
+          "selector": [
+            "#magento-developer-main > div.breadcrumbs"
+          ],
+          "style": null,
+          "blocks": [
+            "tag-list"
+          ],
+          "defaultContent": [
+            "#magento-developer-main .partners-page-title"
+          ]
+        },
+        {
+          "id": "listing-sidebar",
+          "name": "Filters sidebar",
+          "selector": [
+            "#magento-developers-left-column"
+          ],
+          "style": "sidebar",
+          "blocks": [
+            "facet-filter"
+          ],
+          "defaultContent": [
+            "#current-refinements > .facet > h3"
+          ]
+        },
+        {
+          "id": "listing-results",
+          "name": "Results",
+          "selector": [
+            "#magento-developers-right-column"
+          ],
+          "style": "results",
+          "blocks": [
+            "cards",
+            "pagination"
+          ],
+          "defaultContent": [
+            "#developer-search-stats"
+          ]
+        }
+      ],
+      "removeAfterParse": [
+        "#developer-instant-search-input"
+      ]
     }
   ],
   "metadata": {

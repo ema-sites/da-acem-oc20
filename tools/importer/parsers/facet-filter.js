@@ -19,11 +19,13 @@ function clean(text) {
 
 export default function parse(element, { document }) {
   const cells = [];
-  const items = [...element.querySelectorAll(':scope > li')];
+  // Extension listings: ul > li; partner directory: div > label (span label + span.filter-count).
+  let items = [...element.querySelectorAll(':scope > li')];
+  if (!items.length) items = [...element.querySelectorAll(':scope > label')];
 
   items.forEach((li) => {
-    const labelEl = li.querySelector('.facet-label');
-    const countEl = li.querySelector('.facet-count');
+    const labelEl = li.querySelector('.facet-label, .label-content > span');
+    const countEl = li.querySelector('.facet-count, .filter-count');
     const input = li.querySelector('input');
     const label = clean(labelEl ? labelEl.textContent : '')
       || clean(input ? input.getAttribute('value') : '');

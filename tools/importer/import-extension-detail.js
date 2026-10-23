@@ -3380,7 +3380,11 @@ const PAGE_TEMPLATE = {
     "https://commercemarketplace.adobe.com/zonos-hello.html",
     "https://commercemarketplace.adobe.com/zymion-module-faq.html",
     "https://commercemarketplace.adobe.com/zymion-module-seo-friendly-images.html",
-    "https://commercemarketplace.adobe.com/zymion-module-shipping-restrictions.html"
+    "https://commercemarketplace.adobe.com/zymion-module-shipping-restrictions.html",
+    "https://commercemarketplace.adobe.com/fme-currency-switcher.html",
+    "https://commercemarketplace.adobe.com/mage-delight-imagecleanup-module.html",
+    "https://commercemarketplace.adobe.com/plumrocket-lgpd.html",
+    "https://commercemarketplace.adobe.com/webkul-marketplace-correios-shipping-method.html"
   ],
   "description": "Product detail page with breadcrumb, product title and buy box (image gallery, edition/version selects, price, add to cart), sticky contents nav and long product details body with specs, quality report, release notes, Q&A and reviews",
   "blocks": [

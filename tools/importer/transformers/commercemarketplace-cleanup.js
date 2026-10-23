@@ -361,6 +361,61 @@ function normalizeFacetDefaultContent(document, element) {
 // extension (pages import to extension-less paths), keep query and hash.
 const SITE_HOSTS = ['commercemarketplace.adobe.com', 'marketplace.magento.com'];
 
+
+// Links to pages that 404 on the source itself (stale vendor links, found by crawling the
+// migrated preview): the link is dropped and its text kept.
+const DEAD_LINK_PATHS = new Set([
+  '/aheadworks-module-blog',
+  '/aheadworks-module-automatic-related-products',
+  '/aheadworks-module-ca',
+  '/aheadworks-module-coupongenerator',
+  '/aheadworks-module-ctq',
+  '/aheadworks-module-customer-segmentation',
+  '/aheadworks-module-easy-reorder',
+  '/aheadworks-module-faq',
+  '/aheadworks-module-onestepcheckout',
+  '/aheadworks-module-sales-representative',
+  '/aheadworks-module-shop-by-brand',
+  '/amasty-aminvisiblecaptcha',
+  '/amasty-geoipredirect',
+  '/amasty-module-magento-custom-form',
+  '/amasty-module-single-step-checkout',
+  '/amasty-storelocator',
+  '/amasty-theme-frontend-jet-theme',
+  '/anyhow-cxl-mobile-app',
+  '/extensions/details/g4node4mpl',
+  '/extensions/sales/point-of-sale-pos',
+  '/magecomp-magento-2-extra-fee',
+  '/magecomp-magento-2-sms-notification-pro',
+  '/mageworx-module-donationsmeta',
+  '/mageworx-module-multifeesmeta',
+  '/mageworx-module-layered-navigation-meta',
+  '/mageworx-module-rewardpointsmeta',
+  '/magezon-module-blog',
+  '/magezon-module-loginregistrationpage',
+  '/magezon-module-shopbybrand',
+  '/magezon-module-singple-product-page-builder',
+  '/paradoxlabs-firstdata',
+  '/platform.writetext.ai',
+  '/plumrocket-lgpd-metapackage',
+  '/plumrocket-ccpa-metapackage',
+  '/plumrocket-module-psloginpro',
+  '/plumrocket-module-geoiplookup',
+  '/px-pxpay2',
+  '/sixtomartin-onelogin-saml',
+  '/tigrensolutions-ajaxwishlist',
+  '/tigrensolutions-ajaxcompare',
+  '/tigrensolutions-module-ajax-cart'
+]);
+
+// Same-site links that are not migrated pages (account login, PDF downloads, product URLs that
+// redirect to seller profiles): kept as absolute source URLs.
+const KEEP_ON_SOURCE_PATHS = new Set([
+  '/contact-us',
+  '/aheadworks-module-advanced-search',
+  '/paypal-module-braintree',
+]);
+
 function rewriteInternalLinks(element) {
   element.querySelectorAll('a[href]').forEach((a) => {
     const href = a.getAttribute('href');
@@ -368,11 +423,16 @@ function rewriteInternalLinks(element) {
     let u;
     try { u = new URL(href, 'https://commercemarketplace.adobe.com/'); } catch (e) { return; }
     if (!SITE_HOSTS.includes(u.hostname)) return;
-    if (/^\/(media|static|pub)\//.test(u.pathname)) return; // assets stay absolute
+    if (/^\/(media|static|pub|legal)\//.test(u.pathname)) return; // assets and legal PDFs stay absolute
     // Magento app routes (search, cart, account) are not migrated pages: keep them on the source.
     if (/^\/(catalogsearch|checkout|customer|wishlist|sales|contact|partner|review|reviews)\b/.test(u.pathname)) return;
     let p = u.pathname.replace(/\.html?$/, '').replace(/\/$/, '');
     if (p === '') p = '/';
+    if (KEEP_ON_SOURCE_PATHS.has(p)) return;
+    if (DEAD_LINK_PATHS.has(p)) {
+      a.replaceWith(...a.childNodes);
+      return;
+    }
     a.setAttribute('href', `${p}${u.search}${u.hash}`);
   });
 }
